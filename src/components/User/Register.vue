@@ -22,11 +22,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     data(){
         return {
             form: {
                 userId: '',
+                userName: '',
                 password: '',
                 password_check: '',
             },
@@ -34,7 +37,15 @@ export default {
     },
     methods: {
         regist(){
-            axios.post('http://34.64.236.155:8000/myapp/register/?email=' + this.form.userId + '&password=' + this.form.password).then((res)=>{
+            axios({
+                method: 'post',
+                url: 'http://34.64.236.155:8000/myapp/register',
+                data:{
+                    email: this.form.userId,
+                    password: this.form.password,
+                    username: this.form.userName,
+                }
+            }).then((res) =>{
                 if(res.status == 200){
                     alert('회원가입에 성공하였습니다');
                 }
