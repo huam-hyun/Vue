@@ -12,53 +12,117 @@
                     
 
                 </b-card>
-                <b-card class="brand" v-for="(item, index) in brands.한식" :key="index" @click="detail">
-                    <b-card-text>
-                        {{item.brandname}}<br>
-                        평균 매출액: {{item.average_sale}}<br>
-                        창업비용: {{item.startup_cost}}
-                    </b-card-text>
-                    
+            </b-tab>
 
-                </b-card>
-                <b-card class="brand" v-for="(item, index) in brands.한식" :key="index" @click="detail">
+            <b-tab title="중/일식">
+                <b-card class="brand" v-for="(item, index) in chijap" :key="index" @click="detail">
                     <b-card-text>
-                        {{item.brandname}}<br>
-                        평균 매출액: {{item.average_sale}}<br>
-                        창업비용: {{item.startup_cost}}
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
                     </b-card-text>
                     
 
                 </b-card>
             </b-tab>
 
-            <b-tab title="중식">
-                <p>중식 브랜드들</p>
+            <b-tab title="분식">
+                <b-card class="brand" v-for="(item, index) in kimbob" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
-            <b-tab title="일식">
-                <p>일식 브랜드들</p>
+            <b-tab title="패스트푸드">
+                <b-card class="brand" v-for="(item, index) in fastfood" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
             <b-tab title="치킨">
-                <p>치킨 브랜드들</p>
+                <b-card class="brand" v-for="(item, index) in chicken" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
-            <b-tab title="커피/디저트">
-                <p>커피/디저트 브랜드들</p>
+            <b-tab title="제과제빵">
+                <b-card class="brand" v-for="(item, index) in bread" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
-            <b-tab title="업종1" disabled>
-                <p>업종1 브랜드들</p>
+            <b-tab title="카페">
+                <b-card class="brand" v-for="(item, index) in cafe" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
-            <b-tab title="업종2" disabled>
-                <p>업종2 브랜드들</p>
+            <b-tab title="주점">
+                <b-card class="brand" v-for="(item, index) in hof" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
 
-            <b-tab title="업종3" disabled>
-                <p>업종3 브랜드들</p>
+            <b-tab title="기타외식">
+                <b-card class="brand" v-for="(item, index) in etc" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
             </b-tab>
+
+            <b-tab title="기타외국식">
+                <b-card class="brand" v-for="(item, index) in etc_f" :key="index" @click="detail">
+                    <b-card-text>
+                        {{item.brand_name}}<br>
+                        업종: {{item.sector}}<br>
+                        id: {{item.id}}
+                    </b-card-text>
+                    
+
+                </b-card>
+            </b-tab>
+            
+            
         </b-tabs>
 
     </div>
@@ -72,6 +136,14 @@ export default {
         return {
             brands: null,
             korean: null,
+            cafe: null,
+            chicken: null,
+            fastfood: null,
+            chijap: null,
+            kimbob: null,
+            hof: null,
+            etc: null,
+            etc_f: null,
             search: '',
             
         }
@@ -83,7 +155,7 @@ export default {
                 
             })
         },
-        searchBrand(){
+        searchbrand(){
             this.$router.push({
                 name: 'BrandSearch',
                 params: {searchparam: this.search},
@@ -94,6 +166,16 @@ export default {
         axios.get('http://34.64.236.155:8000/myapp/brand').then((res)=>{
             this.brands = res.data;
             this.korean = this.brands.filter(item => item.sector ==="한식");
+            this.bread = this.brands.filter(item => this.sector === "제과제빵");
+            this.cafe = this.brands.filter(item => this.sector === "카페");
+            this.chicken = this.brands.filter(item => this.sector === "치킨");
+            this.fastfood = this.brands.filter(item => this.sector === "패스트푸드");
+            this.chijap = this.brands.filter(item => this.sector === "중/일식");
+            this.kimbob = this.brands.filter(item => this.sector === "분식");
+            this.hof = this.brands.filter(item => this.sector === "주점");
+            this.etc = this.brands.filter(item => this.sector === "기타 외식");
+            this.etc_f = this.brands.filter(item => this.sector === "기타 외국식");
+            
             console.log(this.korean);
             console.log(res);
         });
