@@ -6,6 +6,9 @@
                 <label for="id">E-mail</label>
                 <b-form-input type="text" id="id" v-model="form.userId" required></b-form-input>
                 <br>
+                <label for="id">User Name</label>
+                <b-form-input type="text" v-model="form.userName" required></b-form-input>
+                <br>
                 <label for="password">Password</label>
                 <b-form-input v-model="form.password" type="password" id="password" aria-describedby="password-help-block" required></b-form-input>
                 <b-form-text id="password-help-block">
