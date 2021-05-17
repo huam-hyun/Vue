@@ -3,7 +3,7 @@
         <b-card class="card" title="회원가입">
             <br>
             <b-form @submit.stop.prevent>
-                <label for="id">ID</label>
+                <label for="id">E-mail</label>
                 <b-form-input type="text" id="id" v-model="form.userId" required></b-form-input>
                 <br>
                 <label for="password">Password</label>
@@ -15,11 +15,8 @@
                 <label for="password_check">Password Check</label>
                 <b-form-input v-model="form.password_check" type="password" id="password_check" required></b-form-input>
                 <br>
-                <label for="email">E-mail</label> 
-                <b-form-input v-model="form.email" type="email" id="email" required></b-form-input>
-                <br>
             </b-form>
-            <b-button variant="primary">제출</b-button>
+            <b-button variant="primary" @click="regist">제출</b-button>
         </b-card>    
     </div>
 </template>
@@ -32,12 +29,17 @@ export default {
                 userId: '',
                 password: '',
                 password_check: '',
-                email: ''
             },
         }
     },
     methods: {
-        
+        regist(){
+            axios.post('http://34.64.236.155:8000/myapp/register/?email=' + this.form.userId + '&password=' + this.form.password).then((res)=>{
+                if(res.status == 200){
+                    alert('회원가입에 성공하였습니다');
+                }
+            })
+        }
     },
     computed: {
         

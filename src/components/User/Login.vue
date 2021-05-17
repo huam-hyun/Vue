@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         login: function(){
-            var url = 'http://34.64.236.155:8000/'
+            var url = 'http://34.64.236.155:8000/myapp/login/'
             var param = '?email=' + this.form.userId + '&password=' + this.form.password;
             console.log(this.form.userId, this.form.password);
             axios.post(url + param).then((res) =>{

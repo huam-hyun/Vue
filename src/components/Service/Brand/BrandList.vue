@@ -166,15 +166,15 @@ export default {
         axios.get('http://34.64.236.155:8000/myapp/brand').then((res)=>{
             this.brands = res.data;
             this.korean = this.brands.filter(item => item.sector ==="한식");
-            this.bread = this.brands.filter(item => this.sector === "제과제빵");
-            this.cafe = this.brands.filter(item => this.sector === "카페");
-            this.chicken = this.brands.filter(item => this.sector === "치킨");
-            this.fastfood = this.brands.filter(item => this.sector === "패스트푸드");
-            this.chijap = this.brands.filter(item => this.sector === "중/일식");
-            this.kimbob = this.brands.filter(item => this.sector === "분식");
-            this.hof = this.brands.filter(item => this.sector === "주점");
-            this.etc = this.brands.filter(item => this.sector === "기타 외식");
-            this.etc_f = this.brands.filter(item => this.sector === "기타 외국식");
+            this.bread = this.brands.filter(item => item.sector === "제과제빵");
+            this.cafe = this.brands.filter(item => item.sector === "카페");
+            this.chicken = this.brands.filter(item => item.sector === "치킨");
+            this.fastfood = this.brands.filter(item => item.sector === "패스트푸드");
+            this.chijap = this.brands.filter(item => item.sector === "중/일식");
+            this.kimbob = this.brands.filter(item => item.sector === "분식");
+            this.hof = this.brands.filter(item => item.sector === "주점");
+            this.etc = this.brands.filter(item => item.sector === "기타 외식");
+            this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
             
             console.log(this.korean);
             console.log(res);
