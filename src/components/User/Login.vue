@@ -30,10 +30,15 @@ export default {
     },
     methods: {
         login: function(){
-            var url = 'http://34.64.236.155:8000/myapp/login/'
-            var param = '?email=' + this.form.userId + '&password=' + this.form.password;
-            console.log(this.form.userId, this.form.password);
-            axios.post(url + param).then((res) =>{
+            axios.post({
+                method: 'POST',
+                url: 'http://34.64.236.155:8000/myapp/login/',
+                data: {
+                    email: this.form.userId,
+                    password: this.form.password
+                }
+
+            }).then((res) =>{
                 if(res.status == 200){
                     alert(this.form.userId+'님 반갑습니다');
                 }

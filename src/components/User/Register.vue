@@ -42,7 +42,7 @@ export default {
         regist(){
             axios({
                 method: 'post',
-                url: 'http://34.64.236.155:8000/myapp/register',
+                url: 'http://34.64.236.155:8000/myapp/register/',
                 data:{
                     email: this.form.userId,
                     password: this.form.password,
