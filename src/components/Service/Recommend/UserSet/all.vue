@@ -37,11 +37,20 @@ export default {
         }
     },
     created() {
-        var themeno = this.$route.params.label;
-        console.log(themeno);
-        axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno).then((res) =>{
-            this.brands = res.data;
+        axios({
+            method: 'get',
+            url: 'http://34.64.236.155:8000/myapp/customtheme/',
+            data: {
+                p1: this.$route.params.brand_list[0].weight,
+                p2: this.$route.params.brand_list[1].weight,
+                p3: this.$route.params.brand_list[2].weight,
+                p4: this.$route.params.brand_list[3].weight,
+                p5: this.$route.params.brand_list[4].weight,
+                p6: this.$route.params.brand_list[5].weight,
+            }
+        }).then((res) =>{
             console.log(res);
+            this.brands = res.data;
         })
     },
 }

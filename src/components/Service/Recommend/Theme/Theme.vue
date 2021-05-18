@@ -44,31 +44,31 @@ export default {
     methods: {
         detail1(){
             this.$router.push({
-                name: 'ThemeResult',
+                path: '/service/recommend/theme/result/all',
                 params: {label: '1'}
             })
         },
         detail2(){
             this.$router.push({
-                name: 'ThemeResult',
+                path: '/service/recommend/theme/result/all',
                 params: {label: '2'}
             })
         },
         detail3(){
             this.$router.push({
-                name: 'ThemeResult',
+                path: '/service/recommend/theme/result/all',
                 params: {label: '3'}
             })
         },
         detail4(){
             this.$router.push({
-                name: 'ThemeResult',
+                path: '/service/recommend/theme/result/all',
                 params: {label: '4'}
             })
         },
         detail5(){
             this.$router.push({
-                name: 'ThemeResult',
+                path: '/service/recommend/theme/result/all',
                 params: {label: '5'}
             })
         },

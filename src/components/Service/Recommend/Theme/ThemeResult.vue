@@ -33,7 +33,7 @@ export default {
                 name: param.name,
                 params: {
                     sector: param.title,
-                    label: this.$route.params.label,
+                    params: {label: this.$route.params.label},
                 }
             })
         }

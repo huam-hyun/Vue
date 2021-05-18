@@ -90,7 +90,7 @@ export default {
     methods: {
         result(){
             this.$router.push({
-                name: 'UserSetResult',
+                path: '/service/recommend/userset/result/all',
                 params: {data: this.data_list}
             })
         },

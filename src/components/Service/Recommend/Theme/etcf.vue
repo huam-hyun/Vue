@@ -1,11 +1,12 @@
 <template>
     <div>
+        all
         <b-card class="result">
             <b-tabs pills card vertical>
-                <b-tab v-for="(title, index) in brands" v-bind:title="titles[index]" :key="index" active>
+                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active>
                     <b-card-text>
                         <div>
-                            <h1>{{brand[index].brandname}}</h1>
+                            <h1>{{item.brand_name}}</h1>
                             <b-tabs content-class="mt-3">
                                 <b-tab title="브랜드 정보" active>
                                     <div>

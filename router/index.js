@@ -26,7 +26,17 @@ import EtcResult from '@/components/Service/Recommend/Theme/etc'
 import EtcfResult from '@/components/Service/Recommend/Theme/etcf'
 import AllResult from '@/components/Service/Recommend/Theme/all'
 
-
+//사용자 설정 결과 중첩라우트 부분
+import koreanResult from '@/components/Service/Recommend/UserSet/korean'
+import cafeResult from '@/components/Service/Recommend/UserSet/cafe'
+import chickenResult from '@/components/Service/Recommend/UserSet/chicken'
+import fastfoodResult from '@/components/Service/Recommend/UserSet/fastfood'
+import chijapResult from '@/components/Service/Recommend/UserSet/chijap'
+import kimbobResult from '@/components/Service/Recommend/UserSet/kimbob'
+import hofResult from '@/components/Service/Recommend/UserSet/hof'
+import etcResult from '@/components/Service/Recommend/UserSet/etc'
+import etcfResult from '@/components/Service/Recommend/UserSet/etcf'
+import allResult from '@/components/Service/Recommend/UserSet/all'
 
 Vue.use(Router)
 
@@ -77,7 +87,59 @@ export default new Router({
             path: '/service/recommend/userset/result',
             name: 'UserSetResult',
             component: UserSetResult,
-            
+            children:[
+                {     
+                    path:'korean',
+                    name:'koreanResult',
+                    component: koreanResult
+                },
+                {
+                    path:'cafe',
+                    name:'cafeResult',
+                    component: cafeResult
+                },
+                {
+                    path:'chicken',
+                    name:'chickenResult',
+                    component: chickenResult
+                },
+                {
+                    path:'fastfood',
+                    name:'fastfoodResult',
+                    component: fastfoodResult
+                },
+                {
+                    path:'chijap',
+                    name:'chijapResult',
+                    component: chijapResult
+                },
+                {
+                    path:'kimbob',
+                    name:'kimbobResult',
+                    component: kimbobResult
+                },
+                {
+                    path:'hof',
+                    name:'hofResult',
+                    component: hofResult
+                },
+                {
+                    path:'etc',
+                    name:'etcResult',
+                    component: etcResult
+                },
+                {
+                    path:'etcf',
+                    name:'etcfResult',
+                    component: etcfResult
+                },
+                {
+                    path:'all',
+                    name:'allResult',
+                    component: allResult
+                },
+
+            ]
         },
         {
             path: '/service/recommend/theme/result',
@@ -130,7 +192,7 @@ export default new Router({
                     component: EtcfResult
                 },
                 {
-                    path:'/',
+                    path:'all',
                     name:'AllResult',
                     component: AllResult
                 },
