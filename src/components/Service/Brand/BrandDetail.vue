@@ -10,8 +10,22 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    
+    data(){
+        return {
+            result: null,
+        }
+    },
+    created() {
+        axios({
+            method: 'get',
+            url: 'http://34.64.236.155:8000/myapp/brand/?name=' + this.$route.params.name
+        }).then((res) =>{
+            this.result = res.data;
+        });
+    },
 }
 </script>
 

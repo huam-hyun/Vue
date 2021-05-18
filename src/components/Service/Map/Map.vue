@@ -1,9 +1,21 @@
 <template>
     <div>
         <div class="tab">
-            지도 옆부분
+            <h2>브랜드 찾아보기</h2><br>
+            <div class="select">
+                <b-form-select v-model="data1" :options="options"></b-form-select>
+                <br><span>시/군/구 선택: {{data1}}</span>
+                <br><br>
+                <b-form-select v-model="data2" :options="options"></b-form-select>
+                <br><span>동 선택: {{data2}}</span>
+                <br><br>
+                <b-form-select v-model="data2" :options="options"></b-form-select>
+                <br><span>업종 선택: {{data2}}</span>
+                <br><br>                
+                <b-button @click="result" variant="primary">한눈에 보기</b-button>
+            </div>
         </div>
-        <div id="map" class="map">
+            <div id="map" class="map">
             
         </div>
     </div>
@@ -52,4 +64,5 @@
     float:left;
     width: 30%;
 }
+
 </style>

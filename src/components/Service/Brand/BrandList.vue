@@ -175,9 +175,6 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
-            
-            console.log(this.korean);
-            console.log(res);
         });
     },
 }
@@ -194,10 +191,11 @@ export default {
     float:left;
 }
 .searchinput{
-    width: 1800px;
+    width: 95%;
     float:left;
 }
 .searchbutton{
-    width: 70px;
+    width: 5%;
+    float: left;
 }
 </style>
