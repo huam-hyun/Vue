@@ -37,18 +37,13 @@ export default {
         }
     },
     created() {
-        axios({
-            method: 'get',
-            url: 'http://34.64.236.155:8000/myapp/customtheme/',
-            data: {
-                p1: this.$route.params.brand_list[0].weight,
-                p2: this.$route.params.brand_list[1].weight,
-                p3: this.$route.params.brand_list[2].weight,
-                p4: this.$route.params.brand_list[3].weight,
-                p5: this.$route.params.brand_list[4].weight,
-                p6: this.$route.params.brand_list[5].weight,
-            }
-        }).then((res) =>{
+        let p1 = this.$route.query.p1
+        let p2 = this.$route.query.p2
+        let p3 = this.$route.query.p3
+        let p4 = this.$route.query.p4
+        let p5 = this.$route.query.p5
+        let p6 = this.$route.query.p6
+        axios.get('http://34.64.236.155:8000/myapp/customtheme/?p1='+ p1 + '&p2=' + p2 + '&p3=' + p3 + '&p4=' + p4 + '&p5=' + p5 + '&p6=' + p6).then((res) =>{
             console.log(res);
             this.brands = res.data;
         })

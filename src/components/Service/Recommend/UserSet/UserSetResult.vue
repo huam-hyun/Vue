@@ -13,7 +13,6 @@
 export default {
     data() {
         return {
-            brand: '',
             items:[
                 {title: '전체', name:'allResult'},
                 {title: '한식', name:'koreanResult'},
@@ -32,13 +31,21 @@ export default {
         type(param){
             this.$router.push({
                 name: param.name,
-                params: {
+                query: {
                     sector: param.title,
-                    params: {data: this.$route.params.data}
+                    p1: this.$route.query.p1,
+                    p2: this.$route.query.p2,
+                    p3: this.$route.query.p3,
+                    p4: this.$route.query.p4,
+                    p5: this.$route.query.p5,
+                    p6: this.$route.query.p6,
                 }
             })
         }
-    }
+    },
+    created() {
+        console.log(this.$route.query)
+    },
     
     
 }

@@ -45,31 +45,31 @@ export default {
         detail1(){
             this.$router.push({
                 path: '/service/recommend/theme/result/all',
-                params: {label: '1'}
+                query: {label: '1'}
             })
         },
         detail2(){
             this.$router.push({
                 path: '/service/recommend/theme/result/all',
-                params: {label: '2'}
+                query: {label: '2'}
             })
         },
         detail3(){
             this.$router.push({
                 path: '/service/recommend/theme/result/all',
-                params: {label: '3'}
+                query: {label: '3'}
             })
         },
         detail4(){
             this.$router.push({
                 path: '/service/recommend/theme/result/all',
-                params: {label: '4'}
+                query: {label: '4'}
             })
         },
         detail5(){
             this.$router.push({
-                path: '/service/recommend/theme/result/all',
-                params: {label: '5'}
+                path: '/service/recommend/theme/result/all' ,
+                query: {label: '5'}
             })
         },
     }

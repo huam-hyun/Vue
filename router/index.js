@@ -84,12 +84,12 @@ export default new Router({
             component: UserSet
         },
         {
-            path: '/service/recommend/userset/result',
+            path: '/service/recommend/userset/result/:param?',
             name: 'UserSetResult',
             component: UserSetResult,
             children:[
                 {     
-                    path:'korean',
+                    path:'korean/:param?',
                     name:'koreanResult',
                     component: koreanResult
                 },
@@ -134,7 +134,7 @@ export default new Router({
                     component: etcfResult
                 },
                 {
-                    path:'all',
+                    path:'all/:param?',
                     name:'allResult',
                     component: allResult
                 },

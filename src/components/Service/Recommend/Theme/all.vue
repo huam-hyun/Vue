@@ -37,7 +37,7 @@ export default {
         }
     },
     created() {
-        var themeno = this.$route.params.label;
+        var themeno = this.$route.query.label;
         console.log(themeno);
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno).then((res) =>{
             this.brands = res.data;

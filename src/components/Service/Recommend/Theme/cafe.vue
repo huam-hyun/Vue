@@ -37,9 +37,10 @@ export default {
         }
     },
     created() {
-        var themeno = this.$route.params.label;
-        console.log(themeno);
-        axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + this.$route.params.sector).then((res) =>{
+        console.log(this.$route.query)
+        var themeno = this.$route.query.label
+        var sector = this.$route.query.sector
+        axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + sector).then((res) =>{
             this.brands = res.data;
             console.log(res);
         })
@@ -51,6 +52,3 @@ export default {
 
 </style>
 
-<style>
-
-</style>

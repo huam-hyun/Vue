@@ -14,38 +14,38 @@
             <b-card >
                 <b-card-title>가맹사업 개월수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="p1" :options="options"></b-select>
+                <br><span>선택함: {{p1}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>가맹점 수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[1].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[1].weight}}</span><br>
+                <b-select v-model="p2" :options="options"></b-select>
+                <br><span>선택함: {{p2}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>가맹점 평균 매출액</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[2].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[2].weight}}</span><br>
+                <b-select v-model="p3" :options="options"></b-select>
+                <br><span>선택함: {{p3}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>창업비용</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[3].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[3].weight}}</span><br>
+                <b-select v-model="p4" :options="options"></b-select>
+                <br><span>선택함: {{p4}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>개점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[4].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[4].weight}}</span><br>
+                <b-select v-model="p5" :options="options"></b-select>
+                <br><span>선택함: {{p5}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>폐점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[5].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[5].weight}}</span><br>
+                <b-select v-model="p6" :options="options"></b-select>
+                <br><span>선택함: {{p6}}</span><br>
             </b-card>
         </div>
         <b-button @click="result" variant="primary">결과</b-button>
@@ -57,14 +57,12 @@ export default {
     name: "UserSet",
     data(){
         return{
-            data_list: [
-                {data: 'p1', weight: ''},
-                {data: 'p2', weight: ''},
-                {data: 'p3', weight: ''},
-                {data: 'p4', weight: ''},
-                {data: 'p5', weight: ''},
-                {data: 'p6', weight: ''},
-            ],
+            p1: null,
+            p2: null,
+            p3: null,
+            p4: null,
+            p5: null,
+            p6: null,
             options: [
                 {
                     value: '0', text: '1순위'
@@ -91,13 +89,17 @@ export default {
         result(){
             this.$router.push({
                 path: '/service/recommend/userset/result/all',
-                params: {data: this.data_list}
+                query: {
+                    p1: this.p1,
+                    p2: this.p2,
+                    p3: this.p3,
+                    p4: this.p4,
+                    p5: this.p5,
+                    p6: this.p6,
+                }
             })
         },
     },
-    computed: {
-        
-    }
 }
 </script>
 

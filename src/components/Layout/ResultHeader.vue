@@ -4,8 +4,6 @@
             <b-nav-item v-for="item in items" :key="item" @click="type(item)">{{item.title}}</b-nav-item>
             
         </b-nav>
-
-        <router-view></router-view>
     </div>
 
 </template>
@@ -31,13 +29,12 @@ export default {
         type(param){
             this.$router.push({
                 name: param.name,
-                query: {
-                    sector: param.title,
-                    label: this.$route.query.label,
-                }
+                params: {sector: param.title}
             })
         }
-    },
+    }
+    
+    
 }
 </script>
 
