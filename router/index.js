@@ -7,12 +7,26 @@ import BrandList from '@/components/Service/Brand/BrandList'
 import BrandSearch from '@/components/Service/Brand/BrandSearch'
 import Map from '@/components/Service/Map/Map'
 import Choice from '@/components/Service/Recommend/Choice'
-import ThemeResult from '@/components/Service/Recommend/ThemeResult'
-import UserSetResult from '@/components/Service/Recommend/UserSetResult'
-import Theme from '@/components/Service/Recommend/Theme'
-import UserSet from '@/components/Service/Recommend/UserSet'
+import ThemeResult from '@/components/Service/Recommend/Theme/ThemeResult'
+import UserSetResult from '@/components/Service/Recommend/UserSet/UserSetResult'
+import Theme from '@/components/Service/Recommend/Theme/Theme'
+import UserSet from '@/components/Service/Recommend/UserSet/UserSet'
 import Register from '@/components/User/Register'
 import FindPW from '@/components/User/FindPW'
+
+//테마 결과 중첩라우트 부분
+import KoreanResult from '@/components/Service/Recommend/Theme/korean'
+import CafeResult from '@/components/Service/Recommend/Theme/cafe'
+import ChickenResult from '@/components/Service/Recommend/Theme/chicken'
+import FastfoodResult from '@/components/Service/Recommend/Theme/fastfood'
+import ChijapResult from '@/components/Service/Recommend/Theme/chijap'
+import KimbobResult from '@/components/Service/Recommend/Theme/kimbob'
+import HofResult from '@/components/Service/Recommend/Theme/hof'
+import EtcResult from '@/components/Service/Recommend/Theme/etc'
+import EtcfResult from '@/components/Service/Recommend/Theme/etcf'
+import AllResult from '@/components/Service/Recommend/Theme/all'
+
+
 
 Vue.use(Router)
 
@@ -62,12 +76,66 @@ export default new Router({
         {
             path: '/service/recommend/userset/result',
             name: 'UserSetResult',
-            component: UserSetResult
+            component: UserSetResult,
+            
         },
         {
             path: '/service/recommend/theme/result',
             name: 'ThemeResult',
-            component: ThemeResult
+            component: ThemeResult,
+            children:[
+                {     
+                    path:'korean',
+                    name:'KoreanResult',
+                    component: KoreanResult
+                },
+                {
+                    path:'cafe',
+                    name:'CafeResult',
+                    component: CafeResult
+                },
+                {
+                    path:'chicken',
+                    name:'ChickenResult',
+                    component: ChickenResult
+                },
+                {
+                    path:'fastfood',
+                    name:'FastfoodResult',
+                    component: FastfoodResult
+                },
+                {
+                    path:'chijap',
+                    name:'ChijapResult',
+                    component: ChijapResult
+                },
+                {
+                    path:'kimbob',
+                    name:'KimbobResult',
+                    component: KimbobResult
+                },
+                {
+                    path:'hof',
+                    name:'HofResult',
+                    component: HofResult
+                },
+                {
+                    path:'etc',
+                    name:'EtcResult',
+                    component: EtcResult
+                },
+                {
+                    path:'etcf',
+                    name:'EtcfResult',
+                    component: EtcfResult
+                },
+                {
+                    path:'/',
+                    name:'AllResult',
+                    component: AllResult
+                },
+
+            ]
         },
         {
             path: '/user/register',
