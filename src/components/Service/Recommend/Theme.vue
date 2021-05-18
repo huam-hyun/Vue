@@ -37,37 +37,39 @@
 export default {
     name: "Theme",
     data(){
+      return{
 
+      }
     },
     methods: {
         detail1(){
             this.$router.push({
                 name: 'ThemeResult',
-                params: {label: 1}
+                params: {label: '1'}
             })
         },
         detail2(){
             this.$router.push({
                 name: 'ThemeResult',
-                params: {label: 2}
+                params: {label: '2'}
             })
         },
         detail3(){
             this.$router.push({
                 name: 'ThemeResult',
-                params: {label: 3}
+                params: {label: '3'}
             })
         },
         detail4(){
             this.$router.push({
                 name: 'ThemeResult',
-                params: {label: 4}
+                params: {label: '4'}
             })
         },
         detail5(){
             this.$router.push({
                 name: 'ThemeResult',
-                params: {label: 5}
+                params: {label: '5'}
             })
         },
     }
