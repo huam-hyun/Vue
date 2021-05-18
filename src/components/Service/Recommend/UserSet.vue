@@ -20,32 +20,32 @@
             <b-card >
                 <b-card-title>가맹점 수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="data_list[1].weight" :options="options"></b-select>
+                <br><span>선택함: {{data_list[1].weight}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>가맹점 평균 매출액</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="data_list[2].weight" :options="options"></b-select>
+                <br><span>선택함: {{data_list[2].weight}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>창업비용</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="data_list[3].weight" :options="options"></b-select>
+                <br><span>선택함: {{data_list[3].weight}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>개점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="data_list[4].weight" :options="options"></b-select>
+                <br><span>선택함: {{data_list[4].weight}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>폐점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="data_list[0].weight" :options="options"></b-select>
-                <br><span>선택함: {{data_list[0].weight}}</span><br>
+                <b-select v-model="data_list[5].weight" :options="options"></b-select>
+                <br><span>선택함: {{data_list[5].weight}}</span><br>
             </b-card>
         </div>
         <b-button @click="result" variant="primary">결과</b-button>
@@ -102,9 +102,9 @@ export default {
 </script>
 
 <style>
-.select{
+b-card{
+    float: left;
     width: 15%;
-    margin-left: auto;
-    margin-right: auto;
+    
 }
 </style>

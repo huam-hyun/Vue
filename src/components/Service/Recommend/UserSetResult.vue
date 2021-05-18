@@ -27,6 +27,7 @@
 </template>
 <script>
 import data from '@/data/brandinfo.js'
+import axios from 'axios'
 
 export default {
     data() {
@@ -38,9 +39,22 @@ export default {
             ]
         }
     },
-    computed:{
-        
-    }
+    created() {
+        axios({
+            method: 'get',
+            url: 'http://34.64.236.155:8000/myapp/customtheme/',
+            data: {
+                p1: this.$route.params.brand_list[0].weight,
+                p2: this.$route.params.brand_list[1].weight,
+                p3: this.$route.params.brand_list[2].weight,
+                p4: this.$route.params.brand_list[3].weight,
+                p5: this.$route.params.brand_list[4].weight,
+                p6: this.$route.params.brand_list[5].weight,
+            }
+        }).then((res) =>{
+            this.brand = res.data;
+        })
+    },
         
     
     
