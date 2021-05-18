@@ -52,6 +52,7 @@ export default {
                 p6: this.$route.params.brand_list[5].weight,
             }
         }).then((res) =>{
+            console.log(res);
             this.brand = res.data;
         })
     },
