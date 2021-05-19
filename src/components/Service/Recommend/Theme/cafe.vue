@@ -1,6 +1,6 @@
 <template>
     <div>
-        all
+        카페
         <b-card class="result">
             <b-tabs pills card vertical>
                 <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active>
@@ -41,8 +41,21 @@ export default {
         var themeno = this.$route.query.label
         var sector = this.$route.query.sector
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + sector).then((res) =>{
+            console.log(res.data);
+            for(var i = 0; i<res.data.length; i++){
+                res.data[i].total_ratio = res.data[i].average_sales_ratio + res.data[i].startup_cost_ratio + res.data[i].rate_of_opening_ratio
+                console.log(res.data[i].total_ratio)
+            }
             this.brands = res.data;
-            console.log(res);
+            
+            this.brands.sort(function(a, b){
+                return  b.total_ratio - a.total_ratio
+            })
+            
+            console.log(this.brands)
+            for(i = 0; i<res.data.length; i++){
+                console.log(this.brands[i].total_ratio)
+            }
         })
     },
 }

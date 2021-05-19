@@ -1,6 +1,6 @@
 <template>
     <div>
-        기타외식업
+        기타외국식
         <b-card class="result">
             <b-tabs pills card vertical>
                 <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active>
@@ -45,8 +45,24 @@ export default {
         let p6 = this.$route.query.p6
         let title = this.$route.query.sector
         axios.get('http://34.64.236.155:8000/myapp/customtheme/?p1='+ p1 + '&p2=' + p2 + '&p3=' + p3 + '&p4=' + p4 + '&p5=' + p5 + '&p6=' + p6 + '&sector=' + title).then((res) =>{
-            console.log(res);
+            var weight = [0.9, 0.7, 0.5, 0.3, 0.2, 0.1]
+            console.log(res.data);
+            for(var i = 0; i<res.data.length; i++){
+                res.data[i].total_ratio = res.data[i].franchise_months_ratio * weight[p1] + res.data[i].num_of_franchise_ratio * weight[p2] + res.data[i].average_sales_ratio * weight[p3] +
+                res.data[i].startup_cost_ratio * weight[p4] + res.data[i].rate_of_opening_ratio * weight[p5] + res.data[i].rate_of_closing_ratio * weight[p6]
+
+                console.log(res.data[i].total_ratio)
+            }
             this.brands = res.data;
+
+            this.brands.sort(function(a, b){
+                return b.total_ratio - a.total_ratio
+            })
+
+            console.log(this.brands)
+            for( i = 0; i < this.brands.length; i ++){
+                console.log(this.brands[i].total_ratio)
+            }
         })
     },
 }

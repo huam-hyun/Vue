@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueRouter from 'vue-router'
 import router from '../router/index.js'
+import axios from 'axios'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 new Vue({

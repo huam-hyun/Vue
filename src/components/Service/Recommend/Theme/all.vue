@@ -40,8 +40,21 @@ export default {
         var themeno = this.$route.query.label;
         console.log(themeno);
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno).then((res) =>{
+            console.log(res.data);
+            for(var i = 0; i<res.data.length; i++){
+                res.data[i].total_ratio = res.data[i].average_sales_ratio + res.data[i].startup_cost_ratio + res.data[i].rate_of_opening_ratio
+                console.log(res.data[i].total_ratio)
+            }
             this.brands = res.data;
-            console.log(res);
+            
+            this.brands.sort(function(a, b){
+                return  b.total_ratio - a.total_ratio
+            })
+            
+            console.log(this.brands)
+            for(i = 0; i<res.data.length; i++){
+                console.log(this.brands[i].total_ratio)
+            }
         })
     },
 }
