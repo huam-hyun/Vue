@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         login: function(){
-            axios.post({
+            axios({
                 method: 'POST',
                 url: 'http://34.64.236.155:8000/myapp/login/',
                 data: {
