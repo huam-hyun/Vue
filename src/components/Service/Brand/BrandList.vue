@@ -3,15 +3,22 @@
         <b-input class="searchinput" type="text" placeholder="브랜드 검색" v-model="search" ></b-input><b-button variant="primary" @click="searchbrand" class="searchbutton">검색</b-button>       
         <b-tabs class="card" fill>
             <b-tab title="한식">
-                <b-card class="brand" v-for="(item, index) in korean" :key="index" @click="detail(item.brand_name)">
+                <div>
+                <b-card class="brand" v-for="item in items(korean)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
                     <b-card-text>
-                        {{item.brand_name}}<br>
+                        <p class="name">{{item.brand_name}}</p><br>
                         업종: {{item.sector}}<br>
-                        id: {{item.id}}
+                        평균 매출액: {{item.average_sales}}<br>
+                        매장 수: {{item.num_of_franchise}}<br>
+                        창업비용: {{item.startup_cost}}
                     </b-card-text>
-                    
-
                 </b-card>
+                </div>
+                <b-pagination
+                    v-model="currentPage"
+                    :total-rows="rows(korean)"
+                    :per-page="perPage">
+                </b-pagination>
             </b-tab>
 
             <b-tab title="중/일식">
@@ -145,20 +152,38 @@ export default {
             etc: null,
             etc_f: null,
             search: '',
+            perPage: 20,
+            currentPage: 1,
             
+        }
+    },
+    computed:{
+        rows(){
+            return (sector) =>{
+                return sector.length
+            }
+        },
+        items(){
+            return (sector) =>{
+                const items = sector
+                return items.slice(
+                    (this.currentPage -1) * this.perPage,
+                    this.currentPage * this.perPage
+                )
+            }
         }
     },
     methods: {
         detail(name){
             this.$router.push({
                 name: 'BrandDetail',
-                params: {name: name},
+                query: {name: name},
             })
         },
         searchbrand(){
             this.$router.push({
                 name: 'BrandSearch',
-                params: {searchparam: this.search},
+                query: {searchparam: this.search},
             })
         }
     },
@@ -175,7 +200,9 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
+            console.log(res.data[3])
         });
+        
     },
 }
 </script>
@@ -197,5 +224,9 @@ export default {
 .searchbutton{
     width: 5%;
     float: left;
+}
+.name{
+    font-weight: 700;
+    font-size: 20px;
 }
 </style>

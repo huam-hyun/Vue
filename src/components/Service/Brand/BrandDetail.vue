@@ -4,7 +4,7 @@
             <b-card-text>
                 <div>
                     <h1>{{temp}}</h1>
-                    
+
                     <b-tabs content-class="mt-3">
                         <b-tab title="브랜드 정보" active>
                             <div>
@@ -35,7 +35,7 @@ export default {
         }
     },
     created() {
-        axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + this.$route.params.name).then((res) =>{
+        axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + this.$route.query.name).then((res) =>{
             console.log(res)
             axios.get('http://34.64.236.155:8000/myapp/headquarter/?mutual=' + res.data[0].mutual).then((res) =>{
                 console.log(res)
