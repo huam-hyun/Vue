@@ -16,6 +16,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(korean)"
                     :per-page="perPage">
@@ -36,6 +37,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(chijap)"
                     :per-page="perPage">
@@ -56,6 +58,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(kimbob)"
                     :per-page="perPage">
@@ -76,6 +79,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(fastfood)"
                     :per-page="perPage">
@@ -96,6 +100,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(chicken)"
                     :per-page="perPage">
@@ -116,6 +121,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(bread)"
                     :per-page="perPage">
@@ -136,6 +142,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(cafe)"
                     :per-page="perPage">
@@ -156,6 +163,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(hof)"
                     :per-page="perPage">
@@ -176,6 +184,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(etc)"
                     :per-page="perPage">
@@ -196,6 +205,7 @@
                 </table>
                 <b-pagination
                     class="pagination"
+                    align="center"
                     v-model="currentPage"
                     :total-rows="rows(etc_f)"
                     :per-page="perPage">
@@ -305,12 +315,5 @@ export default {
 label{
     margin-bottom: 0px;
 }
-.pagination{
-    position: absolute;
-    width: 100px;
-    margin-top: 10px;
-    margin-left: -50px;
-    left: 45%
 
-}
 </style>

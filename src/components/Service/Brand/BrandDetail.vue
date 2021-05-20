@@ -1,7 +1,15 @@
 <template>
     <div>
-        <b-card class="result">            
+        <b-card class="result">
+            <b-overlay
+                :show="show"
+                rounded="sm"
+                variant="white"
+                opacity="1"
+                blur="blur"
+            >            
             <b-card-text>
+                <b-overlay :show="show2" variant="white" opacity="1" rounded="sm">
                 <div>
                     <h1>{{temp}}</h1>
                     <br>
@@ -42,7 +50,9 @@
                         </b-tab>
                     </b-tabs>
                 </div>
+                </b-overlay>
             </b-card-text>
+            </b-overlay>
         </b-card>
     </div>
 </template>
@@ -66,7 +76,11 @@ export default {
             // br_fields_2: ['평균매출액(년/천원)', '평당 평균매출액(년/천원)','가맹비(천원)','교육비(천원)','보증금(천원)','기타비용(천원)','창업비용(천원)','면적당 비용(천원)','기준면적(천원)','전체비용(천원)'],
             br_items_1: new Array,
             br_items_2: new Array,
-            
+            show: true,
+            show2: false,
+            brands: null,
+            brands_detail: [],
+            head_detail: [],            
         }
     },
     created() {
@@ -82,18 +96,17 @@ export default {
             })
         })
     },
-
     methods: {
-      brandGet(){
-        this.br_items_1.push({
-              '가맹 시작일': String(this.br_detail[0].franchise_start_date),
-              '가맹 개월 수(개월)': String(this.br_detail[0].franchise_months).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-              '가맹점 수(개)': String(this.br_detail[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-              '임직원 수(명)' : String(this.br_detail[0].num_of_employees).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-              '가맹 시작(개)': String(this.br_detail[0].num_of_open).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-              '가맹 종료(개)': String(this.br_detail[0].num_of_quit).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-              '가맹 해지(개)': String(this.br_detail[0].num_of_cancel).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-          })
+        brandGet(){
+            this.br_items_1.push({
+                '가맹 시작일': String(this.br_detail[0].franchise_start_date),
+                '가맹 개월 수(개월)': String(this.br_detail[0].franchise_months).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                '가맹점 수(개)': String(this.br_detail[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                '임직원 수(명)' : String(this.br_detail[0].num_of_employees).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                '가맹 시작(개)': String(this.br_detail[0].num_of_open).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                '가맹 종료(개)': String(this.br_detail[0].num_of_quit).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                '가맹 해지(개)': String(this.br_detail[0].num_of_cancel).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        })
         this.br_items_2.push({
             '평균매출액(년/천원)': String(this.br_detail[0].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
             '평당 평균매출액(년/천원)': String(this.br_detail[0].average_sales_per_area).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
@@ -107,7 +120,10 @@ export default {
             '전체비용(천원)': String(this.br_detail[0].total_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         })
 
-          console.log('br_items_1' + this.br_items_1)
+        console.log('br_items_1' + this.br_items_1)
+      },
+      toPrettyString(int_param){
+            return String(int_param).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       },
       setHQ(){
             this.hq_basic_items = [
@@ -122,30 +138,30 @@ export default {
             ]
             this.hq_economic_items = [
                 {
-                    '연도': '2020년', '자산': this.hq.assets_2020, '부채': this.hq.liabilities_2020, '자본': this.hq.equity_2020, '매출액': this.hq.sales_2020, '영업이익': this.hq.income_2020, '당기순이익': this.hq.net_income_2020
+                    '연도': '2020년', '자산': this.toPrettyString(this.hq.assets_2020), '부채': this.toPrettyString(this.hq.liabilities_2020), '자본': this.toPrettyString(this.hq.equity_2020), '매출액': this.toPrettyString(this.hq.sales_2020), '영업이익': this.toPrettyString(this.hq.income_2020), '당기순이익': this.toPrettyString(this.hq.net_income_2020)
                 }, 
                 {
-                    '연도': '2019년', '자산': this.hq.assets_2019, '부채': this.hq.liabilities_2019, '자본': this.hq.equity_2019, '매출액': this.hq.sales_2019, '영업이익': this.hq.income_2019, '당기순이익': this.hq.net_income_2019
+                    '연도': '2019년', '자산': this.toPrettyString(this.hq.assets_2019), '부채': this.toPrettyString(this.hq.liabilities_2019), '자본': this.toPrettyString(this.hq.equity_2019), '매출액': this.toPrettyString(this.hq.sales_2019), '영업이익': this.toPrettyString(this.hq.income_2019), '당기순이익': this.toPrettyString(this.hq.net_income_2019)
                 },
                 {
-                    '연도': '2018년', '자산': this.hq.assets_2018, '부채': this.hq.liabilities_2018, '자본': this.hq.equity_2018, '매출액': this.hq.sales_2018, '영업이익': this.hq.income_2018, '당기순이익': this.hq.net_income_2018
+                    '연도': '2018년', '자산': this.toPrettyString(this.hq.assets_2018), '부채': this.toPrettyString(this.hq.liabilities_2018), '자본': this.toPrettyString(this.hq.equity_2018), '매출액': this.toPrettyString(this.hq.sales_2018), '영업이익': this.toPrettyString(this.hq.income_2018), '당기순이익': this.toPrettyString(this.hq.net_income_2018)
                 },
                 {
-                    '연도': '2017년', '자산': this.hq.assets_2017, '부채': this.hq.liabilities_2017, '자본': this.hq.equity_2017, '매출액': this.hq.sales_2017, '영업이익': this.hq.income_2017, '당기순이익': this.hq.net_income_2017
+                    '연도': '2017년', '자산': this.toPrettyString(this.hq.assets_2017), '부채': this.toPrettyString(this.hq.liabilities_2017), '자본': this.toPrettyString(this.hq.equity_2017), '매출액': this.toPrettyString(this.hq.sales_2017), '영업이익': this.toPrettyString(this.hq.income_2017), '당기순이익': this.toPrettyString(this.hq.net_income_2017)
                 }
             ]
             this.hq_franchise_items = [
                 {
-                    '연도': '2020년', '개점': this.hq.opening_2020, '폐점': this.hq.closing_2020, '명의변경': this.hq.name_change_2020,
+                    '연도': '2020년', '개점': this.toPrettyString(this.hq.opening_2020), '폐점': this.toPrettyString(this.hq.closing_2020), '명의변경': this.toPrettyString(this.hq.name_change_2020),
                 },
                 {
-                    '연도': '2019년', '개점': this.hq.opening_2019, '폐점': this.hq.closing_2019, '명의변경': this.hq.name_change_2019,
+                    '연도': '2019년', '개점': this.toPrettyString(this.hq.opening_2019), '폐점': this.toPrettyString(this.hq.closing_2019), '명의변경': this.toPrettyString(this.hq.name_change_2019),
                 },
                 {
-                    '연도': '2018년', '개점': this.hq.opening_2018, '폐점': this.hq.closing_2019, '명의변경': this.hq.name_change_2018,
+                    '연도': '2018년', '개점': this.toPrettyString(this.hq.opening_2018), '폐점': this.toPrettyString(this.hq.closing_2019), '명의변경': this.toPrettyString(this.hq.name_change_2018),
                 },
                 {
-                    '연도': '2017년', '개점': this.hq.opening_2017, '폐점': this.hq.closing_2017, '명의변경': this.hq.name_change_2017,
+                    '연도': '2017년', '개점': this.toPrettyString(this.hq.opening_2017), '폐점': this.toPrettyString(this.hq.closing_2017), '명의변경': this.toPrettyString(this.hq.name_change_2017),
                 }                
             ]
             this.hq_law_items = [

@@ -14,38 +14,38 @@
             <b-card >
                 <b-card-title>가맹사업 개월수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p1" :options="options"></b-select>
-                <br><span>선택함: {{p1}}</span><br>
+                <b-select v-model="p[0]" :options="options"></b-select>
+                <br><span>선택함: {{p[0]}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>가맹점 수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p2" :options="options"></b-select>
-                <br><span>선택함: {{p2}}</span><br>
+                <b-select v-model="p[1]" :options="options"></b-select>
+                <br><span>선택함: {{p[1]}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>가맹점 평균 매출액</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p3" :options="options"></b-select>
-                <br><span>선택함: {{p3}}</span><br>
+                <b-select v-model="p[2]" :options="options"></b-select>
+                <br><span>선택함: {{p[2]}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>창업비용</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p4" :options="options"></b-select>
-                <br><span>선택함: {{p4}}</span><br>
+                <b-select v-model="p[3]" :options="options"></b-select>
+                <br><span>선택함: {{p[3]}}</span><br>
             </b-card>
             <b-card >
                 <b-card-title>개점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p5" :options="options"></b-select>
-                <br><span>선택함: {{p5}}</span><br>
+                <b-select v-model="p[4]" :options="options"></b-select>
+                <br><span>선택함: {{p[4]}}</span><br>
             </b-card>
             <b-card>
                 <b-card-title>폐점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p6" :options="options"></b-select>
-                <br><span>선택함: {{p6}}</span><br>
+                <b-select v-model="p[5]" :options="options"></b-select>
+                <br><span>선택함: {{p[5]}}</span><br>
             </b-card>
         </div>
         <b-button @click="result" variant="primary">결과</b-button>
@@ -57,47 +57,53 @@ export default {
     name: "UserSet",
     data(){
         return{
-            p1: null,
-            p2: null,
-            p3: null,
-            p4: null,
-            p5: null,
-            p6: null,
+            p:[],
             options: [
                 {
-                    value: '0', text: '1순위'
+                    value: 0, text: '1순위'
                 },
                 {
-                    value: '1', text: '2순위'
+                    value: 1, text: '2순위'
                 },
                 {
-                    value: '2', text: '3순위'
+                    value: 2, text: '3순위'
                 },
                 {
-                    value: '3', text: '4순위'
+                    value: 3, text: '4순위'
                 },
                 {
-                    value: '4', text: '5순위'
+                    value: 4, text: '5순위'
                 },
                 {
-                    value: '5', text: '6순위'
+                    value: 5, text: '6순위'
                 },
             ]
         }  
     },
     methods: {
         result(){
+            var condition = [0, 1, 2, 3, 4, 5]
+            var cond = this.p
+            cond.sort()
+            console.log(this.p)
+            for(var i = 0; i < 6; i++){
+                if(cond[i] != condition[i]){
+                    alert('중복된 값이 있습니다')
+                    return;
+                }
+            }
             this.$router.push({
                 path: '/service/recommend/userset/result/all',
                 query: {
-                    p1: this.p1,
-                    p2: this.p2,
-                    p3: this.p3,
-                    p4: this.p4,
-                    p5: this.p5,
-                    p6: this.p6,
+                    p1: this.p[0],
+                    p2: this.p[1],
+                    p3: this.p[2],
+                    p4: this.p[3],
+                    p5: this.p[4],
+                    p6: this.p[5],
                 }
             })
+            
         },
     },
 }

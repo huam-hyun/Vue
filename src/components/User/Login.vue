@@ -41,6 +41,7 @@ export default {
             }).then((res) =>{
                 if(res.status == 200){
                     alert(this.form.userId+'님 반갑습니다');
+                    this.$refs['login'].hide()
                 }
             });
         }

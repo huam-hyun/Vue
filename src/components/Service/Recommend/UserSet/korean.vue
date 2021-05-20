@@ -3,17 +3,18 @@
         한식
         <b-card class="result">
             <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active>
+                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" @click="getinfo(index)">
                     <b-card-text>
                         <div>
                             <h1>{{item.brand_name}}</h1>
                             <b-tabs content-class="mt-3">
                                 <b-tab title="브랜드 정보" active>
                                     <div>
+                                        <h3>2020년 기준</h3>
                                         <b-table :items="items"></b-table>
                                     </div>
                                 </b-tab>
-                                <b-tab title="본사 정보"><p>본사 정보</p></b-tab>
+                                <!-- <b-tab title="본사 정보"><p>본사 정보</p></b-tab> -->
                             </b-tabs>
                         </div>
                     </b-card-text>
@@ -31,6 +32,7 @@ export default {
     data(){
         return{
             brands: null,
+            items:[],
             titles: [
                 'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
             ]
@@ -63,8 +65,32 @@ export default {
             for( i = 0; i < this.brands.length; i ++){
                 console.log(this.brands[i].total_ratio)
             }
+            this.items.push({
+                '가맹 개월 수 (개월)': this.brands[0].franchise_months ,
+                '가맹점 수(개)': String(this.brands[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '평균매출액(년/천원)': String(this.brands[0].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '창업비용(천원)': String(this.brands[0].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '개점률(%)':this.brands[0].rate_of_opening ,
+                '폐점률(%)':  this.brands[0].rate_of_closing 
+            })
         })
     },
+    methods:{
+        getinfo(index){
+            this.items=[]
+            console.log(index)
+            console.log(this.brands[index])
+            this.items.push({
+                '가맹 개월 수 (개월)': this.brands[index].franchise_months ,
+                '가맹점 수(개)': String(this.brands[index].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '평균매출액(년/천원)': String(this.brands[index].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '창업비용(천원)': String(this.brands[index].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
+                '개점률(%)':this.brands[index].rate_of_opening ,
+                '폐점률(%)':  this.brands[index].rate_of_closing 
+            })
+
+        }
+    }
 }
 </script>
 

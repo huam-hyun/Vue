@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p>{{this.$route.query.searchparam}}에 대한 검색 결과</p>
+        <p><strong>{{this.$route.query.searchparam}}</strong> 에 대한 검색 결과</p>
         <table>
-            <b-card class="brand" v-for="item in items" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
+            <b-card class="brand" v-for="item in result" :key="item.brand_name" @click="detail(item.brand_name)">
                 <b-card-text>
                     <p class="name">{{item.brand_name}}</p><br>
                     업종: {{item.sector}}<br>
@@ -12,12 +12,6 @@
                 </b-card-text>
             </b-card>
         </table>
-        <b-pagination
-            class="pagination"
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage">
-        </b-pagination>
     </div>
 </template>
 
@@ -31,8 +25,8 @@ export default {
             return this.result.length
         },
         items(){
-            const items = this.result
-            return items.slice(
+            
+            return this.result.slice(
                 (this.currentPage -1) * this.perPage,
                 this.currentPage * this.perPage
             )
@@ -73,11 +67,7 @@ export default {
     margin-top: 10px;
 }
 .pagination{
-    position: absolute;
-    width: 100px;
-    margin-top: 10px;
-    margin-left: -50px;
-    left: 45%
+    margin-top: 10px; 
 }
 .name{
     font-weight: 700;
