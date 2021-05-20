@@ -15,37 +15,37 @@
                 <b-card-title>가맹사업 개월수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[0]" :options="options"></b-select>
-                <br><span>선택함: {{p[0]}}</span><br>
+                <!-- <br><span>선택함: {{p[0]}}</span><br> -->
             </b-card>
             <b-card >
                 <b-card-title>가맹점 수</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[1]" :options="options"></b-select>
-                <br><span>선택함: {{p[1]}}</span><br>
+                <!-- <br><span>선택함: {{p[1]}}</span><br> -->
             </b-card>
             <b-card >
                 <b-card-title>가맹점 평균 매출액</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[2]" :options="options"></b-select>
-                <br><span>선택함: {{p[2]}}</span><br>
+                <!-- <br><span>선택함: {{p[2]}}</span><br> -->
             </b-card>
             <b-card>
                 <b-card-title>창업비용</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[3]" :options="options"></b-select>
-                <br><span>선택함: {{p[3]}}</span><br>
+                <!-- <br><span>선택함: {{p[3]}}</span><br> -->
             </b-card>
             <b-card >
                 <b-card-title>개점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[4]" :options="options"></b-select>
-                <br><span>선택함: {{p[4]}}</span><br>
+                <!-- <br><span>선택함: {{p[4]}}</span><br> -->
             </b-card>
             <b-card>
                 <b-card-title>폐점률</b-card-title>
                 <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
                 <b-select v-model="p[5]" :options="options"></b-select>
-                <br><span>선택함: {{p[5]}}</span><br>
+                <!-- <br><span>선택함: {{p[5]}}</span><br> -->
             </b-card>
         </div>
         <b-button @click="result" variant="primary">결과</b-button>
@@ -83,10 +83,12 @@ export default {
     methods: {
         result(){
             var condition = [0, 1, 2, 3, 4, 5]
-            var cond = this.p
-            cond.sort()
-            console.log(this.p)
+            var cond = []
             for(var i = 0; i < 6; i++){
+                cond[i] = this.p[i]
+            }
+            cond.sort()
+            for(i = 0; i < 6; i++){
                 if(cond[i] != condition[i]){
                     alert('중복된 값이 있습니다')
                     return;

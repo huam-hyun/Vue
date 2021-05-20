@@ -77,7 +77,7 @@ export default {
             br_items_1: new Array,
             br_items_2: new Array,
             show: true,
-            show2: false,
+            show2: true,
             brands: null,
             brands_detail: [],
             head_detail: [],            
@@ -95,6 +95,7 @@ export default {
                 this.setHQ();
             })
         })
+        this.show = false
     },
     methods: {
         brandGet(){
@@ -169,6 +170,7 @@ export default {
                     '공정거래위원회 시정 조치': this.hq.num_of_correction, '민사소송 패소 및 민사상 화해': this.hq.num_loss_of_law, '형의 선고': this.hq.num_of_sentences
                 }
             ]
+            this.show2 = false
         },
     }
 }
