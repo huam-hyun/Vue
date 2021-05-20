@@ -3,7 +3,7 @@
         <b-input class="searchinput" type="text" placeholder="브랜드 검색" v-model="search" ></b-input><b-button variant="primary" @click="searchbrand" class="searchbutton">검색</b-button>       
         <b-tabs class="card" fill>
             <b-tab title="한식">
-                <b-card class="brand" v-for="(item, index) in korean" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in korean" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -15,7 +15,7 @@
             </b-tab>
 
             <b-tab title="중/일식">
-                <b-card class="brand" v-for="(item, index) in chijap" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in chijap" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -27,7 +27,7 @@
             </b-tab>
 
             <b-tab title="분식">
-                <b-card class="brand" v-for="(item, index) in kimbob" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in kimbob" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -39,7 +39,7 @@
             </b-tab>
 
             <b-tab title="패스트푸드">
-                <b-card class="brand" v-for="(item, index) in fastfood" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in fastfood" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -51,7 +51,7 @@
             </b-tab>
 
             <b-tab title="치킨">
-                <b-card class="brand" v-for="(item, index) in chicken" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in chicken" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -63,7 +63,7 @@
             </b-tab>
 
             <b-tab title="제과제빵">
-                <b-card class="brand" v-for="(item, index) in bread" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in bread" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -75,7 +75,7 @@
             </b-tab>
 
             <b-tab title="카페">
-                <b-card class="brand" v-for="(item, index) in cafe" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in cafe" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -87,7 +87,7 @@
             </b-tab>
 
             <b-tab title="주점">
-                <b-card class="brand" v-for="(item, index) in hof" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in hof" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -99,7 +99,7 @@
             </b-tab>
 
             <b-tab title="기타외식">
-                <b-card class="brand" v-for="(item, index) in etc" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in etc" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -111,7 +111,7 @@
             </b-tab>
 
             <b-tab title="기타외국식">
-                <b-card class="brand" v-for="(item, index) in etc_f" :key="index" @click="detail">
+                <b-card class="brand" v-for="(item, index) in etc_f" :key="index" @click="detail(item.brand_name)">
                     <b-card-text>
                         {{item.brand_name}}<br>
                         업종: {{item.sector}}<br>
@@ -149,10 +149,10 @@ export default {
         }
     },
     methods: {
-        detail(){
+        detail(name){
             this.$router.push({
                 name: 'BrandDetail',
-                
+                params: {name: name},
             })
         },
         searchbrand(){
@@ -175,9 +175,6 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
-            
-            console.log(this.korean);
-            console.log(res);
         });
     },
 }
@@ -194,10 +191,11 @@ export default {
     float:left;
 }
 .searchinput{
-    width: 1800px;
+    width: 95%;
     float:left;
 }
 .searchbutton{
-    width: 70px;
+    width: 5%;
+    float: left;
 }
 </style>

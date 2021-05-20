@@ -11,9 +11,14 @@
                                 <b-tab title="브랜드 정보" active>
                                     <div>
                                         <b-table :items="items"></b-table>
+                                        
                                     </div>
                                 </b-tab>
-                                <b-tab title="본사 정보"><p>본사 정보</p></b-tab>
+                                <b-tab title="본사 정보">
+                                    <div>
+                                        <b-table :items="items2"></b-table>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </div>
                     </b-card-text>
@@ -33,6 +38,13 @@ export default {
             brands: null,
             titles: [
                 'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
+            ],
+            items: [
+                { franchise_months: '10',startup_cost: '200000',average_sales: '3500000',open_rate: '15',close_rate: '20'},
+                { franchise_months: '10',startup_cost: '200000',average_sales: '3500000',open_rate: '15',close_rate: '20'}
+            ],
+            items2: [
+                { franchise_months: '10',startup_cost: '200000',average_sales: '3500000',open_rate: '15',close_rate: '20'}
             ]
         }
     },

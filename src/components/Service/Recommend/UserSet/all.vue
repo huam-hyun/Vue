@@ -13,7 +13,11 @@
                                         <b-table :items="items"></b-table>
                                     </div>
                                 </b-tab>
-                                <b-tab title="본사 정보"><p>본사 정보</p></b-tab>
+                                <b-tab title="본사 정보">
+                                    <div>
+                                        <b-table :items="items2"></b-table>
+                                    </div>
+                                </b-tab>
                             </b-tabs>
                         </div>
                     </b-card-text>

@@ -51,7 +51,7 @@
                 <div v-for="item in fran" :key="item">
                     이름: {{item.brand_name}}<br>
                     업종: {{item.sector}}<br>
-                    주소: <p v-if="latlngToAddress(item.latitude, item.longitude)"></p>
+                    주소: <p>{{latlngToAddress(item.latitude, item.longitude)[0]}}</p>
                 </div>
             </div>
         </div>
@@ -74,6 +74,7 @@ import axios from 'axios'
                 location_data: location_data.locate,
                 do_s: null,
                 fran: null,
+                address: null,
             }
         },
         created() {
@@ -203,14 +204,16 @@ import axios from 'axios'
                 //     }
                 // });
                 
-                let data = '';
+                // var data = '';
                 geocoder.coord2Address(coord.getLng(), coord.getLat(), (result, status) => {
                     if (status === kakao.maps.services.Status.OK) {
                         console.log(result[0].address.address_name, typeof(result[0].address.address_name));
-                        data = result[0].address.address_name;
+                        this.address = result[0].address.address_name;
+                        
                     }
                 });
-                return data;
+                console.log(this.address)
+                return this.address;
             },
         },
     }

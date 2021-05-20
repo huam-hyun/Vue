@@ -28,7 +28,9 @@
 export default {
     name: "Choice",
     data(){
-        
+        return{
+            
+        }
     },
     methods: {
         theme(){

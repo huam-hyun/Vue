@@ -18,7 +18,7 @@ export default {
     },
     created(){
         var url = 'http://127.0.0.1:8000/myapp/brand/?name=';
-        axios.get(url + this.$route.params.searchparam).then((res)=>{
+        axios.get(url + this.$route.query.searchparam).then((res)=>{
              console.log(res);
         });
     }
