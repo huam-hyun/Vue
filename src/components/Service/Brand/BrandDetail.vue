@@ -1,11 +1,26 @@
 <template>
     <div>
-        브랜드 상세보기<hr>
-        브랜드 이름<br>
-        매출<br>
-        개점률, 폐점률<br>
-        etc...<br>
-        그래프 그려넣기
+        <b-card class="result">            
+            <b-card-text>
+                <div>
+                    <h1>{{temp}}</h1>
+                    
+                    <b-tabs content-class="mt-3">
+                        <b-tab title="브랜드 정보" active>
+                            <div>
+                                <b-table :items="items"></b-table>
+                                        
+                            </div>
+                        </b-tab>
+                        <b-tab title="본사 정보">
+                            <div>
+                                <b-table :items="items2"></b-table>
+                            </div>
+                        </b-tab>
+                    </b-tabs>
+                </div>
+            </b-card-text>
+        </b-card>
     </div>
 </template>
 
@@ -15,6 +30,7 @@ import axios from 'axios'
 export default {
     data(){
         return {
+            temp: '브랜드 이름 들어갈 곳',
             detail: null,
         }
     },
