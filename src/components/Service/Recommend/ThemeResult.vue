@@ -106,22 +106,13 @@
 
 </template>
 <script>
-import axios from 'axios';
 export default {
     data() {
         return {
-            brands: null,
             items: [
                 { franchise_months: '10',startup_cost: '200000',average_sales: '3500000',open_rate: '15',close_rate: '20'}
             ]
         }
-    },
-    created: function(){
-        var themeno = this.$route.params.label;
-        axios.put('http://34.64.236.155:8000/?label=' + themeno).then((res) =>{
-            this.brands = res.data;
-            console.log(res);
-        })
     }
     
 }

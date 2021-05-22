@@ -8,7 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueRouter from 'vue-router'
 import router from '../router/index.js'
-import store from '@/store'
+import {store} from './store/index'
 
 Vue.use(VueRouter)
 
@@ -18,6 +18,8 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
+
+
 
 new Vue({
   router,

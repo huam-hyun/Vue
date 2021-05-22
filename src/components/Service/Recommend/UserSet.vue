@@ -33,12 +33,12 @@ export default {
     data(){
         return{
             data_list: [
-                {data1: '', weight: '0'},
-                {data2: '', weight: '1'},
-                {data3: '', weight: '2'},
-                {data4: '', weight: '3'},
-                {data5: '', weight: '4'},
-                {data6: '', weight: '5'},
+                {data1: '', weight: '0.9'},
+                {data2: '', weight: '0.7'},
+                {data3: '', weight: '0.5'},
+                {data4: '', weight: '0.3'},
+                {data5: '', weight: '0.2'},
+                {data6: '', weight: '0.1'},
             ],
             options: [
                 {

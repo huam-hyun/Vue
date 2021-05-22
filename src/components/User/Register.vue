@@ -51,6 +51,7 @@ export default {
             }).then((res) =>{
                 if(res.status == 200){
                     alert('회원가입에 성공하였습니다');
+                    this.$router.push('/').catch(()=>{})
                 }
             })
         }

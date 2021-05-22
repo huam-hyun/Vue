@@ -3,31 +3,30 @@
         카페
         <b-card class="result">
             <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" @click="getinfo(index)">
+                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active v-on:click='brandCallback(item.brand_name)'>
                     <b-card-text>
                         <div>
                             <h1>{{item.brand_name}}</h1>
                             <b-tabs content-class="mt-3">
                                 <b-tab title="브랜드 정보" active>
+                                    <!-- <b-overlay :show='this.delay_spinner'></b-overlay> -->
                                     <div>
-                                        <b-table :items="items"></b-table>
+                                        <h3>2020년 기준</h3>
+                                        <b-table striped hover :items="br_items_1"></b-table>
+                                    </div>
+                                    <div>
+                                        <b-table striped hover :items="br_items_2" ></b-table>
                                     </div>
                                 </b-tab>
-                                <!-- <b-tab title="본사 정보">
-                                    <div>
-                                        <b-table :items="items2"></b-table>
-                                    </div>
-                                </b-tab> -->
                             </b-tabs>
                         </div>
                     </b-card-text>
                 </b-tab>
             </b-tabs>
         </b-card>
+        <b-table :items='this.brand_list'></b-table>
     </div>
-    
 </template>
-
 
 <script>
 import axios from 'axios'
@@ -35,76 +34,90 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            show: false,
-            show2: false,
             brands: null,
-            items: [],
             titles: [
                 'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
             ],
-            
+            brand_list: null,
+
+            br_items_1: null,
+            br_items_2: null,
+            delay_spinner: false,
         }
     },
     created() {
-                
-        var themeno = this.$route.query.label;
+        console.log(this.$route.query)
+        var themeno = this.$route.query.label
         var sector = this.$route.query.sector
-        console.log(themeno);
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + sector).then((res) =>{
-            this.brands = res.data;
-            for(var i = 0; i<this.brands.length; i++){
-                this.brands[i].total_ratio = this.brands[i].average_sales_ratio + this.brands[i].startup_cost_ratio + this.brands[i].rate_of_opening_ratio
+            console.log(res.data);
+            for(var i = 0; i<res.data.length; i++){
+                res.data[i].total_ratio = res.data[i].average_sales_ratio + res.data[i].startup_cost_ratio + res.data[i].rate_of_opening_ratio
+                console.log(res.data[i].total_ratio)
             }
+            this.brands = res.data;
             
             this.brands.sort(function(a, b){
                 return  b.total_ratio - a.total_ratio
             })
             
-            // console.log('정렬 완료')
-            for(i = 0; i<this.brands.length; i++){
-                console.log(this.brands[i].brand_name)
-            //     console.log(this.brands[i].total_ratio)
+            console.log(this.brands)
+            for(i = 0; i<res.data.length; i++){
+                console.log(this.brands[i].total_ratio)
             }
-            
-            
-            // this.brands.reduce((previous, current) =>{  //axios 반복문 쓰려면 비동기 실행해야됨;;
-            //     return previous.then(async () =>{
-            //         res = await axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + current.brand_name)
-            //         console.log(res.data)
-            //         this.brand_detail.push(res.data)
-            //         if(this.brand_detail.length == 10) this.show=false
-            //     })
-            // }, Promise.resolve())
-            
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[0].franchise_months ,
-                '가맹점 수(개)': String(this.brands[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[0].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[0].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[0].rate_of_opening ,
-                '폐점률(%)':  this.brands[0].rate_of_closing 
-            })
-            this.show = false
+
+            this.brand_list = []
+            for(i = 0; i<res.data.length; i++){
+                this.brand_list.push(
+                    {
+                        '순위': i+1,
+                        '브랜드 이름': this.brands[i].brand_name, '가맹점수': this.brands[i].num_of_franchise, '가맹 개월수': this.brands[i].franchise_months, '연평균매출액(단위: 천원)': this.brands[i].average_sales,
+                        '창업비용(단위: 천원)': this.brands[i].startup_cost, '개점률(%)': this.brands[i].rate_of_opening, '폐점률(%)': this.brands[i].rate_of_closing
+                    }
+                );
+            }
         })
-        
     },
     methods:{
-        getinfo(index){
-            this.items=[]
-            // console.log(index)
-            // console.log(this.brands[index])
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[index].franchise_months ,
-                '가맹점 수(개)': String(this.brands[index].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[index].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[index].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[index].rate_of_opening ,
-                '폐점률(%)':  this.brands[index].rate_of_closing 
+        brandCallback: function (brand_name){
+            axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + brand_name).then((res) => {
+                console.log(res.data);
+                this.delay_spinner = true;
+                // 받고 나서 1초 지나고 딜레이 변수 세팅
+                setTimeout(() => {
+                    this.call_brand = res.data;
+                    this.br_items_1 = [
+                        {
+                            '가맹 시작일': String(res.data[0].franchise_start_date),
+                            '가맹 개월 수(개월)': toPrettyString(res.data[0].franchise_months),
+                            '가맹점 수(개)': toPrettyString(res.data[0].num_of_franchise),
+                            '임직원 수(명)' : toPrettyString(res.data[0].num_of_employees),
+                            '가맹 시작(개)': toPrettyString(res.data[0].num_of_open),
+                            '가맹 종료(개)': toPrettyString(res.data[0].num_of_quit),
+                            '가맹 해지(개)': toPrettyString(res.data[0].num_of_cancel)
+                        }
+                    ]
+                    this.br_items_2 = [
+                        {
+                            '평균매출액(년/천원)': toPrettyString(res.data[0].average_sales),
+                            '평당 평균매출액(년/천원)': toPrettyString(res.data[0].average_sales_per_area),
+                            '가맹비(천원)': toPrettyString(res.data[0].franchise_fee),
+                            '교육비(천원)': toPrettyString(res.data[0].education_fee),
+                            '보증금(천원)': toPrettyString(res.data[0].deposit),
+                            '기타비용(천원)': toPrettyString(res.data[0].other_cost),
+                            '창업비용(천원)': toPrettyString(res.data[0].startup_cost),
+                            '면적당 비용(천원)': toPrettyString(res.data[0].cost_per_area),
+                            '기준면적(천원)': toPrettyString(res.data[0].standard_area),
+                            '전체비용(천원)': toPrettyString(res.data[0].total_cost)
+                        }
+                    ]
+                    this.delay_spinner = false;
+                }, 1000);
             })
-
+            function toPrettyString(int_param){
+                return String(int_param).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
         }
-        
-
     }
 }
 </script>

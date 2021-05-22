@@ -3,13 +3,13 @@
         <b-modal id="login" title="로그인" hide-footer>
             <b-form @submit.stop.prevent>
                 <label for="id">ID</label>
-                <b-form-input type="text" id="id" v-model="form.userId" required></b-form-input>
+                <b-form-input type="text" id="id" v-model="form.email" required></b-form-input>
                 <br>
                 <label for="password">Password</label>
                 <b-form-input v-model="form.password" type="password" id="password" required></b-form-input>                
                 <br>
 
-                <b-button type="submit" variant="primary" @click="login">로그인</b-button>&nbsp;
+                <b-button type="submit" variant="primary" @click="login({ email: form.email, password: form.password})">로그인</b-button>&nbsp;
                 <b-link href="/user/findpw">비밀번호 찾기</b-link>
             </b-form>
         </b-modal>
@@ -17,34 +17,19 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
     data(){
         return {
             form: {
-                userId: '',
+                email: '',
                 password: '',
             }               
         }
     },
     methods: {
-        login: function(){
-            axios({
-                method: 'POST',
-                url: 'http://34.64.236.155:8000/myapp/login/',
-                data: {
-                    email: this.form.userId,
-                    password: this.form.password
-                }
-
-            }).then((res) =>{
-                if(res.status == 200){
-                    alert(this.form.userId+'님 반갑습니다');
-                    this.$refs['login'].hide()
-                }
-            });
-        }
+        ...mapActions(['login']),
     }
 }
 </script>

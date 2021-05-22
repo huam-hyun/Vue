@@ -1,11 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+//메인 화면
 import Main from '@/components/Layout/Main'
+
+//브랜드 기능
 import BrandDetail from '@/components/Service/Brand/BrandDetail'
 import BrandList from '@/components/Service/Brand/BrandList'
 import BrandSearch from '@/components/Service/Brand/BrandSearch'
+
+//지도
 import Map from '@/components/Service/Map/Map'
+
+//추천 기능
 import Choice from '@/components/Service/Recommend/Choice'
 import ThemeResult from '@/components/Service/Recommend/Theme/ThemeResult'
 import UserSetResult from '@/components/Service/Recommend/UserSet/UserSetResult'
@@ -14,7 +21,7 @@ import UserSet from '@/components/Service/Recommend/UserSet/UserSet'
 import Register from '@/components/User/Register'
 import FindPW from '@/components/User/FindPW'
 
-//테마 결과 중첩라우트 부분
+//테마 추천 결과 업종별 중첩라우트 부분
 import KoreanResult from '@/components/Service/Recommend/Theme/korean'
 import CafeResult from '@/components/Service/Recommend/Theme/cafe'
 import ChickenResult from '@/components/Service/Recommend/Theme/chicken'
@@ -26,7 +33,7 @@ import EtcResult from '@/components/Service/Recommend/Theme/etc'
 import EtcfResult from '@/components/Service/Recommend/Theme/etcf'
 import AllResult from '@/components/Service/Recommend/Theme/all'
 
-//사용자 설정 결과 중첩라우트 부분
+//사용자 설정 추천 결과 업종별 중첩라우트 부분
 import koreanResult from '@/components/Service/Recommend/UserSet/korean'
 import cafeResult from '@/components/Service/Recommend/UserSet/cafe'
 import chickenResult from '@/components/Service/Recommend/UserSet/chicken'
@@ -51,42 +58,43 @@ export default new Router({
         {
             path: '/service/brand/branddetail/:brandname?',
             name: 'BrandDetail',
-            component: BrandDetail
+            component: BrandDetail,
         },
         {
             path: '/service/brand/brandlist',
             name: 'BrandList',
-            component: BrandList
+            component: BrandList,
         },
         {
             path: '/service/brand/brandsearch/:searchparam?',
             name: 'BrandSearch',
-            component: BrandSearch
+            component: BrandSearch,
         },
         {
             path: '/service/map',
             name: 'Map',
-            component: Map
+            component: Map,
         },
         {
             path: '/service/recommend/choice',
             name: 'Choice',
-            component: Choice
+            component: Choice,
         },
         {
             path: '/service/recommend/theme',
             name: 'Theme',
-            component: Theme
+            component: Theme,
         },
         {
             path: '/service/recommend/userset',
             name: 'UserSet',
-            component: UserSet
+            component: UserSet,
         },
         {
             path: '/service/recommend/userset/result/:param?',
             name: 'UserSetResult',
             component: UserSetResult,
+            meta:{authRequired: true},
             children:[
                 {     
                     path:'korean/:param?',
@@ -145,6 +153,7 @@ export default new Router({
             path: '/service/recommend/theme/result',
             name: 'ThemeResult',
             component: ThemeResult,
+            meta:{authRequired: true},
             children:[
                 {     
                     path:'korean',
@@ -209,5 +218,5 @@ export default new Router({
             name: 'FindPW',
             component: FindPW
         },
-    ]
+    ],
 })
