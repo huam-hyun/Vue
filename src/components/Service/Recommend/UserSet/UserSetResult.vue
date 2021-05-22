@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-nav pills>
+        <b-nav fill>
             <b-nav-item v-for="item in items" :key="item" @click="type(item)">{{item.title}}</b-nav-item>
             
         </b-nav>

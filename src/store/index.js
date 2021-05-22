@@ -45,15 +45,14 @@ export const store = new Vuex.Store({
                     }
     
                 }).then((res) =>{
-                    if(res.data.username == null){
+                    console.log(res.data)
+                    if(res.data.length == 0){
                         commit('loginFail')
                     }else{
                         commit('loginSuccess', res.data[0])
                         alert(state.name+'님 반갑습니다');
                         router.push('/').catch(()=>{})
-                    }                    
-                    
-                    
+                    }
                 });
             }
         }

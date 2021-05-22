@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info" sticky>
-            <b-navbar-brand href="/">프랜드차이</b-navbar-brand>
+            <b-navbar-brand href="/" center>프랜드차이</b-navbar-brand>
 
             <b-navbar-toggle target="nav_collapse"/>
             <b-collapse is-nav id="nav_collapse">
