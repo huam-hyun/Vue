@@ -1,54 +1,78 @@
 <template>
     <div>
-        <p>
-            설명부분<br>
+        <!-- Header 크기 - Footer크기 -->
+        <b-container fluid>
+            <b-row style="height: 15vh;"></b-row>
+        </b-container>
 
-            사용자 우선순위를 통한 브랜드를 찾아볼 수 있는 페이지 입니다.<br>
-            저희가 정해둔 6개의 조건을 중요하다고 생각하는 순서대로 나열해주세요<br>
-            중복되는 순위는 불가하니 참고해주세요<br><br>
-            저희가 제시하는 조건 6가지는 다음과 같습니다<br>
-            가맹사업 개월수, 가맹점 수, 가맹점 평균 매출액, 창업비용, 개점률, 폐점률<br>
+        <b-container fluid>
+            <b-row style="padding-bottom: 5vh;" align-h="center">
+                <b-col cols="3">
+                    <a style="font-size: 50px; font-weight: bold;">UserSet</a><br>
+                    <a style="font-size: 20px;">우선순위를 정해보세요</a>
+                </b-col>
+            </b-row>
+            <b-row align-h="center" align-v="center" style="padding-bottom: 3vh;">
+                <b-col cols="3">
+                    <b-card class="condition" >
+                        <b-card-text>가맹사업 개월수</b-card-text>
+                        <b-card-text style="font-size:1.8vh; font-weight: 1;">얼마나 오래했는지</b-card-text>
+                        
+                        <b-select v-model="p[0]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+                <b-col cols="3">
+                    <b-card class="condition">
+                        <b-card-text>가맹점 수</b-card-text>
+                        <b-card-text style="font-size:1.8vh; font-weight: 1;">많이 분포했는지</b-card-text>
+                        
+                        <b-select v-model="p[1]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+                <b-col cols="3">
+                    <b-card class="condition">
+                        <b-card-text>평균 매출액</b-card-text>
+                    
+                        <b-select v-model="p[2]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+            </b-row>
+            <b-row align-v="center" align-h="center" style="padding-bottom: 3vh;">
+                <b-col cols="3">
+                    <b-card class="condition">
+                        <b-card-text>창업비용</b-card-text>
+                        
+                        <b-select v-model="p[3]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+                <b-col cols="3">
+                    <b-card class="condition">
+                        <b-card-text>개점률</b-card-text>
+                        
+                        <b-select v-model="p[4]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+                <b-col cols="3">
+                    <b-card class="condition">
+                        <b-card-text>폐점률</b-card-text>
+                        
+                        <b-select v-model="p[5]" :options="options"></b-select>
+                    </b-card>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <b-button @click="result">
+                        결과확인
+                    </b-button>
+                </b-col>
+            </b-row>
+        </b-container>
 
-        </p>
-        <div class="select">
-            <b-card >
-                <b-card-title>가맹사업 개월수</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[0]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[0]}}</span><br> -->
-            </b-card>
-            <b-card >
-                <b-card-title>가맹점 수</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[1]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[1]}}</span><br> -->
-            </b-card>
-            <b-card >
-                <b-card-title>가맹점 평균 매출액</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[2]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[2]}}</span><br> -->
-            </b-card>
-            <b-card>
-                <b-card-title>창업비용</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[3]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[3]}}</span><br> -->
-            </b-card>
-            <b-card >
-                <b-card-title>개점률</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[4]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[4]}}</span><br> -->
-            </b-card>
-            <b-card>
-                <b-card-title>폐점률</b-card-title>
-                <b-card-text>해당 브랜드가 가맹사업을 시작했는지 얼마나 됐는지를 나타냅니다.</b-card-text>
-                <b-select v-model="p[5]" :options="options"></b-select>
-                <!-- <br><span>선택함: {{p[5]}}</span><br> -->
-            </b-card>
-        </div>
-        <b-button @click="result" variant="primary">결과</b-button>
+        <!--화면 맞춤용-->
+        <b-container fluid>
+            <b-row style="height: 14.6vh;"></b-row>
+        </b-container>
     </div>
 </template>
 
@@ -112,9 +136,11 @@ export default {
 </script>
 
 <style>
-b-card{
-    float: left;
-    width: 15%;
-    
+.condition{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    font-size: 2.5vh;
+    font-weight: bold;
 }
 </style>

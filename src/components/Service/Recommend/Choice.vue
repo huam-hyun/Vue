@@ -1,14 +1,19 @@
 <template>
     <div>
-        <b-container fluid="xl">
-            <b-row align-v="center" id="contain">
-                <b-col class="content" @click="theme">
+        <!-- Header 크기 - Footer크기 -->
+        <b-container fluid>
+            <b-row style="height: 5vh;"></b-row>
+        </b-container>
+        
+        <b-container fluid>
+            <b-row align-h="center" align-v="center" id="contain">
+                <b-col cols="4" class="content" @click="theme">
                     <img class="img" src="@/assets/theme.png" fluid><br>
                     <p class="choice">테마</p>
                     <h5>당신을 위해 준비해뒀어요</h5>
                 </b-col>
 
-                <b-col class="content" @click="userset">
+                <b-col cols="4" class="content" @click="userset">
                     <img class="img" src="@/assets/userset.png" fluid><br>
                     <p class="choice">사용자설정</p>
                     <h5>당신에게 맞춰줄게요</h5>

@@ -1,105 +1,61 @@
 <template>
     <div>
-      <b-container fluid="xl">
-        <b-row style="height: 40vh;" align-v="center">
+      <!-- Header 크기 - Footer크기 -->
+      <b-container fluid>
+          <b-row style="height: 15vh;"></b-row>
+      </b-container>
+      <b-container fluid>
+        <b-row style="padding-bottom: 5vh;">
           <b-col>
-            <b-container @click="detail1" style="background-color: gray; height: 35vh;">
-              안정적인 시작!<br>
-              중소기업 프랜차이즈
-            </b-container>
+            <a style="font-size: 50px; font-weight: bold;">Theme</a><br>
+            <a style="font-size: 20px;">원하시는 테마를 골라보세요</a>
           </b-col>
-          <b-col>
-            <b-container style="background-color: red; height: 35vh;">
-              대규모 프랜차이즈<br>
-              대기업 프랜차이즈
-            </b-container>
+        </b-row>
+        <b-row align-h="center" align-v="center" style="padding-bottom: 3vh; height: 27vh;">
+          <b-col cols="3" class="themeCard">
+            <b-row align-v="center" align-h="center" style="height: 100%">
+              <b-col @click="detail1">
+                <a style="font-size: 3.5vh; font-weight:bold;">안정적인 시작</a><br>
+                <a style="font-size: 2vh;">중소기업 프랜차이즈</a>
+              </b-col>            
+            </b-row>
           </b-col>
-          <b-col>
-            <b-container style="background-color: lightblue; height: 35vh;">
-              새로운 시작을 함께<br>
-              신생 프랜차이즈
-            </b-container>
+          <b-col cols="3" class="themeCard">
+            <b-row align-v="center" align-h="center" style="height: 100%">
+              <b-col @click="detail2">
+                <a style="font-size: 3.5vh; font-weight:bold;">장수 프랜차이즈</a><br>
+                <a style="font-size: 2vh;">대기업 프랜차이즈</a>
+              </b-col>            
+            </b-row>
           </b-col>
-          <b-col>
-            <b-container style="background-color: pink; height: 35vh;">
-              중소 기업 프랜차이즈<br>
-              중견기업 프랜차이즈
-            </b-container>
+          <b-col cols="3" class="themeCard">
+            <b-row align-v="center" align-h="center" style="height: 100%">
+              <b-col @click="detail3">
+                <a style="font-size: 3.5vh; font-weight:bold;">새로운 시작을 함께</a><br>
+                <a style="font-size: 2vh;">신생 프랜차이즈</a>
+              </b-col>            
+            </b-row>
           </b-col>
-          <b-col>
-            <b-container style="background-color: beige; height: 35vh;">
-              고투자 고수입
-            </b-container>
+        </b-row>
+        <b-row align-h="center" align-v="center" style="height: 27vh; padding-bottom: 5vh;">
+          <b-col cols="3" class="themeCard">
+            <b-row align-v="center" align-h="center" style="height: 100%">
+              <b-col @click="detail4">
+                <a style="font-size: 3.5vh; font-weight:bold;">대중적인</a><br>
+                <a style="font-size: 2vh;">중견기업 프랜차이즈</a>
+              </b-col>            
+            </b-row>
+          </b-col>
+          <b-col cols="3" class="themeCard">
+            <b-row align-v="center" align-h="center" style="height: 100%">
+              <b-col @click="detail5">
+                <a style="font-size: 3.5vh; font-weight:bold;">고투자 고수입</a><br>
+                <a style="font-size: 2vh;">넓은 매장의 프랜차이즈</a>
+              </b-col>            
+            </b-row>
           </b-col>
         </b-row>
       </b-container>
-      <hr>
-      <b-container>
-        <b-row style="height: 40vh;" align-v="center">
-          <b-col>
-            <b-container style="background-color: gray; height: 25vh;">
-              안정적인 시작!<br>
-              중소기업 프랜차이즈
-            </b-container>
-          </b-col>
-          <b-col>
-            <b-container style="background-color: red; height: 25vh;">
-              대규모 프랜차이즈<br>
-              대기업 프랜차이즈
-            </b-container>
-          </b-col>
-          <b-col>
-            <b-container style="background-color: lightblue; height: 25vh;">
-              새로운 시작을 함께<br>
-              신생 프랜차이즈
-            </b-container>
-          </b-col>
-        </b-row>
-        <b-row align-h="center">
-          <b-col cols="4">
-            <b-container style="background-color: pink; height: 25vh;">
-              중소 기업 프랜차이즈<br>
-              중견기업 프랜차이즈
-            </b-container>
-          </b-col>
-          <b-col cols="4">
-            <b-container style="background-color: beige; height: 25vh;">
-              고투자 고수입
-            </b-container>
-          </b-col>
-        </b-row>
-      </b-container>
-
-      <!-- <b-card class="card" title="안정적인 시작!" sub-title="중소기업 프렌차이즈">
-        <b-card-text>
-          안정적인 브랜드의 프렌차이즈
-        </b-card-text>
-        <b-button @click="detail1" variant="primary">Top 10 확인하기</b-button>
-      </b-card>
-      <b-card class="card" title="대규모 프렌차이즈" sub-title="대기업 프렌차이즈">
-        <b-card-text>
-          이유 있는 장수 브랜드
-        </b-card-text>
-        <b-button @click="detail2" variant="primary">Top 10 확인하기</b-button>
-      </b-card>
-      <b-card class="card" title="새로운 시작을 함께!" sub-title="신생 프렌차이즈">
-        <b-card-text>
-          트렌디한 높은 개점률의 프렌차이즈
-        </b-card-text>
-        <b-button @click="detail3" variant="primary">Top 10 확인하기</b-button>
-      </b-card>
-      <b-card class="card" title="중소 기업 프렌차이즈" sub-title="중견기업 프렌차이즈">
-        <b-card-text>
-          초보 창업자에게 가장 무난하게 시작할 수 있는 프렌차이즈
-        </b-card-text>
-        <b-button @click="detail4" variant="primary">Top 10 확인하기</b-button>
-      </b-card>
-      <b-card class="card" title="고투자 고수입 브랜드" sub-title="넓은 매장의 프렌차이즈">
-        <b-card-text>
-          여유 있는 창업자에게 추천하는 브랜드
-        </b-card-text>
-        <b-button @click="detail5" variant="primary">Top 10 확인하기</b-button>
-      </b-card>                         -->
     </div>    
 </template>
 
@@ -148,5 +104,13 @@ export default {
 </script>
 
 <style>
-
+.themeCard{
+  display: inline-block;
+  vertical-align: center;
+  margin-right: 3vh;
+  background: #B8CCE1;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 15px;
+}
 </style>

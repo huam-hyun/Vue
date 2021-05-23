@@ -1,22 +1,26 @@
 <template>
   <div id="app">
     <Header/>
+    <!-- Header 크기 - Footer크기 -->
+    <b-container fluid>
+        <b-row style="height: 5vh;"></b-row>
+    </b-container>
+    <router-view style="background-color: #DBE5EA"></router-view>
 
-    <router-view/>
-
-
+    <Footer />
     
   </div>   
 </template>
 
 <script>
 import Header from '@/components/Layout/Header'
-//import Footer from '@/components/Layout/Footer'
+import Footer from '@/components/Layout/Footer'
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer,
   }
 }
 </script>

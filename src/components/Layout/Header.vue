@@ -88,12 +88,18 @@ export default {
     font-size: 35px;
 }
 .header{
-    margin-top: 15px;
+    padding-top: 15px;
     margin-bottom: 15px;
+    position: fixed;
+    border-bottom: 50px;
+    background: white;
+    z-index: 1;
 }
 .select{
-    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     font-size: 18px;
     cursor: pointer;
+    z-index: 1;
 }
 </style>
