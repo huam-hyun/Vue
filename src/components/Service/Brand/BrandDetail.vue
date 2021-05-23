@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card class="result">
+        <!-- <b-card class="result">
             <b-overlay
                 :show="show"
                 rounded="sm"
@@ -53,7 +53,21 @@
                 </b-overlay>
             </b-card-text>
             </b-overlay>
-        </b-card>
+        </b-card> -->
+
+
+        <!-- Header 크기 - Footer크기 -->
+        <b-container fluid>
+            <b-row style="height: 15vh;"></b-row>
+        </b-container>
+
+        <b-container fluid>
+            <b-row>
+                <b-col>
+                    <a style="font-size: 5vh; font-weight: bold;">{{this.br_detail[0].brand_name}}</a>
+                </b-col>
+            </b-row>
+        </b-container>
     </div>
 </template>
 

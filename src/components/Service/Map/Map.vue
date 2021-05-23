@@ -1,63 +1,100 @@
 <template>
     <div>
-        <div class="tab">
-            <h2>브랜드 찾아보기</h2><br>
-            <div class="select">
-                <p>도</p>
-                <b-select v-model="m_do">
-                    <option disabled value="">도 / 특별시 / 광역시 / 특별자치시</option>
-                    <option v-for="(m_do, index) in do_s" :key="index">{{m_do}}</option>
-                </b-select>
-                <br><br>
-                <p>시 / 구</p>
-                <b-select v-model="m_sigu">
-                    <option disabled value="">시 / 구</option>
-                    <option v-for="(m_sigu, index) in dynamicChangeByDo(m_do)" :key="index">{{m_sigu}}</option>
-                </b-select>
-                <br><br>
-                <p>읍 / 면 / 동</p>
-                <b-select v-model="m_dong">
-                    <option disabled value="">읍 / 면 / 동</option>
-                    <option v-for="(m_dong, index) in dynamicChangeBySigu(m_sigu)" :key="index">{{m_dong}}</option>
-                </b-select>
-                <br><br>
-                <p>업종</p>
-                <b-select v-model="sector">
-                    <option disabled value="">업종</option>
-                    <option value='한식'>한식</option>
-                    <option value='중/일식'>중/일식</option>
-                    <option value='치킨'>치킨</option>
-                    <option value='카페'>카페</option>
-                    <option value='분식'>분식</option>
+        <!-- Header 크기 - Footer크기 -->
+        <b-container fluid>
+            <b-row style="height: 70px;"></b-row>
+        </b-container>
 
-                    <option value='제과제빵'>제과제빵</option>
-                    <option value='주점'>주점</option>
-                    <option value='패스트푸드'>패스트푸드</option>
-                    <option value='기타 외식'>기타 외식</option>
-                    <option value='기타 외국식'>기타 외국식</option>
-                </b-select>
-                <br><br>
+        <b-container fluid style="height: 87.5vh;">
+            <b-row align-v="stretch">
+                <b-col style="background-color: #ffe5b9;" cols="4">
+                    <b-row style="margin:4vh auto; font-size: 4vh; font-weight: bold;" align-h="center">
+                        <b-col cols="6">
+                            브랜드 찾기
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="start" align-v="center" no-gutters class="dropbox">
+                        <b-col cols="4" style="text-align: center;">
+                            도 / 특별시
+                        </b-col>
+                        <b-col cols="6">
+                            <b-select v-model="m_do">
+                                <option disabled value="">도 / 특별시 / 광역시 / 특별자치시</option>
+                                <option v-for="(m_do, index) in do_s" :key="index">{{m_do}}</option>
+                            </b-select>
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="start" align-v="center" no-gutters class="dropbox">
+                        <b-col cols="4" style="text-align: center;">
+                            시 / 구
+                        </b-col>
+                        <b-col cols="6">
+                            <b-select v-model="m_sigu">
+                                <option disabled value="">시 / 구</option>
+                                <option v-for="(m_sigu, index) in dynamicChangeByDo(m_do)" :key="index">{{m_sigu}}</option>
+                            </b-select>
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="start" align-v="center" no-gutters class="dropbox">
+                        <b-col cols="4" style="text-align: center;">
+                            읍 / 면 / 동
+                        </b-col>
+                        <b-col cols="6">
+                            <b-select v-model="m_dong">
+                                <option disabled value="">읍 / 면 / 동</option>
+                                <option v-for="(m_dong, index) in dynamicChangeBySigu(m_sigu)" :key="index">{{m_dong}}</option>
+                            </b-select>
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="start" align-v="center" no-gutters class="dropbox">
+                        <b-col cols="4" style="text-align: center;">
+                            업종
+                        </b-col>
+                        <b-col cols="6">
+                            <b-select v-model="sector">
+                                <option disabled value="">업종</option>
+                                <option value='한식'>한식</option>
+                                <option value='중/일식'>중/일식</option>
+                                <option value='치킨'>치킨</option>
+                                <option value='카페'>카페</option>
+                                <option value='분식'>분식</option>
 
-                <b-button @click="result" variant="primary">한눈에 보기</b-button>
-                
-            </div>
-            <div>
-                <hr>
-                <p id='population_content'>
-                </p>
-            </div>
-            <div>
-                <div v-for="item in fran" :key="item">
-                    이름: {{item.brand_name}}<br>
-                    <!-- 업종: {{item.sector}}<br> -->
-                    <!-- 주소: <p>{{latlngToAddress(item.latitude, item.longitude)[0]}}</p> -->
-                </div>
-                <div id='alert'>
-                </div>
-            </div>
-        </div>
-            <div id="map" class="map">
-        </div>
+                                <option value='제과제빵'>제과제빵</option>
+                                <option value='주점'>주점</option>
+                                <option value='패스트푸드'>패스트푸드</option>
+                                <option value='기타 외식'>기타 외식</option>
+                                <option value='기타 외국식'>기타 외국식</option>
+                            </b-select>
+                        </b-col>
+                    </b-row>
+                    <b-row align-h="center">
+                        <b-col cols="6">
+                            <b-button @click="result">한눈에 보기</b-button>
+                        </b-col>
+                    </b-row>
+                    <hr>
+                    <b-row>
+                        <b-col>
+                            <p id='population_content'></p>
+                        </b-col>
+                    </b-row>
+                    <b-row v-for="item in fran" :key="item" align-h="center">
+                        <b-col cols="6" class="mapCard">
+                            <strong style="font-size: 20px;">{{item.brand_name}}</strong><br>
+                            {{item.sector}}<br>
+                            <!-- 주소: <p>{{latlngToAddress(item.latitude, item.longitude)}}</p> -->
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <div id='alert'></div>
+                        </b-col>
+                    </b-row>
+                </b-col>
+                <b-col id="map" class="map" cols="8">
+                </b-col>
+            </b-row>
+        </b-container>
     </div>
 </template>
 
@@ -232,12 +269,19 @@ import axios from 'axios'
 
 <style>
 .map{
-    width: 70%;
-    min-height: 910px;
-    
+    height:87.7vh;
 }
 .tab{
     float:left;
     width: 30%;
+}
+.dropbox{
+    margin: 1.5vh auto;
+}
+.mapCard{
+    margin: 0.5vh auto;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
 }
 </style>

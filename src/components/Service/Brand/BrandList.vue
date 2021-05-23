@@ -2,231 +2,280 @@
     <div>
         <!-- Header 크기 - Footer크기 -->
         <b-container fluid>
-            <b-row style="height: 10vh;"></b-row>
+            <b-row style="height: 90px;"></b-row>
         </b-container>
-        <b-container>
-            <b-row>
-                <b-col>
-                    어떻게 해야할까
+
+        <b-container fluid>
+            <b-row align-h="center">
+                <b-col md="auto" style="cursor: pointer;" @click="changeSelected(item.value)" v-for="item in titles" :key="item.sector">
+                    <img class="category" :src="require(`@/assets/${item.src}`)">
+                    <a> {{item.title}}</a>
                 </b-col>
             </b-row>
         </b-container>
-        
-        <!-- <b-input class="searchinput" type="text" placeholder="브랜드 검색" v-model="search" ></b-input><b-button variant="primary" @click="searchbrand" class="searchbutton">검색</b-button>       
-        <b-tabs class="card" fill>
-            <b-tab title="한식" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(korean)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(korean)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
 
-            <b-tab title="중/일식" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(chijap)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(chijap)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+        <b-container v-if="selected == 'all'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(brands), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(brands)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>
+        </b-container>
 
-            <b-tab title="분식" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(kimbob)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(kimbob)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+        <b-container v-if="selected == 'korean'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(korean), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
 
-            <b-tab title="패스트푸드" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(fastfood)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(fastfood)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(korean)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
 
-            <b-tab title="치킨" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(chicken)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(chicken)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+        <b-container v-if="selected == 'cafe'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(cafe), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
 
-            <b-tab title="제과제빵" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(bread)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(bread)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(cafe)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
 
-            <b-tab title="카페" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(cafe)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(cafe)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+        <b-container v-if="selected == 'chicken'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(chicken), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
 
-            <b-tab title="주점" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(hof)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(hof)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(chicken)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
 
-            <b-tab title="기타외식" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(etc)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(etc)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
+        <b-container v-if="selected == 'fastfood'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(fastfood), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
 
-            <b-tab title="기타외국식" @click="()=>{currentPage = 1}">
-                <table>
-                    <b-card class="brand" v-for="item in items(etc_f)" :key="item.brand_name" @click="detail(item.brand_name)" :per-page="perPage">
-                        <b-card-text>
-                            <p class="name">{{item.brand_name}}</p><br>
-                            업종: {{item.sector}}<br>
-                            평균 매출액: <label v-if="item.average_sales == 0">비공개</label><label v-else>{{item.average_sales}}</label><br>
-                            매장 수: {{item.num_of_franchise}}<br>
-                            창업비용: {{item.startup_cost}}
-                        </b-card-text>
-                    </b-card>
-                </table>
-                <b-pagination
-                    class="pagination"
-                    align="center"
-                    v-model="currentPage"
-                    :total-rows="rows(etc_f)"
-                    :per-page="perPage">
-                </b-pagination>
-            </b-tab>
-            
-            
-        </b-tabs> -->
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(fastfood)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
 
+        <b-container v-if="selected == 'bread'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(bread), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(bread)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
+
+        <b-container v-if="selected == 'chijap'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(chijap), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(chijap)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
+
+        <b-container v-if="selected == 'kimbob'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(kimbob), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(kimbob)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
+
+        <b-container v-if="selected == 'hof'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(hof), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(hof)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
+
+        <b-container v-if="selected == 'etc'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(etc), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(etc)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
+
+        <b-container v-if="selected == 'etc_f'" fluid style="height: 83vh;">
+            <b-row v-for="i in 5" :key="i" align-h="center">
+                <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(etc_f), i)" :key="item.brand_name">
+                    <b-container class="brandCard">
+                        {{item.brand_name}}
+                    </b-container>
+                </b-col>
+            </b-row>
+
+            <b-row>
+                <b-col>
+                    <b-pagination
+                        class="pagination"
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows(etc_f)"
+                        :per-page="perPage"
+                        first-number
+                        last-number>
+                    </b-pagination>
+                </b-col>
+            </b-row>        
+        </b-container>
     </div>
 </template>
 
@@ -236,6 +285,8 @@ import axios from 'axios'
 export default {
     data(){
         return {
+            perRow: 4,
+            selected: null,
             brands: null,
             korean: null,
             cafe: null,
@@ -246,11 +297,22 @@ export default {
             hof: null,
             etc: null,
             etc_f: null,
+            bread: null,
             search: '',
             perPage: 20,
             currentPage: 1,
-            title: [
-                '한식', '중/일식', '카페', '치킨', '분식', '패스트푸드', '주점', '기타외식', '기타외국식'
+            titles: [
+                { title: '전체', value: 'all', src: 'all.png'},
+                { title: '한식', value: 'korean', src: 'korean.png'},
+                { title: '카페', value: 'cafe', src: 'cafe.png'},
+                { title: '치킨', value: 'chicken', src: 'chicken.png'},
+                { title: '패스트푸드', value: 'fastfood', src: 'fastfood.png'},
+                { title: '제과제빵', value: 'bread', src: 'bread.png'},
+                { title: '중/일식', value: 'chijap', src: 'chijap.png'},
+                { title: '분식', value: 'kimbob', src: 'kimbob.png'},
+                { title: '주점', value: 'hof', src: 'hof.png'},
+                { title: '기타외식', value: 'etc', src: 'etc.png'},
+                { title: '기타외국식', value: 'etc_f', src: 'etcf.png'},                
             ]
             
         }
@@ -269,6 +331,15 @@ export default {
                     this.currentPage * this.perPage
                 )
             }
+        },
+        sliceitems(){
+            return (items, index) =>{
+                const list = items
+                return list.slice(
+                    (index-1) * this.perRow,
+                    index * this.perRow
+                )
+            }
         }
     },
     methods: {
@@ -283,6 +354,10 @@ export default {
                 name: 'BrandSearch',
                 query: {searchparam: this.search},
             })
+        },
+        changeSelected(sector){
+            this.currentPage = 1
+            this.selected = sector
         }
     },
     created() {
@@ -298,7 +373,8 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
-            console.log(res.data[3])
+            this.brands.pop()
+            this.selected = 'all'
         });
         
     },
@@ -306,29 +382,20 @@ export default {
 </script>
 
 <style>
-.brand{
-    min-height: 240px;
-    width: 300px;
-    margin-left: 10px;
-    margin-top: 10px;
+.category{
+    height: 2vh;
 }
-.card{
-    float:left;
+.brandCard{
+    width: 35vh;
+    height: 13vh;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: beige;
+    border-radius: 15px;
 }
-.searchinput{
-    width: 95%;
-    float:left;
-}
-.searchbutton{
-    width: 5%;
-    float: left;
-}
-.name{
-    font-weight: 700;
-    font-size: 20px;
-}
-label{
-    margin-bottom: 0px;
+.wrapper{
+    display: table; 
+    margin-top: 2vh;
 }
 
 </style>

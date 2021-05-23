@@ -1,26 +1,5 @@
 <template>
     <div>
-        <!-- <b-navbar toggleable="lg" type="dark" variant="info" sticky>
-            <b-navbar-brand href="/" center>프랜드차이</b-navbar-brand>
-
-            <b-navbar-toggle target="nav_collapse"/>
-            <b-collapse is-nav id="nav_collapse">
-                <b-navbar-nav v-if="isLogin">
-                    <b-nav-item href="/service/brand/brandlist">브랜드정보</b-nav-item>
-                    <b-nav-item href="/service/map">지도</b-nav-item>
-                    <b-nav-item href="/service/recommend/choice">추천서비스</b-nav-item>
-                </b-navbar-nav>
-
-                <b-navbar-nav class="ml-auto">
-                    <b-nav-item v-if="!this.$store.state.name" href="/user/register" right>회원가입</b-nav-item>
-                    <b-nav-item v-if="!this.$store.state.name" v-b-modal.login right>로그인</b-nav-item>
-                    <b-nav-item v-if="this.$store.state.name" @click="logout()" href="/" right>로그아웃</b-nav-item>
-                </b-navbar-nav>
-            </b-collapse>
-
-            
-        </b-navbar> -->
-
         <Login></Login>
 
         <b-container class="header" fluid>
@@ -89,15 +68,14 @@ export default {
     padding-bottom: 10px;
 }
 .header{
-    padding-top: 15px;
+    padding-top: 10px;
     position: fixed;
-    border-bottom: 50px;
-    background: white;
+    background: #eff8ff;
     z-index: 1;
 }
 .select{
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 18px;
     cursor: pointer;
     z-index: 1;
