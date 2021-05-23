@@ -2,10 +2,12 @@ import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../../router'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+    plugins: [createPersistedState()],
     state: {
         name: "",
         isLogin: false,

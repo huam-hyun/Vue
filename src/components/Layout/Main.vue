@@ -41,7 +41,7 @@
             </b-row>
             
         </b-container>
-        <div class="w-100" style="height: 70vh;"></div>
+        <div class="w-100" style="height: 40vh;"></div>
         <b-container style="background-color: #B8CCE1;" fluid>
             <b-row align-v="center" class="introduce">
                 <b-col cols="5">
@@ -76,7 +76,7 @@
                 </b-col>
             </b-row>
         </b-container>
-        <div class="w-100" style="height: 70vh;"></div>
+        <div class="w-100" style="height: 40vh;"></div>
 
         <b-container style="background-color: #B8CCE1;" fluid>
             <b-row align-v="center" class="introduce">
@@ -113,7 +113,7 @@
             </b-row>
             
         </b-container>
-        <div class="w-100" style="height: 70vh;"></div>
+        <div class="w-100" style="height: 40vh;"></div>
 
         <b-container style="background-color: #B8CCE1;" fluid>
             <b-row align-v="center" class="introduce">
@@ -150,7 +150,7 @@
             </b-row>
             
         </b-container>
-        <div class="w-100" style="height: 30vh;"></div>
+        <div class="w-100" style="height: 10vh;"></div>
     </div>
 </template>
 

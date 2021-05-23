@@ -56,11 +56,14 @@
                     </b-card>
                 </b-col>
             </b-row>
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="4">
                     <b-button @click="result">
                         결과확인
                     </b-button>
+                </b-col>
+                <b-col cols="4">
+                    <a style="color: rgb(226, 65, 65);">* 중복설정 불가</a>
                 </b-col>
             </b-row>
         </b-container>

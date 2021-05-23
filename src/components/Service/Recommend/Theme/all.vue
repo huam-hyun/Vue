@@ -1,7 +1,7 @@
 <template>
     <div>
-        <b-container fluid="xl">
-            <b-row align-h="center" align-v="center" style="height: 40vh;">
+        <b-container fluid>
+            <b-row align-h="center" align-v="center" style="height: 80vh;">
                 <b-col cols="2">
                     <b-row v-for="(item,index) in brands" :key="index" @click="getinfo(index)" style="height: 7vh; border-style: solid; border-radius: 20px; margin-top: 3px; border-width:1px;">
                         <b-col>

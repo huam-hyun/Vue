@@ -10,7 +10,6 @@
                 <br>
 
                 <b-button type="submit" variant="primary" @click="login({ email: form.email, password: form.password})">로그인</b-button>&nbsp;
-                <b-link href="/user/findpw">비밀번호 찾기</b-link>
             </b-form>
         </b-modal>
     </div>

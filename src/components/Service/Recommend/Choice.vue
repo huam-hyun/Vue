@@ -83,6 +83,6 @@ export default {
     margin-bottom: 15px;
 }
 #contain{
-    height: 85vh;
+    height: 80vh;
 }
 </style>

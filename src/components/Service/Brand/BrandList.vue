@@ -1,6 +1,18 @@
 <template>
     <div>
-        <b-input class="searchinput" type="text" placeholder="브랜드 검색" v-model="search" ></b-input><b-button variant="primary" @click="searchbrand" class="searchbutton">검색</b-button>       
+        <!-- Header 크기 - Footer크기 -->
+        <b-container fluid>
+            <b-row style="height: 10vh;"></b-row>
+        </b-container>
+        <b-container>
+            <b-row>
+                <b-col>
+                    어떻게 해야할까
+                </b-col>
+            </b-row>
+        </b-container>
+        
+        <!-- <b-input class="searchinput" type="text" placeholder="브랜드 검색" v-model="search" ></b-input><b-button variant="primary" @click="searchbrand" class="searchbutton">검색</b-button>       
         <b-tabs class="card" fill>
             <b-tab title="한식" @click="()=>{currentPage = 1}">
                 <table>
@@ -213,7 +225,7 @@
             </b-tab>
             
             
-        </b-tabs>
+        </b-tabs> -->
 
     </div>
 </template>
@@ -236,7 +248,10 @@ export default {
             etc_f: null,
             search: '',
             perPage: 20,
-            currentPage: 1
+            currentPage: 1,
+            title: [
+                '한식', '중/일식', '카페', '치킨', '분식', '패스트푸드', '주점', '기타외식', '기타외국식'
+            ]
             
         }
     },
