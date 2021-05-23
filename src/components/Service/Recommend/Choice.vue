@@ -1,6 +1,23 @@
 <template>
     <div>
-        <b-card bg-variant="dark" text-variant="white" class="theme" @click="theme">
+        <b-container fluid="xl">
+            <b-row align-v="center" id="contain">
+                <b-col class="content" @click="theme">
+                    <img class="img" src="@/assets/theme.png" fluid><br>
+                    <p class="choice">테마</p>
+                    <h5>당신을 위해 준비해뒀어요</h5>
+                </b-col>
+
+                <b-col class="content" @click="userset">
+                    <img class="img" src="@/assets/userset.png" fluid><br>
+                    <p class="choice">사용자설정</p>
+                    <h5>당신에게 맞춰줄게요</h5>
+                </b-col>
+            </b-row>
+
+        </b-container>
+
+        <!-- <b-card bg-variant="dark" text-variant="white" class="theme" @click="theme">
             <b-card-text class="title">
                 테마 추천
             </b-card-text>
@@ -20,7 +37,7 @@
                 
 
             </b-card-text>
-        </b-card>
+        </b-card> -->
     </div>
 </template>
 
@@ -48,17 +65,19 @@ export default {
 </script>
 
 <style>
-.theme{
-    width: 700px;
-    min-height: 700px;
-    margin: 110px;
-    float: left;
-    border-radius: 50%;
-    text-align: center;
-    padding-top: 270px;
-    cursor: pointer;
-}
 .title{
     font-size: 50px;
+}
+.choice{
+    font-size: 4vh;
+    font-weight: bold;
+}
+.img{  
+    height: 25vh;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+#contain{
+    height: 85vh;
 }
 </style>

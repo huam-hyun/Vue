@@ -1,9 +1,18 @@
 <template>
     <div>
-        <b-nav fill>
+        <b-container style="margin: 30px auto;">
+            <b-row align-h="center">
+                <b-col cols="1">업종</b-col>
+                <b-col cols="auto" v-for="item in items" :key="item" @click="type(item)" style="font-size: 16px;">
+                    {{item.title}}
+                </b-col>
+            </b-row>
+        </b-container>
+    
+        <!-- <b-nav fill>
             <b-nav-item v-for="item in items" :key="item" @click="type(item)">{{item.title}}</b-nav-item>
             
-        </b-nav>
+        </b-nav> -->
 
         <router-view></router-view>
     </div>

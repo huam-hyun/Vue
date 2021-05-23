@@ -1,6 +1,51 @@
 <template>
     <div>
-        <b-card class="card" title="홈페이지 소개" sub-title="새로운 프랜차이즈 창업자를 위한 서비스">
+        <b-container fluid="xl">
+            <b-row class="mainSearch" style="height: 30vh;" align-h="center" align-v="end">
+                <b-col style="font-size: 40px; font-weight: bold;">
+                    브랜드 검색
+                </b-col>
+            </b-row>
+            <b-row class="mainSearch" style="height: 5vh;" align-h="center" align-v="end">
+                <b-col cols="6">
+                    <b-input-group>
+                        <b-input type="text" style="border-radius: 20px 0 0 20px;"></b-input><b-button style=" border-radius: 0 20px 20px 0;"><img src="@/assets/search.png" style="height: 14px;"></b-button>
+                    </b-input-group>
+                </b-col>
+            </b-row>
+            <b-row class="mainSearch" style="height: 56vh; margin-top: 4vh;" align-h="center" align-v="start">
+                <b-col cols="1">
+                    <img src="@/assets/korean.png" style="height: 7vh;">한식
+                </b-col>
+                <b-col cols="1">
+                    <img src="@/assets/chijap.png" style="height: 7vh;">중/일식
+                </b-col>
+                <b-col cols="1">
+                    <img src="@/assets/cafe.png" style="height: 7vh;">카페
+                </b-col>
+                <b-col cols="1">
+                    <img src="@/assets/chicken.png" style="height: 7vh;">치킨
+                </b-col>
+            </b-row>
+            
+        </b-container>
+        <b-container class="introduce" fluid="xl">
+            <b-row align-v="center">
+                <b-col class="top"><strong>안녕하세요 프랜드차이입니다</strong></b-col>
+                <div class="w-100"></div>
+                <b-col class="middle"></b-col>
+            </b-row>
+            
+        </b-container>
+        <div class="w-100" style="height: 20vh;"></div>
+        <b-container class="introduce" fluid="xl">
+            <b-row align-v="center" >
+                <b-col class="top"><strong>두번째 부분</strong></b-col>
+                <div class="w-100"></div>
+                <b-col class="middle">신규 창업자들을 위한 서비스<br>지금 바로 만나보세요</b-col>
+            </b-row>
+        </b-container>
+        <!-- <b-card class="card" title="홈페이지 소개" sub-title="새로운 프랜차이즈 창업자를 위한 서비스">
             <b-card-text>
                 안녕하세요 프랜드차이를 찾아주셔서 감사합니다.<br>
                 저희 프랜드차이는 고객님들의 성향에 따른 프랜차이즈를 추천 받을 수 있는 서비스를 제공하고 있으니
@@ -46,7 +91,7 @@
             </b-card-text>
 
             <b-link href="/service/brand/brandlist" class="card-link">브랜드정보 바로가기</b-link>
-        </b-card>
+        </b-card> -->
     </div>
 </template>
 
@@ -57,12 +102,25 @@ export default {
 </script>
 
 <style>
-.card{
-    /* background-color: beige; */
+#hi{
+    background-color: rgb(27, 206, 212);
+}
+.mainSearch{
     width: 100%;
-    height: 300px;
-    text-align: left;
-
-    margin-top: 10px;
+}
+.introduce{
+    background-color: #E4ECFF;
+    width: 100%;
+    text-align: center;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    border: none;
+    margin-left: auto;
+}
+.top{
+    font-size: 45px;
+}
+.middle{
+    font-size: 30px;
 }
 </style>

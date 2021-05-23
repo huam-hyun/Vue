@@ -2,6 +2,7 @@ import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../../router'
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -15,13 +16,13 @@ export const store = new Vuex.Store({
             state.name = payload.username
             state.isLogin = true
         },
-        loginFail(state){           //로그인 실패
+        loginFail(state){               //로그인 실패
             console.log('로그인 실패')
             alert('이메일과 비밀번호를 확인하세요')
             state.name = ''
             state.isLogin = false
         },
-        logout(state){
+        logout(state){                  //로그아웃
             if(state.isLogin){
                 state.name = ''
                 state.isLogin = false

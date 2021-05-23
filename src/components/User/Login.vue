@@ -1,6 +1,6 @@
 <template>
     <div class="modal">
-        <b-modal id="login" title="로그인" hide-footer>
+        <b-modal show="lg" :modal-class="my-modal" id="login" title="로그인" @hidden="reset" centered hide-footer>
             <b-form @submit.stop.prevent>
                 <label for="id">ID</label>
                 <b-form-input type="text" id="id" v-model="form.email" required></b-form-input>
@@ -30,6 +30,10 @@ export default {
     },
     methods: {
         ...mapActions(['login']),
+        reset(){
+            this.form.email = ''
+            this.form.password = ''
+        }
     }
 }
 </script>

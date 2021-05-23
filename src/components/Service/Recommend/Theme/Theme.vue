@@ -1,6 +1,76 @@
 <template>
     <div>
-      <b-card class="card" title="안정적인 시작!" sub-title="중소기업 프렌차이즈">
+      <b-container fluid="xl">
+        <b-row style="height: 40vh;" align-v="center">
+          <b-col>
+            <b-container @click="detail1" style="background-color: gray; height: 35vh;">
+              안정적인 시작!<br>
+              중소기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: red; height: 35vh;">
+              대규모 프랜차이즈<br>
+              대기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: lightblue; height: 35vh;">
+              새로운 시작을 함께<br>
+              신생 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: pink; height: 35vh;">
+              중소 기업 프랜차이즈<br>
+              중견기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: beige; height: 35vh;">
+              고투자 고수입
+            </b-container>
+          </b-col>
+        </b-row>
+      </b-container>
+      <hr>
+      <b-container>
+        <b-row style="height: 40vh;" align-v="center">
+          <b-col>
+            <b-container style="background-color: gray; height: 25vh;">
+              안정적인 시작!<br>
+              중소기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: red; height: 25vh;">
+              대규모 프랜차이즈<br>
+              대기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col>
+            <b-container style="background-color: lightblue; height: 25vh;">
+              새로운 시작을 함께<br>
+              신생 프랜차이즈
+            </b-container>
+          </b-col>
+        </b-row>
+        <b-row align-h="center">
+          <b-col cols="4">
+            <b-container style="background-color: pink; height: 25vh;">
+              중소 기업 프랜차이즈<br>
+              중견기업 프랜차이즈
+            </b-container>
+          </b-col>
+          <b-col cols="4">
+            <b-container style="background-color: beige; height: 25vh;">
+              고투자 고수입
+            </b-container>
+          </b-col>
+        </b-row>
+      </b-container>
+
+      <!-- <b-card class="card" title="안정적인 시작!" sub-title="중소기업 프렌차이즈">
         <b-card-text>
           안정적인 브랜드의 프렌차이즈
         </b-card-text>
@@ -29,7 +99,7 @@
           여유 있는 창업자에게 추천하는 브랜드
         </b-card-text>
         <b-button @click="detail5" variant="primary">Top 10 확인하기</b-button>
-      </b-card>                        
+      </b-card>                         -->
     </div>    
 </template>
 
