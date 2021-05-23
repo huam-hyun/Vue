@@ -30,7 +30,7 @@
                 <b-col id="header-right" cols="4" v-if="this.isLogin" style="text-align: right;">{{ name }} 님 <span @click="logout()" class="pointer" style="font-weight: bold;">로그아웃</span></b-col>
                 <div class="w-100"></div>
             </b-row>
-            <b-row class="select">
+            <b-row class="select" v-if="this.isLogin">
                 <b-col><a @click="goBrand">브랜드</a></b-col>
                 <b-col><a @click="goRecommend">추천</a></b-col>
                 <b-col><a @click="goMap">지도</a></b-col>
@@ -86,10 +86,10 @@ export default {
 }
 #brandTitle{
     font-size: 35px;
+    padding-bottom: 10px;
 }
 .header{
     padding-top: 15px;
-    margin-bottom: 15px;
     position: fixed;
     border-bottom: 50px;
     background: white;

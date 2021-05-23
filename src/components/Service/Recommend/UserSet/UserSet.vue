@@ -16,16 +16,12 @@
                 <b-col cols="3">
                     <b-card class="condition" >
                         <b-card-text>가맹사업 개월수</b-card-text>
-                        <b-card-text style="font-size:1.8vh; font-weight: 1;">얼마나 오래했는지</b-card-text>
-                        
                         <b-select v-model="p[0]" :options="options"></b-select>
                     </b-card>
                 </b-col>
                 <b-col cols="3">
                     <b-card class="condition">
-                        <b-card-text>가맹점 수</b-card-text>
-                        <b-card-text style="font-size:1.8vh; font-weight: 1;">많이 분포했는지</b-card-text>
-                        
+                        <b-card-text>가맹점 수</b-card-text>                       
                         <b-select v-model="p[1]" :options="options"></b-select>
                     </b-card>
                 </b-col>
@@ -71,7 +67,7 @@
 
         <!--화면 맞춤용-->
         <b-container fluid>
-            <b-row style="height: 14.6vh;"></b-row>
+            <b-row style="height: 10.8vh;"></b-row>
         </b-container>
     </div>
 </template>
@@ -142,5 +138,6 @@ export default {
     border-radius: 15px;
     font-size: 2.5vh;
     font-weight: bold;
+    padding: 1.5vh;
 }
 </style>

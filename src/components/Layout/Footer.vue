@@ -29,7 +29,7 @@
                         </b-col>                        
                     </b-row>
                 </b-col>
-                <b-col cols="1">
+                <b-col cols="2">
                     <b-row align-h="start" style="text-align: left">
                         <b-col>
                             프론트엔드
