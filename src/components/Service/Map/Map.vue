@@ -286,7 +286,7 @@ import axios from 'axios'
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
-    background: antiquewhite;
+    background: #C6DFD6;
     overflow: scroll;
 }
 </style>
