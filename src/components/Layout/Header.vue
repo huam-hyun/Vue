@@ -9,10 +9,10 @@
                 <b-col id="header-right" cols="4" v-if="this.isLogin" style="text-align: right;">{{ name }} 님 <span @click="logout()" class="pointer" style="font-weight: bold;">로그아웃</span></b-col>
                 <div class="w-100"></div>
             </b-row>
-            <b-row class="select" v-if="this.isLogin">
-                <b-col><a @click="goBrand">브랜드</a></b-col>
-                <b-col><a @click="goRecommend">추천</a></b-col>
-                <b-col><a @click="goMap">지도</a></b-col>
+            <b-row v-if="this.isLogin" align-h="center">
+                <b-col :class="['select', isSelected === 'brand' ? 'select2' : '']" cols="2"><a @click="goBrand">브랜드</a></b-col>
+                <b-col :class="['select', isSelected == 'recommend' ? 'select2' : '']" cols="2"><a @click="goRecommend">추천</a></b-col>
+                <b-col :class="['select', isSelected == 'map' ? 'select2' : '']" cols="2"><a @click="goMap">지도</a></b-col>
             </b-row>
         </b-container>
     </div>
@@ -27,6 +27,7 @@ export default {
     data(){
         return {
             show: false,
+            isSelected: '',
         }
     },
     computed:{
@@ -41,12 +42,15 @@ export default {
             this.$router.push('/user/register').catch(()=>{})
         },
         goBrand(){
+            this.isSelected = 'brand'
             this.$router.push({name: 'BrandList'}).catch(()=>{})
         },
         goRecommend(){
+            this.isSelected = 'recommend'
             this.$router.push({name: 'Choice'}).catch(()=>{})
         },
         goMap(){
+            this.isSelected = 'map'
             this.$router.push({name: 'Map'}).catch(()=>{})
         }
     },
@@ -70,14 +74,20 @@ export default {
 .header{
     padding-top: 10px;
     position: fixed;
-    background: #eff8ff;
+    background: #EDECEA;
     z-index: 1;
 }
 .select{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     font-size: 18px;
     cursor: pointer;
-    z-index: 1;
+    border-radius: 40px;
+    /* background-color: white;     */
+}
+.select2{
+    background-color: #C6DFD6; 
 }
 </style>

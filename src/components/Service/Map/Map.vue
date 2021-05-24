@@ -282,6 +282,8 @@ import axios from 'axios'
     margin: 0.5vh auto;
     border-style: solid;
     border-width: 1px;
-    border-radius: 15px;
+    border-radius: 10px;
+    background: antiquewhite;
+    overflow: scroll;
 }
 </style>

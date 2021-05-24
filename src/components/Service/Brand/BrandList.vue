@@ -1,12 +1,12 @@
 <template>
     <div>
         <!-- Header 크기 - Footer크기 -->
-        <b-container fluid>
+        <b-container v-if="!overlayShow" fluid>
             <b-row style="height: 90px;"></b-row>
         </b-container>
 
         <b-container fluid>
-            <b-row align-h="center">
+            <b-row align-h="center" v-if="!overlayShow">
                 <b-col md="auto" style="cursor: pointer;" @click="changeSelected(item.value)" v-for="item in titles" :key="item.sector">
                     <img class="category" :src="require(`@/assets/${item.src}`)">
                     <a> {{item.title}}</a>
@@ -18,7 +18,11 @@
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(brands), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
@@ -276,6 +280,18 @@
                 </b-col>
             </b-row>        
         </b-container>
+
+        <!--오버레이 표시-->
+        <b-overlay
+            :show="overlayShow"
+            rounded="sm"
+            z-index="0"
+            variant="tranfparent"
+            opacity="0"
+        >
+            <b-container fluid v-if="overlayShow" style="min-height: 100vh; background-color: #EDECEA">
+            </b-container>
+        </b-overlay>
     </div>
 </template>
 
@@ -301,6 +317,7 @@ export default {
             search: '',
             perPage: 20,
             currentPage: 1,
+            overlayShow: true,
             titles: [
                 { title: '전체', value: 'all', src: 'all.png'},
                 { title: '한식', value: 'korean', src: 'korean.png'},
@@ -373,8 +390,9 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
+            this.overlayShow = false
             this.brands.pop()
-            this.selected = 'all'
+            this.selected = 'all'           
         });
         
     },
@@ -390,12 +408,13 @@ export default {
     height: 13vh;
     display: table-cell;
     vertical-align: middle;
-    background-color: beige;
+    background-color: #E2DFD8;
     border-radius: 15px;
 }
 .wrapper{
     display: table; 
     margin-top: 2vh;
 }
+
 
 </style>

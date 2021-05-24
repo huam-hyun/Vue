@@ -5,7 +5,7 @@
     <b-container fluid>
         <b-row style="height: 5vh;"></b-row>
     </b-container>
-    <router-view style="background-color: #e1e5ea"></router-view>
+    <router-view style="background-color: #EDECEA"></router-view>
 
     <Footer />
     
@@ -31,6 +31,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 </style>

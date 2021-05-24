@@ -33,7 +33,7 @@
             </b-row>
             
         </b-container>
-        <b-container style="background-color: #ffe5b9;" fluid>
+        <b-container class="mainContainer" fluid>
             <b-row class="introduce"  align-v="center">
                 <b-col class="top"><strong>안녕하세요 프랜드차이입니다</strong><br>
                     <a style="font-size:3vh;">신규 가맹사업자들을 위한 서비스를 지금 바로 만나보세요</a>
@@ -42,7 +42,7 @@
             
         </b-container>
         <div class="w-100" style="height: 40vh;"></div>
-        <b-container style="background-color: #c9cbff;" fluid>
+        <b-container class="mainContainer2" fluid>
             <b-row align-v="center" class="introduce">
                 <b-col cols="5">
                     <b-row  class="top" align-h="center">
@@ -78,7 +78,7 @@
         </b-container>
         <div class="w-100" style="height: 40vh;"></div>
 
-        <b-container style="background-color: #a6a9b6;" fluid>
+        <b-container class="mainContainer" fluid>
             <b-row align-v="center" class="introduce">
                 <b-col cols="5">
                     <b-row  class="top" align-h="center">
@@ -115,7 +115,7 @@
         </b-container>
         <div class="w-100" style="height: 40vh;"></div>
 
-        <b-container style="background-color: #fcd1d1;" fluid>
+        <b-container class="mainContainer2" fluid>
             <b-row align-v="center" class="introduce">
                 <b-col cols="5">
                     <b-row  class="top" align-h="center">
@@ -176,5 +176,11 @@ export default {
     border-left-style: solid;
     margin-top: 5vh;
     padding-left: 20px;
+}
+.mainContainer{
+    background-color: #C6DFD6;
+}
+.mainContainer2{
+    background-color: #E9DDC8;
 }
 </style>
