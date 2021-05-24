@@ -1,44 +1,98 @@
 <template>
     <div>
-        <b-container fluid>
+        <b-container v-if="!overlayShow" fluid>
             <b-row align-h="center" align-v="center" style="height: 80vh;">
-                <b-col cols="2">
-                    <b-row v-for="(item,index) in brands" :key="index" @click="getinfo(index)" style="height: 7vh; border-style: solid; border-radius: 20px; margin-top: 3px; border-width:1px;">
-                        <b-col>
-                            {{item.brand_name}}
-                        </b-col>
-                    </b-row>
+                <b-col cols="3">
+                    <a style="overflow: auto;">
+                        <b-container class="Top10" v-for="(item,index) in brands" :key="index" @click="getinfo(index)">
+                            <span class="resultCardTitle">{{item.brand_name}}&nbsp;</span><span class="resultCardText">{{item.sector}}</span><br>
+                            <span class="resultCardText">평균매출액 </span>{{item.average_sales}}&nbsp;<span class="resultCardText">창업비용 </span>{{item.startup_cost}}
+                        </b-container>
+                    </a>
                 </b-col>
-                <b-col cols="10">
-                    <b-table :items='this.brand_list'></b-table>
+                <b-col cols="9">
+                    <!-- 기본 표 -->
+                    <b-container>
+                        <b-table :items='this.brand_list'></b-table>
+                    </b-container>
+
+                    <!-- 상세보기창 -->
+                    <b-container v-if="!overlayShow" fluid class="detail">
+                        <b-row align-h="center" class="detailTitle">
+                            <b-col cols="auto">
+                                <a>{{this.br_detail[0].brand_name}}</a>
+                            </b-col>
+                        </b-row>
+
+                        <b-row class="detailSelect" align-h="around">
+                            <b-col cols="auto" @click="changeSelect('hq')" :class="[isSelected == 'hq' ? 'select2' : '']" style="border-radius: 20px">
+                                본사 정보
+                            </b-col>
+                            <b-col cols="auto" @click="changeSelect('br')" :class="[isSelected == 'br' ? 'select2' : '']" style="border-radius: 20px">
+                                브랜드 정보
+                            </b-col>
+                        </b-row>
+                        <hr>
+                
+                        <b-container fluid class="detailBody" v-if="isSelected == 'hq'">
+                            <div>
+                                <span class="tableTitle"><strong>본사 기본 정보</strong></span>
+                                <b-table :items="this.hq_basic_items"></b-table>
+                                <b-table :items="this.hq_basic2_items"></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>본사 매출 정보</strong></span>
+                                <b-table :items="this.hq_economic_items"></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>본사 가맹 정보</strong></span>
+                                <b-table :items="this.hq_franchise_items"></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>최근 3년간 법 위반 사실</strong></span>
+                                <b-table :items="this.hq_law_items"></b-table>
+                                <br><hr><br>
+                                </div>
+                                <div>
+                                    <p>위 정보는 공정거래위원회에 등록된 가맹사업거래 정보공개서를 분석한 정보입니다. 참고용으로만 활용하시기 바랍니다.</p>
+                                </div>
+                        </b-container>
+                        <b-container fluid v-if="isSelected == 'br'">
+                            <div>
+                                <span class="tableTitle"><strong>브랜드 가맹 정보</strong></span>
+                                <b-table :items="br_items_1"></b-table>
+                                <b-table :items="br_items_2" ></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>브랜드 매출 정보</strong></span>
+                                <b-table :items="br_items_3" ></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>브랜드 기본 비용</strong></span>
+                                <b-table :items="br_items_4" ></b-table>
+                                <br><hr><br>
+
+                                <span class="tableTitle"><strong>인테리어 비용</strong></span>
+                                <b-table :items="br_items_5" ></b-table>                        
+                            </div>
+                        </b-container>
+                    </b-container>
                 </b-col>
             </b-row>
         </b-container>
 
-        <!-- all
-        <b-card class="result">
-            <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" @click="getinfo(index)">
-                    <b-card-text>
-                        <div>
-                            <h1>{{item.brand_name}}</h1>
-                            <b-tabs content-class="mt-3">
-                                <b-tab title="브랜드 정보" active>
-                                    <div>
-                                        <b-table :items="items"></b-table>
-                                    </div>
-                                </b-tab>
-                                <b-tab title="본사 정보">
-                                    <div>
-                                        <b-table :items="items2"></b-table>
-                                    </div>
-                                </b-tab>
-                            </b-tabs>
-                        </div>
-                    </b-card-text>
-                </b-tab>
-            </b-tabs>
-        </b-card> -->
+        <!-- 오버레이 표시 -->
+        <b-overlay
+            :show="overlayShow"
+            rounded="sm"
+            z-index="0"
+            variant="tranfparent"
+            opacity="0"
+        >
+            <b-container fluid v-if="overlayShow" style="min-height: 100vh; background-color: #EDECEA">
+            </b-container>
+        </b-overlay>
+
     </div>
     
 </template>
@@ -50,14 +104,23 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            brands: null,
-            titles: [
-                'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
-            ],
-            brand_list: null,
-
-            br_items_1: null,
-            br_items_2: null,
+            isSelected: 'br',
+            overlayShow: true,
+            br_detail: null,
+            hq: null,
+            hq_basic_items: null,
+            hq_basic2_items: null,
+            hq_economic_items: null,
+            hq_franchise_items: null,
+            hq_law_items: null,
+            // br_fields_1: ['가맹 시작일', '가맹 개월 수(개월)', '가맹점 수(개)', '임직원 수(명)','가맹 종료(개)','가맹 해지(개)'],
+            // br_fields_2: ['평균매출액(년/천원)', '평당 평균매출액(년/천원)','가맹비(천원)','교육비(천원)','보증금(천원)','기타비용(천원)','창업비용(천원)','면적당 비용(천원)','기준면적(천원)','전체비용(천원)'],
+            br_items_1: [],
+            br_items_2: [],
+            br_items_3: [],
+            br_items_4: [],
+            br_items_5: [],
+            brands: null,    
             delay_spinner: false,
         }
     },
@@ -92,8 +155,12 @@ export default {
                 );
             }
         })
+        this.overlayShow = false
     },
     methods:{
+        changeSelect(a){
+            this.isSelected = a
+        },
         brandCallback: function (brand_name){
             axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + brand_name).then((res) => {
                 console.log(res.data);
@@ -138,5 +205,22 @@ export default {
 </script>
 
 <style>
-
+.Top10{
+    background-color: #E9DDC8;
+    width: 90%;
+    height: 7vh;
+    margin-top: 0.5vh;
+    border-radius: 20px;
+    padding-top: 10px;
+    text-align: left;
+}
+.resultCardTitle{
+    font-size: 2vh;
+    font-weight: bold;
+    text-align: left;
+}
+.resultCardText{
+    font-size: 1.5vh;
+    font-weight: bold;
+}
 </style>

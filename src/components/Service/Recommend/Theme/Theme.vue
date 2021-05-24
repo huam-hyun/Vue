@@ -1,9 +1,10 @@
 <template>
     <div>
-      <!-- Header 크기 - Footer크기 -->
+      <!-- Header에 가리는거 내리기용 -->
       <b-container fluid>
           <b-row style="height: 15vh;"></b-row>
       </b-container>
+
       <b-container fluid>
         <b-row style="padding-bottom: 5vh;">
           <b-col>
@@ -12,6 +13,7 @@
           </b-col>
         </b-row>
         <b-row align-h="center" align-v="center" style="padding-bottom: 3vh; height: 27vh;">
+          
           <b-col cols="3" class="themeCard">
             <b-row align-v="center" align-h="center" style="height: 100%">
               <b-col @click="detail1">
@@ -20,6 +22,7 @@
               </b-col>            
             </b-row>
           </b-col>
+
           <b-col cols="3" class="themeCard">
             <b-row align-v="center" align-h="center" style="height: 100%">
               <b-col @click="detail2">
@@ -28,6 +31,7 @@
               </b-col>            
             </b-row>
           </b-col>
+
           <b-col cols="3" class="themeCard">
             <b-row align-v="center" align-h="center" style="height: 100%">
               <b-col @click="detail3">
@@ -36,8 +40,11 @@
               </b-col>            
             </b-row>
           </b-col>
+
         </b-row>
+
         <b-row align-h="center" align-v="center" style="height: 27vh; padding-bottom: 5vh;">
+          
           <b-col cols="3" class="themeCard">
             <b-row align-v="center" align-h="center" style="height: 100%">
               <b-col @click="detail4">
@@ -46,6 +53,7 @@
               </b-col>            
             </b-row>
           </b-col>
+
           <b-col cols="3" class="themeCard">
             <b-row align-v="center" align-h="center" style="height: 100%">
               <b-col @click="detail5">
@@ -54,6 +62,7 @@
               </b-col>            
             </b-row>
           </b-col>
+
         </b-row>
       </b-container>
     </div>    

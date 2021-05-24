@@ -36,9 +36,11 @@ export default {
     methods: {
         ...mapMutations(['logout']),
         goHome(){
+            this.isSelected = ''
             this.$router.push('/').catch(()=>{})
         },
         goRegister(){
+            this.isSelected = '',
             this.$router.push('/user/register').catch(()=>{})
         },
         goBrand(){

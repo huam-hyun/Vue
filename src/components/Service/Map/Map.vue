@@ -7,9 +7,9 @@
 
         <b-container fluid style="height: 87.5vh;">
             <b-row align-v="stretch">
-                <b-col style="background-color: #ffe5b9;" cols="4">
+                <b-col style="background-color: #9CC0BA;" cols="3">
                     <b-row style="margin:4vh auto; font-size: 4vh; font-weight: bold;" align-h="center">
-                        <b-col cols="6">
+                        <b-col cols="auto">
                             브랜드 찾기
                         </b-col>
                     </b-row>
@@ -78,20 +78,22 @@
                             <p id='population_content'></p>
                         </b-col>
                     </b-row>
+                    <b-container style="overflow: scroll; height: 34vh;">
                     <b-row v-for="item in fran" :key="item" align-h="center">
-                        <b-col cols="6" class="mapCard">
+                        <b-col cols="8" class="mapCard">
                             <strong style="font-size: 20px;">{{item.brand_name}}</strong><br>
                             {{item.sector}}<br>
                             <!-- 주소: <p>{{latlngToAddress(item.latitude, item.longitude)}}</p> -->
                         </b-col>
                     </b-row>
+                    </b-container>
                     <b-row>
                         <b-col>
                             <div id='alert'></div>
                         </b-col>
                     </b-row>
                 </b-col>
-                <b-col id="map" class="map" cols="8">
+                <b-col id="map" class="map" cols="9">
                 </b-col>
             </b-row>
         </b-container>
@@ -269,7 +271,8 @@ import axios from 'axios'
 
 <style>
 .map{
-    height:87.7vh;
+    height:87.6vh;
+    z-index: 0;
 }
 .tab{
     float:left;

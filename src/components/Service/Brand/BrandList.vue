@@ -19,15 +19,28 @@
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(brands), i)" :key="item.brand_name">
                     <b-container class="brandCard">
                         <b-row>
-                            <b-col cols="auto">
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
                                 {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
                             </b-col>
                         </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -38,6 +51,9 @@
                         last-number>
                     </b-pagination>
                 </b-col>
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
             </b-row>
         </b-container>
 
@@ -45,13 +61,29 @@
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(korean), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -62,20 +94,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>
         </b-container>
 
         <b-container v-if="selected == 'cafe'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(cafe), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -86,20 +137,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>
         </b-container>
 
         <b-container v-if="selected == 'chicken'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(chicken), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -110,6 +180,9 @@
                         last-number>
                     </b-pagination>
                 </b-col>
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
             </b-row>        
         </b-container>
 
@@ -117,13 +190,29 @@
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(fastfood), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -134,6 +223,9 @@
                         last-number>
                     </b-pagination>
                 </b-col>
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
             </b-row>        
         </b-container>
 
@@ -141,13 +233,29 @@
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(bread), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -158,20 +266,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row> 
         </b-container>
 
         <b-container v-if="selected == 'chijap'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(chijap), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -182,20 +309,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>    
         </b-container>
 
         <b-container v-if="selected == 'kimbob'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(kimbob), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -206,20 +352,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>       
         </b-container>
 
         <b-container v-if="selected == 'hof'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(hof), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -230,6 +395,9 @@
                         last-number>
                     </b-pagination>
                 </b-col>
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
             </b-row>        
         </b-container>
 
@@ -237,13 +405,29 @@
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(etc), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -254,20 +438,39 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>      
         </b-container>
 
         <b-container v-if="selected == 'etc_f'" fluid style="height: 83vh;">
             <b-row v-for="i in 5" :key="i" align-h="center">
                 <b-col cols="auto" @click="detail(item.brand_name)" class="wrapper" v-for="item in sliceitems(items(etc_f), i)" :key="item.brand_name">
                     <b-container class="brandCard">
-                        {{item.brand_name}}
+                        <b-row>
+                            <b-col style="font-size: 2vh; font-weight: bold;" cols="auto">
+                                {{item.brand_name}}
+                            </b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col cols="auto" style="font-size: 1.5vh;">
+                                {{item.sector}}
+                            </b-col>
+                        </b-row>
+                        <b-row style="font-size: 1.5vh;">
+                            <b-col cols="auto">
+                                평균 매출액: {{item.average_sales}}
+                            </b-col>
+                            <b-col cols="auto">
+                                창업비용: {{item.startup_cost}}
+                            </b-col>
+                        </b-row>
                     </b-container>
                 </b-col>
             </b-row>
-
-            <b-row>
-                <b-col>
+            <b-row align-h="end">
+                <b-col cols="auto">
                     <b-pagination
                         class="pagination"
                         align="center"
@@ -278,7 +481,10 @@
                         last-number>
                     </b-pagination>
                 </b-col>
-            </b-row>        
+                <b-col cols="4" style="text-align: right; color: #D07D7B; margin-right: 8vw; margin-top: 1vh">
+                    * 단위: 천원
+                </b-col>
+            </b-row>      
         </b-container>
 
         <!--오버레이 표시-->
@@ -390,6 +596,7 @@ export default {
             this.hof = this.brands.filter(item => item.sector === "주점");
             this.etc = this.brands.filter(item => item.sector === "기타 외식");
             this.etc_f = this.brands.filter(item => item.sector === "기타 외국식");
+            console.log(this.brands)
             this.overlayShow = false
             this.brands.pop()
             this.selected = 'all'           
@@ -404,7 +611,7 @@ export default {
     height: 2vh;
 }
 .brandCard{
-    width: 35vh;
+    width: 20vw;
     height: 13vh;
     display: table-cell;
     vertical-align: middle;
