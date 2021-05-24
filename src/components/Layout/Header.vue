@@ -1,11 +1,12 @@
 <template>
     <div>
         <Login></Login>
+        <Register></Register>
 
         <b-container class="header" fluid>
             <b-row align-h="end">
                 <b-col id="brandTitle" cols="4" @click="goHome" class="pointer"><strong>프랜드차이</strong></b-col>
-                <b-col id="header-right" cols="4" v-if="!this.isLogin" style="text-align: right">&nbsp;<span @click="goRegister" class="pointer">회원가입</span>&nbsp;<span @click="$bvModal.show('login')" class="pointer">로그인</span></b-col>
+                <b-col id="header-right" cols="4" v-if="!this.isLogin" style="text-align: right">&nbsp;<span @click="$bvModal.show('register')" class="pointer">회원가입</span>&nbsp;<span @click="$bvModal.show('login')" class="pointer">로그인</span></b-col>
                 <b-col id="header-right" cols="4" v-if="this.isLogin" style="text-align: right;">{{ name }} 님 <span @click="logout()" class="pointer" style="font-weight: bold;">로그아웃</span></b-col>
                 <div class="w-100"></div>
             </b-row>
@@ -20,6 +21,7 @@
 
 <script>
 import Login from '@/components/User/Login'
+import Register from '@/components/User/Register'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
@@ -39,10 +41,10 @@ export default {
             this.isSelected = ''
             this.$router.push('/').catch(()=>{})
         },
-        goRegister(){
-            this.isSelected = '',
-            this.$router.push('/user/register').catch(()=>{})
-        },
+        // goRegister(){
+        //     this.isSelected = '',
+        //     this.$router.push('/user/register').catch(()=>{})
+        // },
         goBrand(){
             this.isSelected = 'brand'
             this.$router.push({name: 'BrandList'}).catch(()=>{})
@@ -57,7 +59,9 @@ export default {
         }
     },
     components: {
-        Login
+        Login,
+        Register,
+
     }
 }
 </script>

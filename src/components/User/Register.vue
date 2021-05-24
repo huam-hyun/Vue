@@ -1,9 +1,8 @@
 <template>
-    <div class="input">
-        <b-card class="card" title="회원가입">
-            <br>
+    <div class="modal">
+        <b-modal ref='register-modal' show="lg" :modal-class="my-modal" id="register" title="회원가입" @hidden="reset" centered hide-footer>
             <b-form @submit.stop.prevent>
-                <label for="id">E-mail</label>
+               <label for="id">E-mail</label>
                 <b-form-input type="text" id="id" v-model="form.userId" required></b-form-input>
                 <br>
                 <label for="id">User Name</label>
@@ -12,15 +11,15 @@
                 <label for="password">Password</label>
                 <b-form-input v-model="form.password" type="password" id="password" aria-describedby="password-help-block" required></b-form-input>
                 <b-form-text id="password-help-block">
-                    비밀번호는 ~~~~
+                    <!-- 비밀번호는 ~~~~ -->
                 </b-form-text>
                 <br>
                 <label for="password_check">Password Check</label>
                 <b-form-input v-model="form.password_check" type="password" id="password_check" required></b-form-input>
                 <br>
             </b-form>
-            <b-button variant="primary" @click="regist">제출</b-button>
-        </b-card>    
+            <b-button variant="primary" @click="regist">제출</b-button>       
+        </b-modal>
     </div>
 </template>
 
@@ -35,6 +34,7 @@ export default {
                 userName: '',
                 password: '',
                 password_check: '',
+                isModalVisible: false,
             },
         }
     },
@@ -51,9 +51,19 @@ export default {
             }).then((res) =>{
                 if(res.status == 200){
                     alert('회원가입에 성공하였습니다');
+                    this.closeModal();
                     this.$router.push('/').catch(()=>{})
                 }
             })
+        },
+        reset(){
+            this.form.userId='',
+            this.form.userName='',
+            this.form.password='',
+            this.form.password_check=''
+        },
+        closeModal(){
+            this.$refs['register-modal'].hide()
         }
     },
     computed: {
@@ -63,11 +73,15 @@ export default {
 </script>
 
 <style>
-.input{
+/* .input{
     margin: 10px;
     text-align: left;
 }
 .card{
     height: 100%;
+} */
+.modal{
+    display: flex;
+    align-items: center;
 }
 </style>
