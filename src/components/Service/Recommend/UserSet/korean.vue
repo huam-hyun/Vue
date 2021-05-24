@@ -1,26 +1,37 @@
 <template>
     <div>
-        한식
-        <b-card class="result">
-            <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" @click="getinfo(index)">
-                    <b-card-text>
-                        <div>
-                            <h1>{{item.brand_name}}</h1>
-                            <b-tabs content-class="mt-3">
-                                <b-tab title="브랜드 정보" active>
-                                    <div>
-                                        <h3>2020년 기준</h3>
-                                        <b-table :items="items"></b-table>
-                                    </div>
-                                </b-tab>
-                                <!-- <b-tab title="본사 정보"><p>본사 정보</p></b-tab> -->
-                            </b-tabs>
+        <b-container fluid>
+            <b-row align-h="center" align-v="start" style="height: 80vh;">
+                <b-col cols="4" style="padding-top: 4vh">
+                    <a style="overflow: auto;">
+                        <b-container class="Top10" v-for="item in brands" :key="item.brand_name" @click="detail(item.brand_name)">
+                            <span class="resultCardTitle">{{item.brand_name}}&nbsp;</span><span class="resultCardText">{{item.sector}}</span><br>
+                            <span class="resultCardText">평균매출액 </span>{{item.average_sales}}&nbsp;<span class="resultCardText">창업비용 </span>{{item.startup_cost}}
+                        </b-container>
+                    </a>
+                </b-col>
+                <b-col cols="8" style="padding-top: 5vh;">
+                    <!-- 기본 표 -->
+                    <b-container v-if="!openWindow" fluid>
+                        <b-table :items='this.brand_list'></b-table>
+                    </b-container>
+
+                    <!-- 상세보기창 -->
+                    <b-container v-if="openWindow" fluid>
+                        <div style="overflow: auto; max-height: 70vh;">
+                            <router-view style="background-color: #E2DFD8"/>
                         </div>
-                    </b-card-text>
-                </b-tab>
-            </b-tabs>
-        </b-card>
+                    </b-container>
+                </b-col>
+            </b-row>
+        </b-container>
+
+        <!-- 여백 -->
+        <b-container fluid>
+            <b-row style="height: 10vh;"></b-row>
+        </b-container>
+
+
     </div>
     
 </template>
@@ -31,11 +42,10 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            brands: null,
-            items:[],
-            titles: [
-                'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
-            ]
+            openWindow: '',
+            overlayShow: true,
+            brand_list: null,
+            brands: null,           
         }
     },
     created() {
@@ -45,8 +55,8 @@ export default {
         let p4 = this.$route.query.p4
         let p5 = this.$route.query.p5
         let p6 = this.$route.query.p6
-        let title = this.$route.query.sector
-        axios.get('http://34.64.236.155:8000/myapp/customtheme/?p1='+ p1 + '&p2=' + p2 + '&p3=' + p3 + '&p4=' + p4 + '&p5=' + p5 + '&p6=' + p6 + '&sector=' + title).then((res) =>{
+        let sector = this.$route.query.sector
+        axios.get('http://34.64.236.155:8000/myapp/customtheme/?p1='+ p1 + '&p2=' + p2 + '&p3=' + p3 + '&p4=' + p4 + '&p5=' + p5 + '&p6=' + p6 + '&sector=' + sector).then((res) =>{
             var weight = [0.9, 0.7, 0.5, 0.3, 0.2, 0.1]
             console.log(res.data);
             for(var i = 0; i<res.data.length; i++){
@@ -61,39 +71,62 @@ export default {
                 return b.total_ratio - a.total_ratio
             })
 
+            this.brand_list = []
+            for(i = 0; i<res.data.length; i++){
+                this.brand_list.push(
+                    {
+                        '순위': i+1,
+                        '브랜드 이름': this.brands[i].brand_name, '가맹점수': this.brands[i].num_of_franchise, '가맹 개월수': this.brands[i].franchise_months, '연평균매출액(단위: 천원)': this.brands[i].average_sales,
+                        '창업비용(단위: 천원)': this.brands[i].startup_cost, '개점률(%)': this.brands[i].rate_of_opening, '폐점률(%)': this.brands[i].rate_of_closing
+                    }
+                );
+            }
+
             console.log(this.brands)
             for( i = 0; i < this.brands.length; i ++){
                 console.log(this.brands[i].total_ratio)
             }
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[0].franchise_months ,
-                '가맹점 수(개)': String(this.brands[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[0].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[0].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[0].rate_of_opening ,
-                '폐점률(%)':  this.brands[0].rate_of_closing 
-            })
         })
     },
     methods:{
-        getinfo(index){
-            this.items=[]
-            console.log(index)
-            console.log(this.brands[index])
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[index].franchise_months ,
-                '가맹점 수(개)': String(this.brands[index].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[index].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[index].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[index].rate_of_opening ,
-                '폐점률(%)':  this.brands[index].rate_of_closing 
-            })
-
+        detail(brandName){
+            if(this.openWindow == brandName){
+                this.openWindow = ''
+                console.log(this.openWindow)
+            }else if(this.openWindow == null){
+                this.openWindow = brandName
+                console.log(this.openWindow)
+            }else{
+                this.openWindow = brandName
+                console.log(this.openWindow)
+                this.$router.push({
+                    name: '1',
+                    query: {name: brandName}
+                })
+            }
         }
     }
 }
 </script>
 
 <style>
-
+.Top10{
+    background-color: #E9DDC8;
+    width: 90%;
+    height: 7vh;
+    margin-top: 0.5vh;
+    border-radius: 20px;
+    padding-top: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+.resultCardTitle{
+    font-size: 2vh;
+    font-weight: bold;
+    text-align: left;
+}
+.resultCardText{
+    font-size: 1.5vh;
+    font-weight: bold;
+}
 </style>

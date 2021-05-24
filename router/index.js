@@ -101,52 +101,123 @@ export default new Router({
                 {     
                     path:'korean/:param?',
                     name:'koreanResult',
-                    component: koreanResult
+                    component: koreanResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'1',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'cafe',
                     name:'cafeResult',
-                    component: cafeResult
+                    component: cafeResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'2',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'chicken',
                     name:'chickenResult',
-                    component: chickenResult
+                    component: chickenResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'3',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'fastfood',
                     name:'fastfoodResult',
-                    component: fastfoodResult
+                    component: fastfoodResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'4',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'chijap',
                     name:'chijapResult',
-                    component: chijapResult
+                    component: chijapResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'5',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'kimbob',
                     name:'kimbobResult',
-                    component: kimbobResult
+                    component: kimbobResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'6',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'hof',
                     name:'hofResult',
-                    component: hofResult
+                    component: hofResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'7',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'etc',
                     name:'etcResult',
-                    component: etcResult
+                    component: etcResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'8',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'etcf',
                     name:'etcfResult',
-                    component: etcfResult
+                    component: etcfResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'9',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'all/:param?',
                     name:'allResult',
-                    component: allResult
+                    component: allResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'10',
+                            component: BrandDetail
+                        }
+                    ]
+
                 },
 
             ]
@@ -155,57 +226,126 @@ export default new Router({
             path: '/service/recommend/theme/result',
             name: 'ThemeResult',
             component: ThemeResult,
-            meta:{authRequired: true},
             children:[
                 {     
                     path:'korean',
                     name:'KoreanResult',
-                    component: KoreanResult
+                    component: KoreanResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'11',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'cafe',
                     name:'CafeResult',
-                    component: CafeResult
+                    component: CafeResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'12',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'chicken',
                     name:'ChickenResult',
-                    component: ChickenResult
+                    component: ChickenResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'13',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'fastfood',
                     name:'FastfoodResult',
-                    component: FastfoodResult
+                    component: FastfoodResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'14',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'chijap',
                     name:'ChijapResult',
-                    component: ChijapResult
+                    component: ChijapResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'15',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'kimbob',
                     name:'KimbobResult',
-                    component: KimbobResult
+                    component: KimbobResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'16',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'hof',
                     name:'HofResult',
-                    component: HofResult
+                    component: HofResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'17',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'etc',
                     name:'EtcResult',
-                    component: EtcResult
+                    component: EtcResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'18',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'etcf',
                     name:'EtcfResult',
-                    component: EtcfResult
+                    component: EtcfResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'19',
+                            component: BrandDetail
+                        }
+                    ]
                 },
                 {
                     path:'all',
                     name:'AllResult',
-                    component: AllResult
+                    component: AllResult,
+                    children: [
+                        {
+                            path:'detail/?name',
+                            name:'20',
+                            component: BrandDetail
+                        }
+                    ]
                 },
 
             ]

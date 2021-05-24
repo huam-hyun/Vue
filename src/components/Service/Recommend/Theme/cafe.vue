@@ -1,32 +1,41 @@
 <template>
     <div>
-        카페
-        <b-card class="result">
-            <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" active v-on:click='brandCallback(item.brand_name)'>
-                    <b-card-text>
-                        <div>
-                            <h1>{{item.brand_name}}</h1>
-                            <b-tabs content-class="mt-3">
-                                <b-tab title="브랜드 정보" active>
-                                    <!-- <b-overlay :show='this.delay_spinner'></b-overlay> -->
-                                    <div>
-                                        <h3>2020년 기준</h3>
-                                        <b-table striped hover :items="br_items_1"></b-table>
-                                    </div>
-                                    <div>
-                                        <b-table striped hover :items="br_items_2" ></b-table>
-                                    </div>
-                                </b-tab>
-                            </b-tabs>
+        <b-container fluid>
+            <b-row align-h="center" align-v="start" style="height: 80vh;">
+                <b-col cols="4" style="padding-top: 4vh">
+                    <a style="overflow: auto;">
+                        <b-container class="Top10" v-for="item in brands" :key="item.brand_name" @click="detail(item.brand_name)">
+                            <span class="resultCardTitle">{{item.brand_name}}&nbsp;</span><span class="resultCardText">{{item.sector}}</span><br>
+                            <span class="resultCardText">평균매출액 </span>{{item.average_sales}}&nbsp;<span class="resultCardText">창업비용 </span>{{item.startup_cost}}
+                        </b-container>
+                    </a>
+                </b-col>
+                <b-col cols="8" style="padding-top: 5vh;">
+                    <!-- 기본 표 -->
+                    <b-container v-if="!openWindow" fluid>
+                        <b-table :items='this.brand_list'></b-table>
+                    </b-container>
+
+                    <!-- 상세보기창 -->
+                    <b-container v-if="openWindow" fluid>
+                        <div style="overflow: auto; max-height: 70vh;">
+                            <router-view style="background-color: #E2DFD8"/>
                         </div>
-                    </b-card-text>
-                </b-tab>
-            </b-tabs>
-        </b-card>
-        <b-table :items='this.brand_list'></b-table>
+                    </b-container>
+                </b-col>
+            </b-row>
+        </b-container>
+
+        <!-- 여백 -->
+        <b-container fluid>
+            <b-row style="height: 10vh;"></b-row>
+        </b-container>
+
+
     </div>
+    
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -34,15 +43,10 @@ import axios from 'axios'
 export default {
     data(){
         return{
+            openWindow: '',
+            overlayShow: true,
             brands: null,
-            titles: [
-                'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
-            ],
             brand_list: null,
-
-            br_items_1: null,
-            br_items_2: null,
-            delay_spinner: false,
         }
     },
     created() {
@@ -77,45 +81,23 @@ export default {
                 );
             }
         })
+        this.overlayShow = false
     },
     methods:{
-        brandCallback: function (brand_name){
-            axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + brand_name).then((res) => {
-                console.log(res.data);
-                this.delay_spinner = true;
-                // 받고 나서 1초 지나고 딜레이 변수 세팅
-                setTimeout(() => {
-                    this.call_brand = res.data;
-                    this.br_items_1 = [
-                        {
-                            '가맹 시작일': String(res.data[0].franchise_start_date),
-                            '가맹 개월 수(개월)': toPrettyString(res.data[0].franchise_months),
-                            '가맹점 수(개)': toPrettyString(res.data[0].num_of_franchise),
-                            '임직원 수(명)' : toPrettyString(res.data[0].num_of_employees),
-                            '가맹 시작(개)': toPrettyString(res.data[0].num_of_open),
-                            '가맹 종료(개)': toPrettyString(res.data[0].num_of_quit),
-                            '가맹 해지(개)': toPrettyString(res.data[0].num_of_cancel)
-                        }
-                    ]
-                    this.br_items_2 = [
-                        {
-                            '평균매출액(년/천원)': toPrettyString(res.data[0].average_sales),
-                            '평당 평균매출액(년/천원)': toPrettyString(res.data[0].average_sales_per_area),
-                            '가맹비(천원)': toPrettyString(res.data[0].franchise_fee),
-                            '교육비(천원)': toPrettyString(res.data[0].education_fee),
-                            '보증금(천원)': toPrettyString(res.data[0].deposit),
-                            '기타비용(천원)': toPrettyString(res.data[0].other_cost),
-                            '창업비용(천원)': toPrettyString(res.data[0].startup_cost),
-                            '면적당 비용(천원)': toPrettyString(res.data[0].cost_per_area),
-                            '기준면적(천원)': toPrettyString(res.data[0].standard_area),
-                            '전체비용(천원)': toPrettyString(res.data[0].total_cost)
-                        }
-                    ]
-                    this.delay_spinner = false;
-                }, 1000);
-            })
-            function toPrettyString(int_param){
-                return String(int_param).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        detail(brandName){
+            if(this.openWindow == brandName){
+                this.openWindow = ''
+                console.log(this.openWindow)
+            }else if(this.openWindow == null){
+                this.openWindow = brandName
+                console.log(this.openWindow)
+            }else{
+                this.openWindow = brandName
+                console.log(this.openWindow)
+                this.$router.push({
+                    name: '12',
+                    query: {name: brandName}
+                })
             }
         }
     }
@@ -123,5 +105,23 @@ export default {
 </script>
 
 <style>
-
+.Top10{
+    background-color: #E9DDC8;
+    width: 90%;
+    height: 7vh;
+    margin-top: 0.5vh;
+    border-radius: 20px;
+    padding-top: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+.resultCardTitle{
+    font-size: 2vh;
+    font-weight: bold;
+    text-align: left;
+}
+.resultCardText{
+    font-size: 1.5vh;
+    font-weight: bold;
+}
 </style>

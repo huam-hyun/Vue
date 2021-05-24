@@ -21,11 +21,6 @@
                 </b-col>
             </b-row>
         </b-container>
-    
-        <!-- <b-nav fill>
-            <b-nav-item v-for="item in items" :key="item" @click="type(item)">{{item.title}}</b-nav-item>
-            
-        </b-nav> -->
 
         <router-view></router-view>
     </div>
@@ -35,6 +30,7 @@
 export default {
     data() {
         return {
+            label: '',
             items:[
                 {title: '전체', name:'AllResult', src:'all.png'},
                 {title: '한식', name:'KoreanResult', src:'korean.png'},
@@ -55,10 +51,13 @@ export default {
                 name: param.name,
                 query: {
                     sector: param.title,
-                    label: this.$route.query.label,
+                    label: this.label,
                 }
             })
         },
+    },
+    created() {
+        this.label = this.$route.query.label
     },
 }
 </script>

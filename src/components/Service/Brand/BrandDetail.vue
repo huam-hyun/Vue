@@ -5,7 +5,7 @@
             <b-row style="height: 15vh;"></b-row>
         </b-container>
 
-        <b-container v-if="!overlayShow" fluid class="detail">
+        <b-container v-if="!overlayShow" fluid>
             <b-row align-h="center" class="detailTitle">
                 <b-col cols="auto">
                     <a>{{this.br_detail[0].brand_name}}</a>
@@ -107,6 +107,7 @@ export default {
         }
     },
     created() {
+        console.log(this.$route.query.name)
         axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + this.$route.query.name).then((res) =>{
             this.br_detail=res.data;
             console.log(this.br_detail)

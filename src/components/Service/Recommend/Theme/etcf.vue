@@ -1,29 +1,37 @@
 <template>
     <div>
-        기타 외국식
-        <b-card class="result">
-            <b-tabs pills card vertical>
-                <b-tab v-for="(item, index) in brands" v-bind:title="titles[index]" :key="index" @click="getinfo(index)">
-                    <b-card-text>
-                        <div>
-                            <h1>{{item.brand_name}}</h1>
-                            <b-tabs content-class="mt-3">
-                                <b-tab title="브랜드 정보" active>
-                                    <div>
-                                        <b-table :items="items"></b-table>
-                                    </div>
-                                </b-tab>
-                                <!-- <b-tab title="본사 정보">
-                                    <div>
-                                        <b-table :items="items2"></b-table>
-                                    </div>
-                                </b-tab> -->
-                            </b-tabs>
+        <b-container fluid>
+            <b-row align-h="center" align-v="start" style="height: 80vh;">
+                <b-col cols="4" style="padding-top: 4vh">
+                    <a style="overflow: auto;">
+                        <b-container class="Top10" v-for="item in brands" :key="item.brand_name" @click="detail(item.brand_name)">
+                            <span class="resultCardTitle">{{item.brand_name}}&nbsp;</span><span class="resultCardText">{{item.sector}}</span><br>
+                            <span class="resultCardText">평균매출액 </span>{{item.average_sales}}&nbsp;<span class="resultCardText">창업비용 </span>{{item.startup_cost}}
+                        </b-container>
+                    </a>
+                </b-col>
+                <b-col cols="8" style="padding-top: 5vh;">
+                    <!-- 기본 표 -->
+                    <b-container v-if="!openWindow" fluid>
+                        <b-table :items='this.brand_list'></b-table>
+                    </b-container>
+
+                    <!-- 상세보기창 -->
+                    <b-container v-if="openWindow" fluid>
+                        <div style="overflow: auto; max-height: 70vh;">
+                            <router-view style="background-color: #E2DFD8"/>
                         </div>
-                    </b-card-text>
-                </b-tab>
-            </b-tabs>
-        </b-card>
+                    </b-container>
+                </b-col>
+            </b-row>
+        </b-container>
+
+        <!-- 여백 -->
+        <b-container fluid>
+            <b-row style="height: 10vh;"></b-row>
+        </b-container>
+
+
     </div>
     
 </template>
@@ -35,80 +43,85 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            show: false,
-            show2: false,
+            openWindow: '',
+            overlayShow: true,
             brands: null,
-            items: [],
-            titles: [
-                'Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6', 'Top7', 'Top8', 'Top9', 'Top10'
-            ],
-            
+            brand_list: null,
         }
     },
     created() {
-                
-        var themeno = this.$route.query.label;
+        console.log(this.$route.query)
+        var themeno = this.$route.query.label
         var sector = this.$route.query.sector
-        console.log(themeno);
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + sector).then((res) =>{
-            this.brands = res.data;
-            for(var i = 0; i<this.brands.length; i++){
-                this.brands[i].total_ratio = this.brands[i].average_sales_ratio + this.brands[i].startup_cost_ratio + this.brands[i].rate_of_opening_ratio
+            console.log(res.data);
+            for(var i = 0; i<res.data.length; i++){
+                res.data[i].total_ratio = res.data[i].average_sales_ratio + res.data[i].startup_cost_ratio + res.data[i].rate_of_opening_ratio
+                console.log(res.data[i].total_ratio)
             }
+            this.brands = res.data;
             
             this.brands.sort(function(a, b){
                 return  b.total_ratio - a.total_ratio
             })
             
-            // console.log('정렬 완료')
-            for(i = 0; i<this.brands.length; i++){
-                console.log(this.brands[i].brand_name)
-            //     console.log(this.brands[i].total_ratio)
+            console.log(this.brands)
+            for(i = 0; i<res.data.length; i++){
+                console.log(this.brands[i].total_ratio)
             }
-            
-            
-            // this.brands.reduce((previous, current) =>{  //axios 반복문 쓰려면 비동기 실행해야됨;;
-            //     return previous.then(async () =>{
-            //         res = await axios.get('http://34.64.236.155:8000/myapp/brand/detail/?name=' + current.brand_name)
-            //         console.log(res.data)
-            //         this.brand_detail.push(res.data)
-            //         if(this.brand_detail.length == 10) this.show=false
-            //     })
-            // }, Promise.resolve())
-            
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[0].franchise_months ,
-                '가맹점 수(개)': String(this.brands[0].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[0].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[0].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[0].rate_of_opening ,
-                '폐점률(%)':  this.brands[0].rate_of_closing 
-            })
-            this.show = false
+
+            this.brand_list = []
+            for(i = 0; i<res.data.length; i++){
+                this.brand_list.push(
+                    {
+                        '순위': i+1,
+                        '브랜드 이름': this.brands[i].brand_name, '가맹점수': this.brands[i].num_of_franchise, '가맹 개월수': this.brands[i].franchise_months, '연평균매출액(단위: 천원)': this.brands[i].average_sales,
+                        '창업비용(단위: 천원)': this.brands[i].startup_cost, '개점률(%)': this.brands[i].rate_of_opening, '폐점률(%)': this.brands[i].rate_of_closing
+                    }
+                );
+            }
         })
-        
+        this.overlayShow = false
     },
     methods:{
-        getinfo(index){
-            this.items=[]
-            // console.log(index)
-            // console.log(this.brands[index])
-            this.items.push({
-                '가맹 개월 수 (개월)': this.brands[index].franchise_months ,
-                '가맹점 수(개)': String(this.brands[index].num_of_franchise).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '평균매출액(년/천원)': String(this.brands[index].average_sales).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '창업비용(천원)': String(this.brands[index].startup_cost).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ,
-                '개점률(%)':this.brands[index].rate_of_opening ,
-                '폐점률(%)':  this.brands[index].rate_of_closing 
-            })
-
+        detail(brandName){
+            if(this.openWindow == brandName){
+                this.openWindow = ''
+                console.log(this.openWindow)
+            }else if(this.openWindow == null){
+                this.openWindow = brandName
+                console.log(this.openWindow)
+            }else{
+                this.openWindow = brandName
+                console.log(this.openWindow)
+                this.$router.push({
+                    name: '19',
+                    query: {name: brandName}
+                })
+            }
         }
-        
-
     }
 }
 </script>
 
 <style>
-
+.Top10{
+    background-color: #E9DDC8;
+    width: 90%;
+    height: 7vh;
+    margin-top: 0.5vh;
+    border-radius: 20px;
+    padding-top: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+.resultCardTitle{
+    font-size: 2vh;
+    font-weight: bold;
+    text-align: left;
+}
+.resultCardText{
+    font-size: 1.5vh;
+    font-weight: bold;
+}
 </style>
