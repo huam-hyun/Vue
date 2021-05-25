@@ -13,7 +13,9 @@
             <b-row class="mainSearch" style="height: 5vh;" align-h="center" align-v="end">
                 <b-col cols="6">
                     <b-input-group>
-                        <b-input type="text" style="border-radius: 20px 0 0 20px;"></b-input><b-button style=" border-radius: 0 20px 20px 0;"><img src="@/assets/search.png" style="height: 14px;"></b-button>
+                        <b-input v-if="this.isLogin" type="text" v-model="search" style="border-radius: 20px 0 0 20px;"></b-input>
+                        <b-input v-if="!this.isLogin" disabled placeholder="로그인 후 이용 가능합니다" style="border-radius: 20px 0 0 20px;"></b-input>
+                        <b-button style=" border-radius: 0 20px 20px 0;" @click="searchbrand"><img src="@/assets/search.png" style="height: 14px;"></b-button>
                     </b-input-group>
                 </b-col>
             </b-row>
@@ -155,8 +157,30 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-    
+    data(){
+        return{
+            search: '',
+        }
+    },
+    methods:{
+        searchbrand(){
+            if(this.isLogin == true){
+                this.$router.push({
+                    name: 'BrandSearch',
+                    query: {searchparam: this.search},
+                })
+            }
+            else{
+                alert('로그인후 이용 가능한 서비스입니다')
+            }
+        },
+    },
+    computed:{
+        ...mapState(['isLogin'])
+    }
 }
 </script>
 

@@ -5,6 +5,20 @@
             <b-row style="height: 90px;"></b-row>
         </b-container>
 
+        <!-- 검색창 -->
+        <b-container v-if="!overlayShow" style="margin-bottom: 2vh;">
+            <b-row>
+                <b-col>
+                    <a style="font-size: 50px; font-weight: bold;">BrandList</a><br>
+                </b-col>
+            </b-row>
+            <b-input-group>
+                <b-input type="text" v-model="search" style="border-radius: 20px 0 0 20px;"></b-input>
+                <b-button style=" border-radius: 0 20px 20px 0;" @click="searchbrand"><img src="@/assets/search.png" style="height: 14px;"></b-button>
+            </b-input-group>
+        </b-container>
+
+        <!-- 카테고리 -->
         <b-container fluid>
             <b-row align-h="center" v-if="!overlayShow">
                 <b-col md="auto" style="cursor: pointer;" @click="changeSelected(item.value)" v-for="item in titles" :key="item.sector">
@@ -30,10 +44,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -73,10 +87,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -116,10 +130,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -159,10 +173,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -202,10 +216,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -245,10 +259,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -288,10 +302,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -331,10 +345,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -374,10 +388,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -417,10 +431,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -460,10 +474,10 @@
                         </b-row>
                         <b-row style="font-size: 1.5vh;">
                             <b-col cols="auto">
-                                평균 매출액: {{item.average_sales}}
+                                평균 매출액: {{toPrettyString(item.average_sales)}}
                             </b-col>
                             <b-col cols="auto">
-                                창업비용: {{item.startup_cost}}
+                                창업비용: {{toPrettyString(item.startup_cost)}}
                             </b-col>
                         </b-row>
                     </b-container>
@@ -487,6 +501,8 @@
             </b-row>      
         </b-container>
 
+        
+
         <!--오버레이 표시-->
         <b-overlay
             :show="overlayShow"
@@ -507,6 +523,7 @@ import axios from 'axios'
 export default {
     data(){
         return {
+            search: '',
             perRow: 4,
             selected: null,
             brands: null,
@@ -520,7 +537,6 @@ export default {
             etc: null,
             etc_f: null,
             bread: null,
-            search: '',
             perPage: 20,
             currentPage: 1,
             overlayShow: true,
@@ -572,16 +588,19 @@ export default {
                 query: {name: name},
             })
         },
+        changeSelected(sector){
+            this.currentPage = 1
+            this.selected = sector
+        },
         searchbrand(){
             this.$router.push({
                 name: 'BrandSearch',
                 query: {searchparam: this.search},
             })
         },
-        changeSelected(sector){
-            this.currentPage = 1
-            this.selected = sector
-        }
+        toPrettyString(int_param){
+            return String(int_param).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
     },
     created() {
         axios.get('http://34.64.236.155:8000/myapp/brand').then((res)=>{

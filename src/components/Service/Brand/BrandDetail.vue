@@ -1,10 +1,5 @@
 <template>
     <div>
-        <!-- Header 크기 - Footer크기 -->
-        <b-container v-if="!overlayShow" fluid>
-            <b-row style="height: 15vh;"></b-row>
-        </b-container>
-
         <b-container v-if="!overlayShow" fluid>
             <b-row align-h="center" class="detailTitle">
                 <b-col cols="auto">
