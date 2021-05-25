@@ -13,35 +13,56 @@
             <b-row class="mainSearch" style="height: 5vh;" align-h="center" align-v="end">
                 <b-col cols="6">
                     <b-input-group>
-                        <b-input v-if="this.isLogin" type="text" v-model="search" style="border-radius: 20px 0 0 20px;"></b-input>
-                        <b-input v-if="!this.isLogin" disabled placeholder="로그인 후 이용 가능합니다" style="border-radius: 20px 0 0 20px;"></b-input>
-                        <b-button style=" border-radius: 0 20px 20px 0;" @click="searchbrand"><img src="@/assets/search.png" style="height: 14px;"></b-button>
+                        <b-input type="text" style="border-radius: 20px 0 0 20px;"></b-input><b-button style=" border-radius: 0 20px 20px 0;"><img src="@/assets/search.png" style="height: 14px;"></b-button>
                     </b-input-group>
                 </b-col>
             </b-row>
-            <b-row class="mainSearch" style="height: 56vh; margin-top: 4vh;" align-h="center" align-v="start">
-                <b-col cols="1">
-                    <img src="@/assets/korean.png" style="height: 7vh;"><br>한식
+            <b-row class="icon" style="height: 6vh; margin-top: 4vh;" align-h="center" align-v="start">
+                <b-col cols="1.5">
+                    <img @click="gobrand('korean')" src="@/assets/korean.png" style="height: 7vh;"><br><strong>한식</strong>
                 </b-col>
-                <b-col cols="1">
-                    <img src="@/assets/chijap.png" style="height: 7vh;"><br>중/일식
+                <b-col cols="2">
+                    <img @click="gobrand('cafe')" src="@/assets/cafe.png" style="height: 7vh;"><br><strong>카페</strong>
                 </b-col>
-                <b-col cols="1">
-                    <img src="@/assets/cafe.png" style="height: 7vh;"><br>카페
+                <b-col cols="0.8">
+                    <img @click="gobrand('chicken')" src="@/assets/chicken.png" style="height: 7vh;"><br><strong>치킨</strong>
                 </b-col>
-                <b-col cols="1">
-                    <img src="@/assets/chicken.png" style="height: 7vh;"><br>치킨
+                <b-col cols="2">
+                    <img @click="gobrand('fastfood')" src="@/assets/fastfood.png" style="height: 7vh;"><br><strong>패스트푸드</strong>
+                </b-col>
+                <b-col cols="1.5">
+                    <img @click="gobrand('bread')" src="@/assets/bread.png" style="height: 7vh;"><br><strong>제과제빵</strong>
+                </b-col>
+            </b-row>
+            <b-row class="icon" style="height: 46vh; margin-top: 4vh;" align-h="center" align-v="start">
+                <b-col cols="1.5">
+                    <img @click="gobrand('chijap')" src="@/assets/chijap.png" style="height: 7vh;"><br><strong>중/일식</strong>
+                </b-col>
+                <b-col cols="2">
+                    <img @click="gobrand('kimbob')" src="@/assets/kimbob.png" style="height: 7vh;"><br><strong>분식</strong>
+                </b-col>
+                <b-col cols="0.8">
+                    <img @click="gobrand('hof')" src="@/assets/hof.png" style="height: 7vh;"><br><strong>주점</strong>
+                </b-col>
+                <b-col cols="2">
+                    <img @click="gobrand('etc')" src="@/assets/etc.png" style="height: 7vh;"><br><strong>기타외식</strong>
+                </b-col>
+                <b-col cols="1.5">
+                    <img @click="gobrand('etc_f')" src="@/assets/etcf.png" style="height: 7vh;"><br><strong>기타외국식</strong>
                 </b-col>
             </b-row>
             
         </b-container>
-        <b-container class="mainContainer" fluid>
-            <b-row class="introduce"  align-v="center">
-                <b-col class="top"><strong>안녕하세요 프랜드차이입니다</strong><br>
-                    <a style="font-size:3vh;">신규 가맹사업자들을 위한 서비스를 지금 바로 만나보세요</a>
-                </b-col>
-            </b-row>
-            
+        <b-container class="img1" fluid>
+            <div class="img-cover">
+                <div> 
+                    <b-row class="introduce"  align-v="center">
+                        <b-col class="top" style="color: white"><strong>안녕하세요 프랜드차이입니다</strong><br>
+                            <a style="font-size:5vh;">신규 가맹사업자들을 위한 서비스를 지금 바로 만나보세요</a>
+                        </b-col>
+                    </b-row>
+                </div>                
+            </div>
         </b-container>
         <div class="w-100" style="height: 40vh;"></div>
         <b-container class="mainContainer2" fluid>
@@ -157,41 +178,47 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
-    data(){
-        return{
-            search: '',
-        }
-    },
     methods:{
-        searchbrand(){
-            if(this.isLogin == true){
-                this.$router.push({
-                    name: 'BrandSearch',
-                    query: {searchparam: this.search},
-                })
-            }
-            else{
-                alert('로그인후 이용 가능한 서비스입니다')
-            }
-        },
-    },
-    computed:{
-        ...mapState(['isLogin'])
+        gobrand(sector){
+            this.$router.push({
+                name: 'BrandList',
+                query: {
+                    sector: sector
+                }
+            })
+        }
     }
 }
 </script>
 
 <style>
+.img1{
+position: relative;
+/* src: "@/assets/contract.jpg"; */
+background-image: url(https://i1.wp.com/bestonetax.com/wp-content/uploads/2018/11/business-3167295_640.jpg?resize=640%2C423);
+height: 70vh;
+background-size: cover;
+}
+ .img-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);                                                                 
+    z-index:0;
+} 
+.icon{
+    cursor: pointer;
+}
 .introduce{
     width: 100%;
     text-align: center;
     height: 70vh;
 }
 .top{
-    font-size: 6vh;
+    font-size: 7vh;
 }
 .middle{
     font-size: 4vh;

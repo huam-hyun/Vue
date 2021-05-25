@@ -41,6 +41,7 @@ export default {
                 {title: '한식', name:'koreanResult', src:'korean.png'},
                 {title: '중/일식', name:'chijapResult',src:'chijap.png'},
                 {title: '카페', name:'cafeResult',src:'cafe.png'},
+                {title: '제과제빵', name:'breadResult',src:'bread.png'},
                 {title: '분식', name:'kimbobResult',src:'kimbob.png'},
                 {title: '치킨', name:'chickenResult',src:'chicken.png'},
                 {title: '주점', name:'hofResult',src:'hof.png'},

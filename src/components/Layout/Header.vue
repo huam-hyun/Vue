@@ -81,14 +81,15 @@ export default {
     padding-top: 10px;
     position: fixed;
     background: #EDECEA;
-    z-index: 1;
+    z-index: 2;
 }
 .select{
     margin-top: 8px;
     margin-bottom: 8px;
     padding-top: 2px;
     padding-bottom: 2px;
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 40px;
     /* background-color: white;     */

@@ -618,9 +618,13 @@ export default {
             console.log(this.brands)
             this.overlayShow = false
             this.brands.pop()
-            this.selected = 'all'           
-        });
-        
+            if(this.$route.query.sector != null){
+                this.changeSelected(this.$route.query.sector)
+            }else{
+                this.selected = 'all'
+            }
+                       
+        });    
     },
 }
 </script>

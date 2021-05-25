@@ -34,6 +34,7 @@ import HofResult from '@/components/Service/Recommend/Theme/hof'
 import EtcResult from '@/components/Service/Recommend/Theme/etc'
 import EtcfResult from '@/components/Service/Recommend/Theme/etcf'
 import AllResult from '@/components/Service/Recommend/Theme/all'
+import BreadResult from '@/components/Service/Recommend/Theme/bread'
 
 //사용자 설정 추천 결과 업종별 중첩라우트 부분
 import koreanResult from '@/components/Service/Recommend/UserSet/korean'
@@ -46,6 +47,7 @@ import hofResult from '@/components/Service/Recommend/UserSet/hof'
 import etcResult from '@/components/Service/Recommend/UserSet/etc'
 import etcfResult from '@/components/Service/Recommend/UserSet/etcf'
 import allResult from '@/components/Service/Recommend/UserSet/all'
+import breadResult from '@/components/Service/Recommend/UserSet/bread'
 
 Vue.use(Router)
 
@@ -142,6 +144,18 @@ export default new Router({
                         {
                             path:'detail',
                             name:'4',
+                            component: BrandDetail
+                        }
+                    ]
+                },
+                {
+                    path:'bread',
+                    name:'breadResult',
+                    component: breadResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'21',
                             component: BrandDetail
                         }
                     ]
@@ -247,6 +261,18 @@ export default new Router({
                         {
                             path:'detail',
                             name:'12',
+                            component: BrandDetail
+                        }
+                    ]
+                },
+                {
+                    path:'bread',
+                    name:'BreadResult',
+                    component: BreadResult,
+                    children: [
+                        {
+                            path:'detail',
+                            name:'22',
                             component: BrandDetail
                         }
                     ]

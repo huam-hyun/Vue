@@ -2,8 +2,8 @@
     <div class="modal">
         <b-modal ref='login-modal' show="lg" :modal-class="my-modal" id="login" title="로그인" @hidden="reset" centered hide-footer>
             <b-form @submit.stop.prevent>
-                <label for="id">ID</label>
-                <b-form-input type="text" id="id" v-model="form.email" required></b-form-input>
+                <label for="id" >ID</label>
+                <b-form-input placeholder="이메일을 입력해주세요" type="text" id="id" v-model="form.email" required></b-form-input>
                 <br>
                 <label for="password">Password</label>
                 <b-form-input v-model="form.password" type="password" id="password" required></b-form-input>                
