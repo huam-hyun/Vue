@@ -640,6 +640,7 @@ export default {
     vertical-align: middle;
     background-color: #E2DFD8;
     border-radius: 15px;
+    cursor: pointer;
 }
 .wrapper{
     display: table; 

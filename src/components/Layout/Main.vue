@@ -53,125 +53,132 @@
             </b-row>
             
         </b-container>
+
         <b-container class="img1" fluid>
+            <div class="img-cover"> 
+                <b-row class="introduce"  align-v="center">
+                    <b-col class="top" style="color: white"><strong>안녕하세요 프랜드차이입니다</strong><br>
+                        <a style="font-size:5vh;">신규 가맹사업자들을 위한 서비스를 지금 바로 만나보세요</a>
+                    </b-col>
+                </b-row>
+            </div>                
+        </b-container>
+
+        <div class="w-100" style="height: 40vh;"></div>
+
+        <b-container class="img2" fluid>
             <div class="img-cover">
-                <div> 
-                    <b-row class="introduce"  align-v="center">
-                        <b-col class="top" style="color: white"><strong>안녕하세요 프랜드차이입니다</strong><br>
-                            <a style="font-size:5vh;">신규 가맹사업자들을 위한 서비스를 지금 바로 만나보세요</a>
-                        </b-col>
-                    </b-row>
-                </div>                
+
+                <b-row align-v="center" class="introduce">
+                    <b-col cols="5">
+                        <b-row  class="top" align-h="center">
+                            <strong>브랜드 추천</strong>
+                        </b-row>
+                        <b-row style="height: 20vh;"></b-row>
+                        <b-row align-h="center">
+                            <a style="font-size: 3.2vh;">신규 창업자들을 위한 추천 서비스</a>
+                        </b-row>
+                    
+                    </b-col>
+                    <b-col cols="7" >
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                테마
+                            </b-col>
+                            <b-col>
+                                저희가 미리 정해둔 테마를 만나보세요
+                            </b-col>
+                        </b-row>
+                        <b-row style="height: 10vh;">
+                        </b-row>
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                사용자 설정
+                            </b-col>
+                            <b-col>
+                                조건을 설정하셔도 돼요
+                            </b-col>
+                        </b-row>                    
+                    </b-col>
+                </b-row>
             </div>
         </b-container>
         <div class="w-100" style="height: 40vh;"></div>
-        <b-container class="mainContainer2" fluid>
-            <b-row align-v="center" class="introduce">
-                <b-col cols="5">
-                    <b-row  class="top" align-h="center">
-                        <strong>브랜드 추천</strong>
-                    </b-row>
-                    <b-row style="height: 20vh;"></b-row>
-                    <b-row align-h="center">
-                        <a style="font-size: 3.2vh;">신규 창업자들을 위한 추천 서비스</a>
-                    </b-row>
-                    
-                </b-col>
-                <b-col cols="7" >
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            테마
-                        </b-col>
-                        <b-col>
-                            저희가 미리 정해둔 테마를 만나보세요
-                        </b-col>
-                    </b-row>
-                    <b-row style="height: 10vh;">
-                    </b-row>
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            사용자 설정
-                        </b-col>
-                        <b-col>
-                            조건을 설정하셔도 돼요
-                        </b-col>
-                    </b-row>                    
-                </b-col>
-            </b-row>
+
+        <b-container class="img3" fluid>
+            <div class="img-cover">
+                <b-row align-v="center" class="introduce">
+                    <b-col cols="5">
+                        <b-row  class="top" align-h="center">
+                            <strong>브랜드 정보</strong>
+                        </b-row>
+                        <b-row style="height: 20vh;"></b-row>
+                        <b-row align-h="center">
+                            <a style="font-size: 3.2vh;">궁금하신 브랜드가 있다면</a>
+                        </b-row>
+    
+                    </b-col>
+                    <b-col cols="7" >
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                검색
+                            </b-col>
+                            <b-col>
+                                원하는 브랜드를 찾아보세요
+                            </b-col>
+                        </b-row>
+                        <b-row style="height: 10vh;">
+                        </b-row>
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                카테고리
+                            </b-col>
+                            <b-col>
+                                업종별로도 모아봤어요
+                            </b-col>
+                        </b-row>                    
+                    </b-col>
+                </b-row>
+            </div>
         </b-container>
+
         <div class="w-100" style="height: 40vh;"></div>
 
-        <b-container class="mainContainer" fluid>
-            <b-row align-v="center" class="introduce">
-                <b-col cols="5">
-                    <b-row  class="top" align-h="center">
-                        <strong>브랜드 찾기</strong>
-                    </b-row>
-                    <b-row style="height: 20vh;"></b-row>
-                    <b-row align-h="center">
-                        <a style="font-size: 3.2vh;">궁금하신 브랜드가 있다면</a>
-                    </b-row>
-                    
-                </b-col>
-                <b-col cols="7" >
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            검색
-                        </b-col>
-                        <b-col>
-                            보고싶은 브랜드를 찾아보세요
-                        </b-col>
-                    </b-row>
-                    <b-row style="height: 10vh;">
-                    </b-row>
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            카테고리
-                        </b-col>
-                        <b-col>
-                            업종별로도 모아봤어요
-                        </b-col>
-                    </b-row>                    
-                </b-col>
-            </b-row>
-            
-        </b-container>
-        <div class="w-100" style="height: 40vh;"></div>
-
-        <b-container class="mainContainer2" fluid>
-            <b-row align-v="center" class="introduce">
-                <b-col cols="5">
-                    <b-row  class="top" align-h="center">
-                        <strong>지도</strong>
-                    </b-row>
-                    <b-row style="height: 20vh;"></b-row>
-                    <b-row align-h="center">
-                        <a style="font-size: 3.2vh;">지도에서 브랜드를 찾아보세요</a>
-                    </b-row>
-                    
-                </b-col>
-                <b-col cols="7" >
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            위치
-                        </b-col>
-                        <b-col>
-                            원하는 위치를 고르세요
-                        </b-col>
-                    </b-row>
-                    <b-row style="height: 10vh;">
-                    </b-row>
-                    <b-row  class="middle">
-                        <b-col cols="3">
-                            카테고리
-                        </b-col>
-                        <b-col>
-                            업종별로 위치를 표시해줄게요
-                        </b-col>
-                    </b-row>                    
-                </b-col>
-            </b-row>
-            
+        <b-container class="img4" fluid>
+            <div class="img-cover">
+                <b-row align-v="center" class="introduce">
+                    <b-col cols="5">
+                        <b-row  class="top" align-h="center">
+                            <strong>지도</strong>
+                        </b-row>
+                        <b-row style="height: 20vh;"></b-row>
+                        <b-row align-h="center">
+                            <a style="font-size: 3.2vh;">지도에서 브랜드를 찾아보세요</a>
+                        </b-row>
+    
+                    </b-col>
+                    <b-col cols="7" >
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                위치
+                            </b-col>
+                            <b-col>
+                                원하는 위치를 고르세요
+                            </b-col>
+                        </b-row>
+                        <b-row style="height: 10vh;">
+                        </b-row>
+                        <b-row  class="middle">
+                            <b-col cols="3">
+                                카테고리
+                            </b-col>
+                            <b-col>
+                                업종별로 위치를 표시해줄게요
+                            </b-col>
+                        </b-row>                    
+                    </b-col>
+                </b-row>
+            </div>
         </b-container>
         <div class="w-100" style="height: 10vh;"></div>
     </div>
@@ -200,6 +207,27 @@ background-image: url(https://i1.wp.com/bestonetax.com/wp-content/uploads/2018/1
 height: 70vh;
 background-size: cover;
 }
+.img2{
+position: relative;
+/* src: "@/assets/contract.jpg"; */
+background-image: url('../../assets/recommend.jpg');
+height: 70vh;
+background-size: cover;
+}
+.img3{
+position: relative;
+/* src: "@/assets/contract.jpg"; */
+background-image: url('../../assets/detail.jpg');
+height: 70vh;
+background-size: cover;
+}
+.img4{
+position: relative;
+/* src: "@/assets/contract.jpg"; */
+background-image: url('../../assets/map.png');
+height: 70vh;
+background-size: cover;
+}
  .img-cover{
     position: absolute;
     top: 0;
@@ -216,6 +244,7 @@ background-size: cover;
     width: 100%;
     text-align: center;
     height: 70vh;
+    color: white;
 }
 .top{
     font-size: 7vh;

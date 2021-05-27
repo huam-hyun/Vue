@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <b-container v-if="!overlayShow" fluid>
             <b-row align-h="center" class="detailTitle">
                 <b-col cols="auto">
@@ -210,6 +211,7 @@ export default {
 .detailSelect{
     font-size: 2vh;
     margin-top: 10vh;
+    cursor: pointer;
 }
 .detailBody{
     font-size: 1.8vh;
