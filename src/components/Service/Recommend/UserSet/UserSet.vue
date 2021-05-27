@@ -16,20 +16,19 @@
                 <b-col cols="3">
                     <b-card class="condition" >
                         <b-card-text>가맹사업 개월수</b-card-text>
-                        <b-select v-model="p[0]" :options="options"></b-select>
+                        <b-select v-model="p[0]" :options="options" @change="onSelectChanged(0)"></b-select>
                     </b-card>
                 </b-col>
                 <b-col cols="3">
                     <b-card class="condition">
                         <b-card-text>가맹점 수</b-card-text>                       
-                        <b-select v-model="p[1]" :options="options"></b-select>
+                        <b-select v-model="p[1]" :options="options" @change="onSelectChanged(1)"></b-select>
                     </b-card>
                 </b-col>
                 <b-col cols="3">
                     <b-card class="condition">
                         <b-card-text>평균 매출액</b-card-text>
-                    
-                        <b-select v-model="p[2]" :options="options"></b-select>
+                        <b-select v-model="p[2]" :options="options" @change="onSelectChanged(2)"></b-select>
                     </b-card>
                 </b-col>
             </b-row>
@@ -37,22 +36,19 @@
                 <b-col cols="3">
                     <b-card class="condition">
                         <b-card-text>창업비용</b-card-text>
-                        
-                        <b-select v-model="p[3]" :options="options"></b-select>
+                        <b-select v-model="p[3]" :options="options" @change="onSelectChanged(3)"></b-select>
                     </b-card>
                 </b-col>
                 <b-col cols="3">
                     <b-card class="condition">
                         <b-card-text>개점률</b-card-text>
-                        
-                        <b-select v-model="p[4]" :options="options"></b-select>
+                        <b-select v-model="p[4]" :options="options" @change="onSelectChanged(4)"></b-select>
                     </b-card>
                 </b-col>
                 <b-col cols="3">
                     <b-card class="condition">
                         <b-card-text>폐점률</b-card-text>
-                        
-                        <b-select v-model="p[5]" :options="options"></b-select>
+                        <b-select v-model="p[5]" :options="options" @change="onSelectChanged(5)"></b-select>
                     </b-card>
                 </b-col>
             </b-row>
@@ -100,23 +96,39 @@ export default {
                 {
                     value: 5, text: '6순위'
                 },
-            ]
+            ],
+            changed:[],
         }  
     },
     methods: {
-        result(){
-            var condition = [0, 1, 2, 3, 4, 5]
-            var cond = []
-            for(var i = 0; i < 6; i++){
-                cond[i] = this.p[i]
-            }
-            cond.sort()
-            for(i = 0; i < 6; i++){
-                if(cond[i] != condition[i]){
-                    alert('중복된 값이 있습니다')
-                    return;
+        onSelectChanged(){
+            console.log(this.p);
+            for(var i = 0; i < this.p.length; i++){
+                for(var j = 0; j < this.p.length; j++){
+                    if(i == j){
+                        continue;
+                    }
+                    if(this.p[i] == this.p[j]){
+                        alert("해당 요소는 이미 선택했습니다.");
+                        return;
+                    }
                 }
             }
+        },
+        result(){
+            // var condition = [0, 1, 2, 3, 4, 5]
+            // var cond = []
+            // for(var i = 0; i < 6; i++){
+            //     cond[i] = this.p[i]
+            // }
+            // cond.sort()
+            // for(i = 0; i < 6; i++){
+            //     if(cond[i] != condition[i]){
+            //         alert('중복된 값이 있습니다')
+            //         return;
+            //     }
+            // }
+
             this.$router.push({
                 path: '/service/recommend/userset/result/all',
                 query: {
