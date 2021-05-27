@@ -80,7 +80,7 @@
                     </b-row>
                     <b-container style="overflow: scroll; height: 34vh;">
                     <b-row v-for="item in fran" :key="item" align-h="center">
-                        <b-col cols="8" class="mapCard">
+                        <b-col cols="8" class="mapCard" @click="detail(item.brand_name)">
                             <strong style="font-size: 20px;">{{item.brand_name}}</strong><br>
                             {{item.sector}}<br>
                             <!-- 주소: <p>{{latlngToAddress(item.latitude, item.longitude)}}</p> -->
@@ -129,6 +129,12 @@ import axios from 'axios'
             this.do_s = a;
         },
         methods: {
+            detail(name){
+                this.$router.push({
+                    name: 'BrandDetail',
+                    query: {name: name},
+                })
+            },
             result()
             {
                 axios.get('http://34.64.236.155:8000/myapp/address/?do=' 
