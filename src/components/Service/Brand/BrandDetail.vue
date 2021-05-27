@@ -1,7 +1,10 @@
 <template>
     <div>
-
         <b-container v-if="!overlayShow" fluid>
+            <!-- 여백 -->
+            <b-container fluid>
+                <b-row style="height: 100px;"></b-row>
+            </b-container>
             <b-row align-h="center" class="detailTitle">
                 <b-col cols="auto">
                     <a>{{this.br_detail[0].brand_name}}</a>

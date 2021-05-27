@@ -80,7 +80,7 @@
                     </b-row>
                     <b-container style="overflow: scroll; height: 34vh;">
                     <b-row v-for="item in fran" :key="item" align-h="center">
-                        <b-col cols="8" class="mapCard" @click="detail(item.brand_name)">
+                        <b-col cols="8" class="mapCard">
                             <strong style="font-size: 20px;">{{item.brand_name}}</strong><br>
                             {{item.sector}}<br>
                             <!-- 주소: <p>{{latlngToAddress(item.latitude, item.longitude)}}</p> -->
@@ -129,12 +129,6 @@ import axios from 'axios'
             this.do_s = a;
         },
         methods: {
-            detail(name){
-                this.$router.push({
-                    name: 'BrandDetail',
-                    query: {name: name},
-                })
-            },
             result()
             {
                 axios.get('http://34.64.236.155:8000/myapp/address/?do=' 
@@ -166,15 +160,11 @@ import axios from 'axios'
                 if (this.fran.length == 0)
                 {
                     // 텍스트로 없다고 알림
-                    var alert_div = document.getElementById('alert');
-                    alert_div.innerHTML = '';
-                    var tag = document.createElement("p");
-                    tag.textContent = '해당 지역의 '+ this.sector + ' 업종 데이터가 없습니다.';
-                    alert_div.appendChild(tag);
+                    document.getElementById('alert').innerHTML = '<strong>해당 지역의 '+ this.sector + ' 업종 데이터가 없습니다.</strong>';
 
                     // 카카오맵도 없애버리기
-                    var tag2 = document.createElement('p');
-                    tag2.textContent = '데이터가 없습니다.'
+                    var tag2 = document.createElement('div');
+                    tag2.innerHTML = '<br><br><strong>데이터가 없습니다.</strong>';
                     document.getElementById('map').appendChild(tag2);
                     return;
                 }
@@ -293,6 +283,7 @@ import axios from 'axios'
     border-width: 1px;
     border-radius: 10px;
     background: #C6DFD6;
+    overflow: scroll;
     cursor: pointer;
 }
 </style>
