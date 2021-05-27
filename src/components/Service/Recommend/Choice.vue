@@ -21,28 +21,6 @@
             </b-row>
 
         </b-container>
-
-        <!-- <b-card bg-variant="dark" text-variant="white" class="theme" @click="theme">
-            <b-card-text class="title">
-                테마 추천
-            </b-card-text>
-            <b-card-text>
-                아직 브랜드를 선택하지 못하셨나요?<br>
-
-                
-            </b-card-text>
-            
-        </b-card>
-        <b-card bg-variant="dark" text-variant="white" class="theme" @click="userset">
-            <b-card-title class="title">
-                사용자 지정 추천
-            </b-card-title>
-            <b-card-text>
-                창업하는데 정해둔 우선순위가 있으신가요?<br>
-                
-
-            </b-card-text>
-        </b-card> -->
     </div>
 </template>
 

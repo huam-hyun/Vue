@@ -1,6 +1,8 @@
 <template>
     <div>
         <b-container fluid>
+            <b-container id='alert_empty'>
+            </b-container>
             <b-row align-h="center" align-v="start" style="height: 80vh;">
                 <b-col cols="4" style="padding-top: 4vh">
                     <a style="overflow: auto;">
@@ -59,6 +61,14 @@ export default {
         axios.get('http://34.64.236.155:8000/myapp/customtheme/?p1='+ p1 + '&p2=' + p2 + '&p3=' + p3 + '&p4=' + p4 + '&p5=' + p5 + '&p6=' + p6 + '&sector=' + sector).then((res) =>{
             var weight = [0.9, 0.7, 0.5, 0.3, 0.2, 0.1]
             console.log(res.data);
+
+            if(res.data.length < 1){
+                console.log(res.data);
+                var subject = document.getElementById('alert_empty');
+                subject.innerHTML = '<br><br><strong>데이터가 없습니다.</strong>';
+                return ;
+            }
+
             for(var i = 0; i<res.data.length; i++){
                 res.data[i].total_ratio = res.data[i].franchise_months_ratio * weight[p1] + res.data[i].num_of_franchise_ratio * weight[p2] + res.data[i].average_sales_ratio * weight[p3] +
                 res.data[i].startup_cost_ratio * weight[p4] + res.data[i].rate_of_opening_ratio * weight[p5] + res.data[i].rate_of_closing_ratio * weight[p6]

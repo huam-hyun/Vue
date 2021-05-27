@@ -1,6 +1,8 @@
 <template>
     <div>
         <b-container fluid>
+            <b-container id='alert_empty'>
+            </b-container>
             <b-row align-h="center" align-v="start" style="height: 80vh;">
                 <b-col cols="4" style="padding-top: 4vh">
                     <a style="overflow: auto;">
@@ -55,6 +57,12 @@ export default {
         var sector = this.$route.query.sector
         axios.get('http://34.64.236.155:8000/myapp/basetheme/?label=' + themeno + '&sector=' + sector).then((res) =>{
             console.log(res.data);
+            if(res.data.length < 1){
+                console.log(res.data);
+                var subject = document.getElementById('alert_empty');
+                subject.innerHTML = '<br><br><strong>데이터가 없습니다.</strong>';
+                return ;
+            }
             for(var i = 0; i<res.data.length; i++){
                 res.data[i].total_ratio = res.data[i].average_sales_ratio + res.data[i].startup_cost_ratio + res.data[i].rate_of_opening_ratio
                 console.log(res.data[i].total_ratio)
