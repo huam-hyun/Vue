@@ -110,7 +110,7 @@ export default {
                 this.openWindow = brandName
                 console.log(this.openWindow)
                 this.$router.push({
-                    name: '2',
+                    name: '21',
                     query: {name: brandName}
                 })
             }

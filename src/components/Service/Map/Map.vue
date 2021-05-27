@@ -289,7 +289,6 @@ import axios from 'axios'
     border-width: 1px;
     border-radius: 10px;
     background: #C6DFD6;
-    overflow: scroll;
     cursor: pointer;
 }
 </style>

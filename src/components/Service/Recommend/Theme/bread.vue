@@ -103,7 +103,7 @@ export default {
                 this.openWindow = brandName
                 console.log(this.openWindow)
                 this.$router.push({
-                    name: '20',
+                    name: '22',
                     query: {name: brandName}
                 }).catch(()=>{})
             }
