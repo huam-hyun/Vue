@@ -13,7 +13,7 @@
             <b-row class="mainSearch" style="height: 5vh;" align-h="center" align-v="end">
                 <b-col cols="6">
                     <b-input-group>
-                        <b-input type="text" style="border-radius: 20px 0 0 20px;"></b-input><b-button style=" border-radius: 0 20px 20px 0;"><img src="@/assets/search.png" style="height: 14px;"></b-button>
+                        <b-input type="text" v-model="search" style="border-radius: 20px 0 0 20px;"></b-input><b-button @click="searchbrand" style=" border-radius: 0 20px 20px 0;"><img src="@/assets/search.png" style="height: 14px;"></b-button>
                     </b-input-group>
                 </b-col>
             </b-row>
@@ -186,6 +186,11 @@
 
 <script>
 export default {
+    data(){
+        return{
+            search: ''
+        }
+    },
     methods:{
         gobrand(sector){
             this.$router.push({
@@ -194,7 +199,13 @@ export default {
                     sector: sector
                 }
             })
-        }
+        },
+        searchbrand(){
+            this.$router.push({
+                name: 'BrandSearch',
+                query: {searchparam: this.search},
+            })
+        },
     }
 }
 </script>
