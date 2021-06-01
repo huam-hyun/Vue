@@ -8,7 +8,7 @@
                     <a style="overflow: auto;">
                         <b-container class="Top10" v-for="item in brands" :key="item.brand_name" @click="detail(item.brand_name)">
                             <span class="resultCardTitle">{{item.brand_name}}&nbsp;</span><span class="resultCardText">{{item.sector}}</span><br>
-                            <span class="resultCardText">평균매출액 </span>{{item.average_sales}}&nbsp;<span class="resultCardText">창업비용 </span>{{item.startup_cost}}
+                            <span class="resultCardText">평균매출액 </span>{{toPrettyString(item.average_sales)}}&nbsp;<span class="resultCardText">창업비용 </span>{{toPrettyString(item.startup_cost)}}
                         </b-container>
                     </a>
                 </b-col>
@@ -84,8 +84,8 @@ export default {
                 this.brand_list.push(
                     {
                         '순위': i+1,
-                        '브랜드 이름': this.brands[i].brand_name, '가맹점수': this.brands[i].num_of_franchise, '가맹 개월수': this.brands[i].franchise_months, '연평균매출액(단위: 천원)': this.brands[i].average_sales,
-                        '창업비용(단위: 천원)': this.brands[i].startup_cost, '개점률(%)': this.brands[i].rate_of_opening, '폐점률(%)': this.brands[i].rate_of_closing
+                        '브랜드 이름': this.brands[i].brand_name, '가맹점수': this.brands[i].num_of_franchise, '가맹 개월수': this.brands[i].franchise_months, '연평균매출액(단위: 천원)': this.toPrettyString(this.brands[i].average_sales),
+                        '창업비용(단위: 천원)': this.toPrettyString(this.brands[i].startup_cost), '개점률(%)': this.brands[i].rate_of_opening, '폐점률(%)': this.brands[i].rate_of_closing
                     }
                 );
             }
@@ -112,7 +112,10 @@ export default {
                     query: {name: brandName}
                 })
             }
-        }
+        },
+        toPrettyString(int_param){
+            return String(int_param).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
     }
 }
 </script>
